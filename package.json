@@ -1,0 +1,54 @@
+{
+	"name": "dogfeet.github.com",
+	"version": "0.9.9",
+	"description": "dogfeet blog based off Docpad and Twitter's Bootstrap",
+	"homepage": "https://dogfeet.github.com",
+	"keywords": [
+		"dogfeet",
+        "git",
+        "javascript"
+	],
+	"author": {
+		"name": "Changwoo Park",
+		"email": "pismute@gmail.com"
+	},
+	"maintainers": [
+		{
+			"name": "Changwoo Park",
+			"email": "pismute@gmail.com"
+		}
+	],
+	"contributors": [
+		{
+			"name": "Changwoo Park",
+			"email": "pismute@gmail.com"
+		}
+	],
+	"bugs": {
+		"url": "https://github.com/dogfeet/dogfeet.github.com/issues"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://creativecommons.org/licenses/MIT/"
+		}
+	],
+	"repository" : {
+		"type" : "git",
+		"url" : "http://github.com/dogfeet/dogfeet.github.com.git"
+	},
+	"dependencies": {
+		"coffee-script": "1.1.x",
+		"express": "2.5.x",
+		"docpad": "2.3.7"
+	},
+	"engines" : {
+		"node": ">=0.4.0"
+	},
+	"docpad": {
+		"enabledPlugins": {
+			"admin": true,
+			"rest": true
+		}
+	}
+}
