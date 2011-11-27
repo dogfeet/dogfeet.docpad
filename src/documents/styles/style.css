@@ -1,0 +1,22 @@
+pre, pre > code {
+  background-color: #FEFBF3;
+}
+.container-fluid > .sidebar, .container-fluid > .content{
+  padding-top: 60px;
+}
+.container-fluid > .sidebar {
+  left: auto;
+  right: 20px;
+  width: 220px;
+}
+.container-fluid > .content {
+  left: 20px;
+  margin-left: auto;
+  margin-right: 240px;
+}
+footer {
+  margin-top: 3px;
+  padding-top: 3px;
+  padding-bottom: 20px;
+}
+

@@ -1,8 +1,6 @@
 --- 
 layout: 'default'
-title: 'Home'
 date: '2009-05-21T16:06:05.000Z'
-tags: ['index', 'html']
 ---
 
 for document in @documents
@@ -15,7 +13,7 @@ for document in @documents
       footer ->
         span ->
           author = @authors[ document.author ]
-          text 'by, '
+          text 'by '
           if author
             a href: "#{author.url}", "#{author.name}"
           else
@@ -30,6 +28,8 @@ for document in @documents
         span '18 comments'
 
       if document.firstRendered is undefined
-        text document.contentRendered
+        text @tool.summary document.contentRendered
       else
-        text document.firstRendered
+        text @tool.summary document.firstRendered
+      
+      p -> a '.btn', href: document.url, 'View Detail &raquo;'

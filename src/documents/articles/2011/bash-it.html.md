@@ -12,7 +12,7 @@ tags: ['Bash-it', 'NVM']
 
 [bash-it][]은 말 그대로 bash helper다. 크게 shell completion, alias, theme, plugin, template 같은 기능을 지원하는데 각 기능은 다음과 같다. 
 
- * completion : tab 키를 눌렀을 때 completion되도록 하는 스크립트 들이 들어 있다. 명령어 파라미터 까지 completion을 지원한다. 예를 들어 `git checkout <tab>`이라고 입력하면 선택할 수 있는 브랜치 목록이 출력된다.
+ * completion : tab 키를 눌렀을 때 completion되도록 하는 스크립트가 들어 있다. 명령어 파라미터까지 completion을 지원한다. 예를 들어 `git checkout <tab>`이라고 입력하면 선택할 수 있는 브랜치 목록이 출력한다.
  * alias : 사람들이 자주 사용하는 alias를 정리해 두었다.
  * theme : terminal 색, prompt 모양등이 테마 별로 정리 돼 있다.
  * template : .bash_profile 같은 파일을 생성하는 template이 들어 있다.
@@ -25,9 +25,9 @@ tags: ['Bash-it', 'NVM']
 
 creationix님의 [nvm][]이 .bash-it에 포함돼 있다. 그러니까 .bash-it만 설치하면 nvm을 별도로 설치할 필요 없다. 
 
-약간 추가된 것있다. original nvm에는 없는 명령 sync가 추가됐고 마지막 마지막 안정버전과 개발버전을 가르키는 stable과 latest가 기본 alias로 추가됐다.
+게다가 추가된 기능도 있다. original nvm에는 없는 명령 sync가 추가됐고 마지막 안정버전과 개발버전을 가르키는 stable과 latest가 기본 alias로 추가됐다.
 
-`nvm sync` 명령을 실행하면 nodejs.org의 디렉토리 목록을 가져와서 어떤 버전이 있는지 로컬에 목록을 만들고 각 0.5 같은 0.홀수 버전은 latest로 0.짝수 버전은 stable로 가르킨다. 그리고 `nvm ls`를 실행할 때마다 로컬에 캐시된 결과와 현재 상태를 보여준다. 그러니까 개인적인 nvm alias를 만들필요가 없고 어떤 버전이 있는지 쉽게 확인할 수 있다.
+`nvm sync` 명령을 실행하면 nodejs.org의 디렉토리 목록을 가져와서 어떤 버전이 있는지 로컬에 목록을 만들고 각 0.5 같은 0.홀수 버전은 latest로 0.짝수 버전은 stable로 가르킨다. 그리고 `nvm ls`를 실행할 때마다 로컬에 캐시된 결과와 현재 상태를 보여준다. 
 
 내 컴퓨터에서 실행한 `nvm ls`의 결과:
 

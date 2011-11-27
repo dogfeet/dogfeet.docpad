@@ -32,7 +32,7 @@ task 이름 없이 실행하면 실행할 수 있는 task를 모두 보여준다
 
 ### Option
 
-production, development 등의 환경에 따라 다르게 실행시키고 싶다면 다음과 같이 option을 정의한다:
+production, development 등 환경에 따라 다르게 실행시키고 싶다면 다음과 같이 option을 정의한다:
 
     :::coffee
     option '-e', '--environment [ENVIRONMENT_NAME]', 'set the environment for `task:withDefaults`'

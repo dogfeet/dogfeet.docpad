@@ -5,10 +5,11 @@ html lange: 'en', ->
     meta charset: 'utf-8'
     meta 'http-equiv': 'X-UA-Compatible', content: 'IE=edge,chrome=1'
     meta 'http-equiv': 'content-type', content: 'text/html; charset=utf-8'
-    meta name: 'viewport', content: 'width=device-width'
-    title @site.title
-    meta name: 'description', content: ''
-    meta name: 'author', content: ''
+    meta name: 'viewport', content: 'width=device-width, initial-scale=1'
+
+    title @document.title
+    meta name: 'description', content: @document.description or ''
+    meta name: 'author', content: @document.author or ''
 
     comment 'Icons'
     link rel: 'shortcut icon', href: 'images/favicon.ico'
@@ -19,38 +20,17 @@ html lange: 'en', ->
     comment 'Shims: IE6-8 support of HTML5 elements'
     comment '[if lt IE 9]>\n        <script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>\n    <![endif]'
     comment 'Styles'
-    link href: 'http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css', rel: 'stylesheet'
-    link href: 'http://twitter.github.com/bootstrap/assets/css/docs.css', rel: 'stylesheet'
-    link href: 'http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css', rel: 'stylesheet'
+    link rel: 'stylesheet', href: 'http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css', media: 'screen, projection'
+    link rel: 'stylesheet', href: 'http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css', media: 'screen, projection'
+    link rel: 'stylesheet', href: '/styles/style.css', media: 'screen, projection'
+    #link rel: 'stylesheet', href: '/styles/print.css', media: 'print'
+
     text @blocks.styles.join('')
-    style type: 'text/css', ->
-      '''
-      pre > code {
-        background-color: #FEFBF3;
-      }
-      .container-fluid > .sidebar, .container-fluid > .content{
-        padding-top: 60px;
-      }
-      .container-fluid > .sidebar {
-        left: auto;
-        right: 20px;
-      }
-      .container-fluid > .content {
-        left: 20px;
-        margin-left: auto;
-        margin-right: 240px;
-      }
-      footer {
-        margin-top: 3px;
-        padding-top: 3px;
-        padding-bottom: 20px;
-      }
-      article.post {
-        padding-top: 15px;
-      }
-      '''
+
     comment 'Scripts'
+
     script src: 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js'
+    script src: 'http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js'
     script src: '/vendor/prettify.js'
     script src: '/vendor/lang-apollo.js'
     script src: '/vendor/lang-clj.js'
@@ -65,31 +45,22 @@ html lange: 'en', ->
     script src: '/vendor/lang-scala.js'
     script src: '/vendor/lang-sql.js'
     script src: '/vendor/lang-tex.js'
-    script src: '/vendor/lang-vb.js'
+    #script src: '/vendor/lang-vb.js'
     script src: '/vendor/lang-vhdl.js'
     script src: '/vendor/lang-wiki.js'
     script src: '/vendor/lang-xq.js'
     script src: '/vendor/lang-yaml.js'
+    script src: '/scripts/script.js'
+
     text @blocks.scripts.join('')
-    script ->
-      '''
-      $(function () { prettyPrint() });
-      /*
-      $('ul.nav > li > a').click( function(){
-        $(this).parent()
-          .siblings()
-            .removeClass('active')
-          .end()
-          .addClass('active')
-      });
-      */
-      '''
+
   body ->
     comment 'Topbar'
     div '.topbar', ->
       div '.topbar-inner', ->
         div '.container-fluid', ->
           a '.brand', href: '/', 'dogfeet'
+
           ul '.nav', ->
             comment ''' li -> a href: '/site/about.html', 'about' '''
             li -> a href: '/site/tagmap.html', 'tagmap'
@@ -98,9 +69,14 @@ html lange: 'en', ->
             li -> a href: '/atom.xml', -> 
               img src: 'http://forum.tattersite.com/ko/style/Textcube/feed-icon.png'
 
+          form '.pull-right', action: '', ->
+            input '.input-small', type: 'text', placeholder: 'Username'
+            input '.input-small', type: 'password', placeholder: 'Password'
+            button '.btn', type:'submit', 'Sign in'
+
     comment 'Markup'
     div '.container-fluid', ->
-      div '#content.content', ->
+      section '.content', ->
         @content
 
       aside '.sidebar', ->
