@@ -88,9 +88,9 @@ html lange: 'en', ->
           text "This website was generated on #{@site.date.toIsoDateString()} and has #{@site.totalDocuments} documents"
 
     comment 'DISQUS'
-    text '''
+    text """
 <script type="text/javascript">
-    var disqus_shortname = 'dogfeet-github';
+    var disqus_shortname = '#{@site.disqusShortName}';
     (function () {
         var s = document.createElement('script'); s.async = true;
         s.type = 'text/javascript';
@@ -98,4 +98,4 @@ html lange: 'en', ->
         (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
     }());
 </script>
-    '''
+    """

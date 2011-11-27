@@ -25,7 +25,7 @@ section '#comments', ->
   text """
 <div id="disqus_thread"></div>
 <script type="text/javascript">
-    var disqus_shortname = 'dogfeet-github';
+    var disqus_shortname = '#{@site.disqusShortName}';
     var disqus_identifier = '#{@document.url}';
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

@@ -13,6 +13,7 @@ class SitePlugin extends DocpadPlugin
 		_.extend site,
 			title: 'function 개발새발(){...}'
 			url: 'https://dogfeet.github.com'
+			disqusShortName: 'dogfeet-github'
 
 		#totalDocuments
 		totalDocuments = 0
