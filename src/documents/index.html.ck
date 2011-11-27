@@ -27,7 +27,7 @@ for document in @documents
           text ', ' if tag isnt document.tags[0]
           a href: "/site/tagmap.html##{tag.toLowerCase()}", tag
         text ' | '
-        span '18 comments'
+        span """<a href="#{document.url}#disqus_thread" data-disqus-identifier="#{document.url}"></a>"""
 
       if document.firstRendered is undefined
         text document.contentRendered

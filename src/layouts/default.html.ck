@@ -111,3 +111,15 @@ html lange: 'en', ->
         p style: 'float:right;', ->
           text "This website was generated on #{@site.date.toIsoDateString()} and has #{@site.totalDocuments} documents"
 
+    comment 'DISQUS'
+    text '''
+<script type="text/javascript">
+    var disqus_shortname = 'dogfeet-github';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    '''
