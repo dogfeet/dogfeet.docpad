@@ -91,7 +91,7 @@ html lange: 'en', ->
         div '.container-fluid', ->
           a '.brand', href: '/', 'dogfeet'
           ul '.nav', ->
-            li -> a href: '/site/about.html', 'about'
+            comment ''' li -> a href: '/site/about.html', 'about' '''
             li -> a href: '/site/tagmap.html', 'tagmap'
             li -> a href: '/site/archive.html', 'archive'
             li -> a href: '/site/atelier.html', 'atelier'
