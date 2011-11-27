@@ -21,26 +21,18 @@ if @document.relatedDocuments.length > 0
 
 section '#comments', ->
   h3 'Feedback'
-  div id: 'disqus_thread'
-  script ->
-    '''
-    $(function(){
-    // Prepare
-      window.disqus_shortname = 'balupton';
-      window.disqus_developer = document.location.href.indexOf('localhost') ? 1 : 0;
-      window.disqus_identifier = "#{@document.slug}";
-      window.disqus_url = "http://balupton.com#{#document.url}";
-      // Reset
-      if ( typeof window.DISQUS !== 'undefined' ) {
-        window.DISQUS.reset({
-          reload: true,
-          config: function () {
-            this.page.identifier = "#{@Document.slug}";
-            this.page.url = "http://balupton.com#{@document.url}";
-          }
-        });
-      }
-    });
-    '''
-  noscript 'life would be cooler if you enabled javascript *sigh*'
+
+  text """
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'dogfeet-github';
+    var disqus_identifier = '#{@document.url}';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    """
 
