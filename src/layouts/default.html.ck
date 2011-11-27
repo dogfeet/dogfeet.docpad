@@ -84,7 +84,7 @@ html lange: 'en', ->
       });
       */
       '''
-
+  body ->
     comment 'Topbar'
     div '.topbar', ->
       div '.topbar-inner', ->
