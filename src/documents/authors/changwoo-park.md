@@ -1,5 +1,5 @@
 ---
-layout: 'article'
+layout: 'doc'
 title: 'Changwoo Park'
 name: 'Changwoo Park'
 github: 'pismute'

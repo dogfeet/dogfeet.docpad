@@ -7,7 +7,7 @@ html lange: 'en', ->
     meta 'http-equiv': 'content-type', content: 'text/html; charset=utf-8'
     meta name: 'viewport', content: 'width=device-width, initial-scale=1'
 
-    title @document.title
+    title if 0 is @document.filename.indexOf @document.title then @site.title else @document.title
     meta name: 'description', content: @document.description or ''
     meta name: 'author', content: @document.author or ''
 
@@ -62,17 +62,16 @@ html lange: 'en', ->
           a '.brand', href: '/', 'dogfeet'
 
           ul '.nav', ->
-            comment ''' li -> a href: '/site/about.html', 'about' '''
+            li -> a href: '/site/about.html', 'about'
             li -> a href: '/site/tagmap.html', 'tagmap'
             li -> a href: '/site/archive.html', 'archive'
             li -> a href: '/site/atelier.html', 'atelier'
             li -> a href: '/atom.xml', -> 
               img src: 'http://forum.tattersite.com/ko/style/Textcube/feed-icon.png'
 
-          form '.pull-right', action: '', ->
-            input '.input-small', type: 'text', placeholder: 'Username'
-            input '.input-small', type: 'password', placeholder: 'Password'
-            button '.btn', type:'submit', 'Sign in'
+          form '.pull-right', action: 'http://google.com/search', method: 'get', ->
+            input type: 'hidden', name: 'q', value: 'site:dogfeet.github.com'
+            input type: 'text', name: 'q', results: '0', placeholder: 'Search'
 
     comment 'Markup'
     div '.container-fluid', ->

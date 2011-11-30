@@ -5,7 +5,24 @@ layout: default
 @document.firstRendered or= @content
 
 article "#post.#{@document.class}", typeof: 'sioc:post', about: "#{@document.url}", lang: 'ko-kr', ->
-  h1 property: 'dcterms:title', "#{@document.title}"
+  header ->
+    h1 property: 'dcterms:title', "#{@document.title}"
+
+  footer ->
+    span ->
+      text 'by '
+      @authors.render @document.author
+    text ' | '
+    span property: 'dc:created', "#{@document.date.toShortDateString()}"
+    text ' | '
+    tagsRendered = []
+    for tag in @document.tags
+      tagsRendered.push """<a href="/site/tagmap.html##{tag.toLowerCase()}">#{tag}</a>"""
+    span tagsRendered.join ', '
+    text ' | '
+    span """<a href="#{@document.url}#disqus_thread" data-disqus-identifier="#{@document.url}"></a>"""
+
+
   div property: 'sioc:content', -> "#{@content}"
 
 

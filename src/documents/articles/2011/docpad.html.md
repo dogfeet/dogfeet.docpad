@@ -42,29 +42,29 @@ docpad를 설치한다. -g는 global 영역에 설치하는 것으로 -g 옵션�
 
 markdown에 첨부한 코드가 highlight되도록 plugin을 만들었다. 원래 markdown 규약상 다음과 같이 html로 변환된다:
 
-    <pre><code>...</pre></code>
+    <pre><code>...</code></pre>
 
 이 것을 다음과 같이 변환한다:
 
-    <pre class="prittyprint"><code>...</pre></code>
+    <pre class="prittyprint"><code>...</code></pre>
 
 google prettify는 특별히 언어를 명시하지 않아도 자동으로 찾는다. 완벽하지는 않지만 편리하다.
 
 명시할 수도 있다. 코드 블럭 첫줄에 `:::java`라고 작성하면 `:::java`은 없애고 다음과 같이 렌더링한다:
 
-    <pre class="prittyprint"><code class="language-java">...</pre></code>
+    <pre class="prittyprint"><code class="language-java">...</code></pre>
 
 이 모습 낮설어 보여도 [w3c 권장사항][]이다. html5에서 syntax highlight는 이렇게 해야 한다. 지원하는 언어는 [prettify 페이지][]에서 확인한다.
 
 ':::'말고 쉘 스크립트들을 위해서 '#!'도 추가했다. `#!/usr/bin/env bash`을 첫줄로 시작하면 다음과 같이 랜더링한다. 이건 삭제하지 않는다:
 
-    <pre class="prittyprint"><code class="language-bsh">#!/usr/bin/env bash...</pre></code>
+    <pre class="prittyprint"><code class="language-bsh">#!/usr/bin/env bash...</code></pre>
 
 `#!/bin/bash`라고 써도 되고 `#!/usr/bin/bash`라고 써도 된다.
 
 그리고 prettify하지 않은 코드를 위해 'text'와 'plain'도 추가했다. `:::text`나 `:::plain`을 첫줄에 넣어주면 다음과 같이 원래대로 렌더링한다.
 
-    <pre><code>...</pre></code>
+    <pre><code>...</code></pre>
 
 ### Tool Plugin
 

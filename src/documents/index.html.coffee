@@ -12,18 +12,15 @@ for document in @documents
 
       footer ->
         span ->
-          author = @authors[ document.author ]
           text 'by '
-          if author
-            a href: "#{author.url}", "#{author.name}"
-          else
-            text "#{document.author}"
+          @authors.render document.author
         text ' | '
         span property: 'dc:created', "#{document.date.toShortDateString()}"
         text ' | '
+        tagsRendered = []
         for tag in document.tags
-          text ', ' if tag isnt document.tags[0]
-          a href: "/site/tagmap.html##{tag.toLowerCase()}", tag
+          tagsRendered.push """<a href="/site/tagmap.html##{tag.toLowerCase()}">#{tag}</a>"""
+        span tagsRendered.join ', '
         text ' | '
         span """<a href="#{document.url}#disqus_thread" data-disqus-identifier="#{document.url}"></a>"""
 
@@ -31,5 +28,5 @@ for document in @documents
         text @tool.summary document.contentRendered
       else
         text @tool.summary document.firstRendered
-      
+
       p -> a '.btn', href: document.url, 'View Detail &raquo;'

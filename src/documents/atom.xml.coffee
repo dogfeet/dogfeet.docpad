@@ -20,8 +20,12 @@ tag 'feed', xmlns: 'http://www.w3.org/2005/Atom', ->
     tag 'name', 'Changwoo Park'
     tag 'email', 'pismute@gmail.com'
   tag 'author', ->
-    tag 'name', 'Seunghan Lee'
+    tag 'name', 'Sean Lee'
     tag 'email', 'lethee@gmail.com'
+  tag 'author', ->
+    tag 'name', 'Yongjae Choi'
+    tag 'email', 'lnyarl@gmail.com'
 
   for document in @documents
     anEntry document if 0 is document.url.indexOf '/article'
+

@@ -16,13 +16,13 @@ rowmap = (row, orig) ->
 
   ret
 
-cellular = rowmap 4, @tagstore()
+cellular = rowmap 4, @tags.store()
 
 h1 'Tagmap'
 for row in cellular
   div '.row', ->
     for cell in row
-      tag = @tagstore( cell )
+      tag = @tags.store( cell )
       div "##{cell}.span3", ->
         h4 tag.name
         ul ->

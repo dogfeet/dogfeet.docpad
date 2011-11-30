@@ -15,10 +15,7 @@ for document in @documents
           strong "#{document.title}"
         div -> small ->
           text ' posted in '
-          for tag in document.tags
-            text ', ' if tag isnt document.tags[0]
-            a href: "/site/tagmap.html##{tag.toLowerCase()}", tag
-
+          span @tags.render '/site/tagmap.html', document.tags
           text ' by '
           author = @authors[ document.author ]
           if author

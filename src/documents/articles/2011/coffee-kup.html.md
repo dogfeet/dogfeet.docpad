@@ -1,6 +1,6 @@
 ---
 layout: 'article'
-title: 'CoffeeKup <☕/>'
+title: 'CoffeeKup &lt;☕/&gt;'
 author: 'Changwoo Park'
 date: '2011-11-21T16:06:05.000Z'
 tags: ['CoffeeKup', 'CoffeeScript']
@@ -15,7 +15,9 @@ CoffeeKup을 이해하기 위해서 먼저 준비해야 할 것은 JavaScript와
 이제 일주일밖에 되지 않았지만 내가 생각하는 장단점은 다음과 같다.
 
  * 장점: tag library 작성이 쉽다.
- * 
+ * 장점: templateData에 함수를 넣을 수 있기 때문에 plugin을 통해서 기능 확장이 쉽다. 물론 templateData이외 context도 필요할 것 같다.
+ * 단점: tag가 hierarchical하지 않은 dom구조를 작성하기 쉽지 않다. 물론 이렇게 작성하면 코드가 지저분해지기 때문에 안하는 것이 좋다.
+
 ## Hello World
 
 우선 다음과 같이 coffeekup을 설치하고:
