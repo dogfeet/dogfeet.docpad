@@ -62,10 +62,10 @@ html lange: 'en', ->
           a '.brand', href: '/', 'dogfeet'
 
           ul '.nav', ->
-            li -> a href: '/site/about.html', 'about'
-            li -> a href: '/site/tagmap.html', 'tagmap'
-            li -> a href: '/site/archive.html', 'archive'
-            li -> a href: '/site/atelier.html', 'atelier'
+            li -> a href: '/site/about.html', 'About'
+            li -> a href: '/site/tagmap.html', 'Tagmap'
+            li -> a href: '/site/archive.html', 'Archive'
+            li -> a href: '/site/atelier.html', 'Atelier'
             li -> a href: '/atom.xml', -> 
               img src: 'http://forum.tattersite.com/ko/style/Textcube/feed-icon.png'
 
