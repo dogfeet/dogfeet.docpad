@@ -2,11 +2,11 @@
 layout: 'article'
 title: 'Bash-it'
 author: 'Changwoo Park'
-date: '2011-11-23T16:06:05.000Z'
-tags: ['Bash-it', 'NVM']
+date: '2011-12-01'
+tags: ['Bash-it', 'NVM', 'git', 'git-flow']
 ---
 
-이 글은 bash-it이 무엇인지 알아보고 각 주제별로 어떤 기능이 있는지 알아 본다. bash-it은 기능이 많으므로 틈틈히 하나씩 추가할 것이다.
+이 글은 bash-it이 무엇인지 알아보고 각 주제별로 어떤 기능이 있는지 알아 본다. bash-it은 기능이 많으므로 틈틈히 하나씩 추가할 계획이다.
 
 ## 요약
 
@@ -14,6 +14,7 @@ tags: ['Bash-it', 'NVM']
 
  * completion : tab 키를 눌렀을 때 completion되도록 하는 스크립트가 들어 있다. 명령어 파라미터까지 completion을 지원한다. 예를 들어 `git checkout <tab>`이라고 입력하면 선택할 수 있는 브랜치 목록이 출력한다.
  * alias : 사람들이 자주 사용하는 alias를 정리해 두었다.
+ * plugin : bash 명령어를 확장해준다(그러니까 명령어에 해당하는 함수들이다).
  * theme : terminal 색, prompt 모양등이 테마 별로 정리 돼 있다.
  * template : .bash_profile 같은 파일을 생성하는 template이 들어 있다.
 
@@ -46,4 +47,33 @@ creationix님의 [nvm][]이 .bash-it에 포함돼 있다. 그러니까 .bash-it�
 다른 건 nvm을 저장소에서 설치하는 것과 모두 같다.
 
 [nvm]: https://github.com/creationix/nvm
+
+## git
+
+git에 대해서는 많은 것들이 추가돼있다.
+
+### completion
+
+git source에 들어 있는 bash_completion코드가 포함돼 있어서 별도로 추가설치할 필요가 없다.
+
+### alias
+
+설치한후 `git-help`라고 실행시키면 등록된 alias들을 보여준다. 아직 사용해보지 않았다.
+
+### plugin
+
+몇가지 명령어를 추가했다. 이 중에서 git_stats과 git_info가 가끔 쓸만할 것 같은데 사실 별로 쓸모는 없다. 참고하고 자신만의 것을 만들면 좋을 것 같다.
+
+ * git_stats - 누가 얼마나 기여했는지 정리해준다.
+ * git_info - 현 프로젝트 정보를 요약해준다.
+
+### theme
+
+여러가지 테마가 있는데 내가 사용하고 있는 `zork` 테마의 경우 다음과 같이 보여준다.
+
+    [계정][시스템 이름][±][브랜치 ✓][현재 경로]
+    $ git st ...
+
+ *±  - 이 것은 git을 나타내는 기호다. 왜 Git icon인지 mySysGit을 설치해보면 안다. HG는 `☿`, SVN은 `⑆`, 그 외는 `○`을 보여준다.
+ * ✓ - 현재 git 상태가 clean 상태라는 것을 의미한다. dirty 상태가 되면 `✗`를 보여준다.
 

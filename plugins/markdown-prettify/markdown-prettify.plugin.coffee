@@ -49,10 +49,10 @@ class MarkdownPrettifyPlugin extends DocpadPlugin
 		lang: lang, code: code
 
 	# Render some content
-	render: ({inExtension,outExtension,templateData,file}, next) =>
+	render: ({inExtension,outExtension,templateData,file, logger}, next) =>
 		try
 			if inExtension in ['md','markdown'] and outExtension is 'html'
-				codes = file.content.split '<pre><code>'
+				codes = file.content.split '<pre><code>\s*[<pre><code>]{0,1}'
 				pretties = []
 				for i in [0..codes.length]
 					code = codes[i]
@@ -60,12 +60,12 @@ class MarkdownPrettifyPlugin extends DocpadPlugin
 
 					if i > 0
 						{lang, code} = @getLang code
-						if !lang
-							pretties.push '<pre class="prettyprint"><code>'
+						if lang?
+							pretties.push ['<pre class="prettyprint"><code class="language-', lang,'">'].join ''
 						else if lang is 'text'
 							pretties.push '<pre><code>'
 						else
-							pretties.push ['<pre class="prettyprint"><code class="language-', lang,'">'].join ''
+							pretties.push '<pre class="prettyprint"><code>'
 
 					pretties.push code
 				

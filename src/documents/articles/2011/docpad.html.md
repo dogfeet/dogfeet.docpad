@@ -6,6 +6,8 @@ date: '2011-11-25T16:06:05.000Z'
 tags: ['Docpad', 'Prettify', 'Markdown', 'CoffeeKup']
 ---
 
+![CoffeeScript](http://jashkenas.github.com/coffee-script/documentation/images/logo.png "CoffeeScript")
+
 Docpad는 coffeescript로 작성한 static page engine이다.
 
 ## Skeleton
@@ -38,32 +40,39 @@ docpad를 설치한다. -g는 global 영역에 설치하는 것으로 -g 옵션�
 
 ## Plugin
 
+Plugin에서 require를 통해 underscore나 moment같은 다른 모듈을 사용하는 경우에는 package.json을 꼭 작성해야 한다. package.json의 dependencies 블럭에 의존 모듈을 추가하지 않으면 모듈을 매번 수동으로 설치해야 한다.  package.json이 있으면 docpad는 자동을 모듈을 설치한다.
+
 ### markdown-prettify Plugin
 
 markdown에 첨부한 코드가 highlight되도록 plugin을 만들었다. 원래 markdown 규약상 다음과 같이 html로 변환된다:
 
+    :::html
     <pre><code>...</code></pre>
 
 이 것을 다음과 같이 변환한다:
 
+    :::html
     <pre class="prittyprint"><code>...</code></pre>
 
 google prettify는 특별히 언어를 명시하지 않아도 자동으로 찾는다. 완벽하지는 않지만 편리하다.
 
 명시할 수도 있다. 코드 블럭 첫줄에 `:::java`라고 작성하면 `:::java`은 없애고 다음과 같이 렌더링한다:
 
+    :::html
     <pre class="prittyprint"><code class="language-java">...</code></pre>
 
 이 모습 낮설어 보여도 [w3c 권장사항][]이다. html5에서 syntax highlight는 이렇게 해야 한다. 지원하는 언어는 [prettify 페이지][]에서 확인한다.
 
 ':::'말고 쉘 스크립트들을 위해서 '#!'도 추가했다. `#!/usr/bin/env bash`을 첫줄로 시작하면 다음과 같이 랜더링한다. 이건 삭제하지 않는다:
 
+    :::html
     <pre class="prittyprint"><code class="language-bsh">#!/usr/bin/env bash...</code></pre>
 
 `#!/bin/bash`라고 써도 되고 `#!/usr/bin/bash`라고 써도 된다.
 
 그리고 prettify하지 않은 코드를 위해 'text'와 'plain'도 추가했다. `:::text`나 `:::plain`을 첫줄에 넣어주면 다음과 같이 원래대로 렌더링한다.
 
+    :::html
     <pre><code>...</code></pre>
 
 ### Tool Plugin
@@ -119,6 +128,26 @@ index 페이지에서 summary를 추출한다. 다음 예제는 CoffeeKup이다:
     @tool.summary document.contentRendered
 
 html을 잘라내는 것이기 때문에 content가 아니라 contentRendered 값을 가져다 사용해야 한다.
+
+### authors Plugin
+
+authors Plugin인 저자를 소개하는 페이지를 만들고 다른 문서의 author 프로퍼티에 저자 이름을 명시하면 자동으로 그 페이지로 링크해주는 것이다. `/src/documents/authors/`안에 소개 페이지를 다음과 같이 만든다.
+
+    --- yaml
+    name= 'ahmooge'
+    ---
+
+    blahblah
+
+docpad는 이 문서를 처리해서 `{name:'ahmooge', url:'/authors/ahmooge.html', content: 'blahblah..', contentRendered: '<span>blahblah</span>'}`라는 객체로 만든다. 이 객체를 document 객체라고 하자(실제 코드에서도 document다). authors plugin은 `/src/documents/authors/`안에 잇는 파일을 모아서 template data의 @authors.data 객체에 담아준다. 'Kim'라는 document1와 'Park'라는 document2가 있으면 @authors.data에는 `{"Kim": document1, "Park":document2}`라는 객체가 들어가게 된다. 
+
+그럼 CoffeeKup template에서 사용해보자:
+
+     a href: @authors.data[ @document.author ].url
+
+예외처리는 생략함.
+
+CoffeeKup은 `with` 구문을 이용해서 scope variable을 확장할 수 있는 파라미터 locals와 hardcoded를 지원하지만 아직 docpad는 지원하지 않기 때문에 template data scope을 이용했다.
 
 ## TroubleShooting
 

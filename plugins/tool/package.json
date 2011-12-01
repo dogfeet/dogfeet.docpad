@@ -1,0 +1,45 @@
+{
+	"name": "docpad-tools",
+	"version": "0.1.0",
+	"description": "Adds functions to DocPad.",
+	"homepage": "https://dogfeet.github.com/",
+	"keywords": [
+		"docpad",
+		"moment"
+	],
+	"author": {
+		"name": "Changwoo Park",
+		"email": "pismute@gmail.com",
+		"url": "http://dogfeet.github.com"
+	},
+	"maintainers": [
+		{
+			"name": "Changwoo Park",
+			"email": "pismute@gmail.com",
+			"url": "http://dogfeet.github.com"
+		}
+	],
+	"contributors": [
+		{
+			"name": "Changwoo Park",
+			"email": "pismute@gmail.com",
+			"url": "http://dogfeet.github.com"
+		}
+	],
+	"bugs": {
+		"url": "https://github.com/balupton/docpad/issues"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://creativecommons.org/licenses/MIT/"
+		}
+	],
+	"dependencies": {
+		"moment": "1.1.1"
+	},
+	"engines" : {
+		"node": ">=0.4.0"
+	},
+	"main": "./tool.plugin.coffee"
+}

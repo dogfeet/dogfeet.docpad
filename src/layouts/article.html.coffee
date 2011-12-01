@@ -32,9 +32,9 @@ if @document.relatedDocuments.length > 0
     nav '#linklist', ->
       for document in @document.relatedDocuments
         li ->
-          span "#{@document.date.toShortDateString()}"
+          span "#{document.date.toShortDateString()}"
           text '&raquo;'
-          a herf: "#{@document.url}", "#{@document.title}"
+          a herf: "#{document.url}", "#{document.title}"
 
 section '#comments', ->
   h3 'Feedback'

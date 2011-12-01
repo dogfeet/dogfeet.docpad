@@ -6,6 +6,8 @@ date: '2011-11-21T16:06:05.000Z'
 tags: ['CoffeeKup', 'CoffeeScript']
 ---
 
+![CoffeeScript](http://jashkenas.github.com/coffee-script/documentation/images/logo.png "CoffeeScript")
+
 CoffeeKup은 HAML, Jade, Eco와 같은 Template Engine이다. [Docpad][]는 전부 지원하지만 [CoffeeKup][]을 기본 Template 엔진으로 고른 이유는 코드가 가장 예뻐서다.
 
 CoffeeKup을 이해하기 위해서 먼저 준비해야 할 것은 JavaScript와 CoffeeScript이다. CoffeeKup은 CoffeeScript 문법과 거의 똑같다. Jade가 Haml과 유사하게 만들면서 JavaScript가 아닌 것이 돼버렸지만 CoffeeKup은 coffeescript 문법과 정말 똑같다.

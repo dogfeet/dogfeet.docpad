@@ -1,12 +1,12 @@
 --- yaml
 layout: 'article'
-title: '힘내:progit'
+title: 'progit'
 author: 'Changwoo Park'
 date: '2011-11-30'
-tags: ['힘내', 'git', 'progit']
+tags: ['git', 'progit']
 ---
 
-![힘내](/articles/2011/git-/git-.png "힘내")
+![progit](http://progit.org/images/book-big.jpg "progit")
 
  github의 CIO인 schacon님이 쓰신 progit을 번역하고 있습니다. 시작한지 꽤 됐는데 진도가 느립니다. [progit 한글 버전 저장소][]에 6장까지 번역을 완료했습니다. 계획과 많은 차이가 있지만 이제야 좀 정리가 돼서 일부라도 공개합니다.
 

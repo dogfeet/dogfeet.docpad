@@ -6,6 +6,8 @@ date: '2011-11-21T16:06:05.000Z'
 tags: ['Cake', 'CoffeeScript']
 ---
 
+![CoffeeScript](http://jashkenas.github.com/coffee-script/documentation/images/logo.png "CoffeeScript")
+
 Cake는 정말 쉽고 간단하다. Makefile대신 Cakefile만 만들면 된다.
 
 ### Hello World!
