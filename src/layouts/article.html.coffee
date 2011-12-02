@@ -21,7 +21,9 @@ article "#post.#{@document.class}", typeof: 'sioc:post', about: "#{@document.url
     span tagsRendered.join ', '
     text ' | '
     span """<a href="#{@document.url}#disqus_thread" data-disqus-identifier="#{@document.url}"></a>"""
-
+    span '.pull-right', ->
+      script src: 'http://platform.twitter.com/widgets.js', ''
+      a '.twitter-share-button', href: 'https://twitter.com/share', 'data-count': 'horizontal', 'Tweet'
 
   div property: 'sioc:content', -> "#{@content}"
 
