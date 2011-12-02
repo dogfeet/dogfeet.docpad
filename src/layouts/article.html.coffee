@@ -4,6 +4,26 @@ layout: default
 
 @document.firstRendered or= @content
 
+script src: 'http://platform.twitter.com/widgets.js'
+script ->
+  """
+  //facebook
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  //google plusone
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+  """
+
 article "#post.#{@document.class}", typeof: 'sioc:post', about: "#{@document.url}", lang: 'ko-kr', ->
   header ->
     h1 property: 'dcterms:title', "#{@document.title}"
@@ -21,9 +41,16 @@ article "#post.#{@document.class}", typeof: 'sioc:post', about: "#{@document.url
     span tagsRendered.join ', '
     text ' | '
     span """<a href="#{@document.url}#disqus_thread" data-disqus-identifier="#{@document.url}"></a>"""
-    span '.pull-right', ->
-      script src: 'http://platform.twitter.com/widgets.js', ''
-      a '.twitter-share-button', href: 'https://twitter.com/share', 'data-count': 'horizontal', 'Tweet'
+
+    style rel: 'stylesheet', media: 'screen, projection', scoped: 'scoped', ->
+      """
+      """
+    div '#social-buttons.pull-right', ->
+      ul '.unstyled', ->
+        articleUrl = "#{@site.url}#{@document.url}"
+        li -> a '.twitter-share-button', href: 'https://twitter.com/share', 'data-url': articleUrl, 'data-count': 'horizontal', 'Tweet'
+        li -> div '.g-plusone', 'data-size': 'medium', 'data-href': articleUrl
+        li -> div '.fb-like', 'data-href': articleUrl, 'data-send': 'false', 'data-layout': 'button_count', 'data-show-faces': 'false'
 
   div property: 'sioc:content', -> "#{@content}"
 
@@ -31,7 +58,7 @@ article "#post.#{@document.class}", typeof: 'sioc:post', about: "#{@document.url
 if @document.relatedDocuments.length > 0
   section '#related', ->
     h3 'Related Posts'
-    nav '#linklist', ->
+    ul ->
       for document in @document.relatedDocuments
         li ->
           span "#{document.date.toShortDateString()}"
