@@ -29,4 +29,4 @@ for document in @documents
       else
         text @tool.summary document.firstRendered
 
-      p -> a '.btn', href: document.url, 'View Detail &raquo;'
+      p -> a '.btn', href: document.url, 'Read more &raquo;'
