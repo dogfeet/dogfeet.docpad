@@ -23,3 +23,7 @@ footer {
 section.content article.post {
 	margin-bottom: 50px;
 }
+
+section.content article img {
+	border: 1px solid #C0C0C0;
+}
