@@ -6,9 +6,9 @@ date: '2011-12-02'
 tags: ['힘내', 'git']
 ---
 
-![힘내](/articles/2011/git-/git-.png "힘내")
-
 이 글은 git에서 커밋을 가리키는 방법에 대해 정리한 것이다.
+
+![힘내](/articles/2011/git-/git-.png "힘내")
 
 git은 항상 Snapshot단위로 저장한다. 커밋하면 Snapshot을 저장하는 것이고 이 때 SHA 키가 발급된다. SHA가 Snapshot을 식별하는 유일한 식별자다. branch나 태그처럼 Snapshot을 식별하는 방법은 결국 SHA 값을 이용하는 것이다. Branch나 태그는 단순히 SHA 값을 가리키는 것 뿐이다.
 

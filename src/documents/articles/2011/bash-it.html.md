@@ -8,6 +8,8 @@ tags: ['Bash-it', 'NVM', 'git', 'git-flow']
 
 이 글은 bash-it이 무엇인지 알아보고 각 주제별로 어떤 기능이 있는지 알아 본다. bash-it은 기능이 많으므로 틈틈히 하나씩 추가할 계획이다.
 
+![bash-it](/articles/2011/bash-it.sean-shell.png)
+
 ## 요약
 
 [bash-it][]은 말 그대로 bash helper다. 크게 shell completion, alias, theme, plugin, template 같은 기능을 지원하는데 각 기능은 다음과 같다. 

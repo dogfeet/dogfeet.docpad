@@ -6,9 +6,9 @@ date: '2011-11-25T16:06:05.000Z'
 tags: ['Docpad', 'Prettify', 'Markdown', 'CoffeeKup']
 ---
 
-![CoffeeScript](http://jashkenas.github.com/coffee-script/documentation/images/logo.png "CoffeeScript")
+Docpad는 CoffeeScript로 작성한 static page engine이다.
 
-Docpad는 coffeescript로 작성한 static page engine이다.
+![Docpad](/articles/2011/docpad.png)
 
 ## Skeleton
 
