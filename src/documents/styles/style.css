@@ -20,3 +20,6 @@ footer {
   padding-bottom: 20px;
 }
 
+section.content article.post {
+	margin-bottom: 50px;
+}
