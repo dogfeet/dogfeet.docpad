@@ -92,7 +92,7 @@ html lange: 'en', ->
         @content
 
       aside '.sidebar', ->
-        div '.well', 'Hello World'
+        @layout 'aside'
 
       footer ->
         p '&copy; Company 2011'
