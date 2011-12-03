@@ -76,30 +76,33 @@ Lightweight Tag처럼 특정 커밋을 가리키는 데다가 추가 정보를 �
 
 커밋 히스토리가 다음과 같을 때:
 
-    *   ca53436 - (HEAD, master) Merge branch 'dev'
+    :::text
+    *   4f2b862 - (HEAD, dev) Merge branch 'issue2' into dev
     |\
-    | * bd579f6 - (dev) for fucks sake
-    * | 1e21187 - its sucks again
+    | * 3a6714f - (issue2) It sucks again
     |/
-    * d062b00 - its sucks
-    * 0000001 - edit by hands
+    * 41947a1 - It sucks
+    *   3b0b17d - Merge branch 'issue1' into dev
     |\
-    | * 0000002 - edit by hands
-    * | 0000003 - edit by hands
+    | * 3b1bfc5 - (issue1) Add issue1
+    |/
+    * 40b4870 - (master) Initial Commit
 
 #### '~'
 
-HEAD를 기준으로 이전 커밋을 보려면 `HEAD~`를 사용한다. 예를 들어 `git show HEAD~`라고 실행하면 `1e21187`에 대한 정보를 보여준다.
+HEAD를 기준으로 이전 커밋을 보려면 `HEAD~`를 사용한다. 예를 들어 `git show HEAD~`라고 실행하면 `41947a1`에 대한 정보를 보여준다.
 
-`~1`이나 `~2`처럼 숫자를 명시하여 이전 커밋이나 이전의 이전 커밋을 나타낼 수 있다. 예를 들어 `git show HEAD~2`는 `d062b00`에 대한 정보를 보여준다. `git show HEAD~1`은 `git show HEAD~`의 결과와 똑같다.
+`~1`이나 `~2`처럼 숫자를 명시하여 이전 커밋이나 이전의 이전 커밋을 나타낼 수 있다. 예를 들어 `git show HEAD~2`는 `3b0b17d`에 대한 정보를 보여준다. `git show HEAD~1`은 `git show HEAD~`의 결과와 똑같다.
 
-HEAD에만 사용할 수 있는 것이 아니다. 이 예제에서 HEAD와 master가 같은 커밋을 가리키기 때문에 `HEAD~`와 `master~`의 결과는 같고 심지어 `ca53436~`의 결과도 같다. git은 기본적으로 SHA값을 인식하는 것이지 Branch 이름이나 HEAD같은 포인터를 다루는 것이 아니다.
+HEAD에만 사용할 수 있는 것이 아니다. git은 기본적으로 SHA값을 인식하는 것이지 Branch 이름이나 HEAD같은 포인터를 다루는 것이 아니다. 이 예제에서 HEAD와 dev가 같은 커밋을 가리키기 때문에 `HEAD~`와 `dev~`의 결과는 같고 심지어 `4f2b862~`의 결과도 같다. 
 
 #### '^'
 
-계통을 표시하는 다른 방법으로 `^`도 있다. 이 것은 `~`과 다르게 수평적 조상을 표현하는 방법이다. 사실 `HEAD~`와 `HEAD^`의 결과는 같다. 수직적 조상을 표현하는 `~`와 수평적 조상을 표시하는 `^`는 똑같이 이전 커밋을 나타낸다. 하지만 `HEAD~2`과 `HEAD^2`는 다르다. `HEAD~2`는 `d062b00`를 나타내지만 `HEAD^2`는 `bd579f6`를 가리킨다. `^`는 이전 커밋이 두 개 이상인 merge 커밋에 사용하는 것이다.
+계통을 표시하는 다른 방법으로 `^`도 있다. 이 것은 `~`과 다르게 수평적 조상을 표현하는 방법이다. 사실 `HEAD~`와 `HEAD^`의 결과는 같다. 수직적 조상을 표현하는 `~`와 수평적 조상을 표시하는 `^`는 똑같이 이전 커밋을 나타낸다.
 
-`~`과 `^`을 조합하여 복잡한 표현도 가능하다. 이 예제에서 `HEAD~^`는 `HEAD~2`가 가리키는 `d062b00`를 가리킨다. 이와 같은 원칙으로 `HEAD~3^2`는 `0000002`를 가리키고 `HEAD~3^`는 `0000003를 가리킨다.
+하지만 `HEAD~2`과 `HEAD^2`는 다르다. `HEAD~2`는 `3b0b17d`를 나타내지만 `HEAD^2`는 `3a6714f`를 가리킨다. `^`는 이전 커밋이 두 개 이상인 merge 커밋에만 사용하는 것이 좋다.
+
+`~`과 `^`을 조합하여 복잡한 표현도 가능하다. 이 예제에서 `HEAD~^`는 `HEAD~2`가 가리키는 `3b0b17d`를 가리킨다. 이와 같은 방법으로 `HEAD~2^2`는 `3b1bfc5`를 가리킨다.
 
 `^`는 이전 커밋이 두 개 이상일 때에만 의미있기 때문에 merge 커밋에만 사용한다.
 
@@ -107,36 +110,48 @@ HEAD에만 사용할 수 있는 것이 아니다. 이 예제에서 HEAD와 maste
 
 reflog로그는 일반적인 커밋 히스토리와 다르다. reflog는 로컬에만 남는 log이고 push해서 다른 사람과 공유할 수 없다. 즉, 이제 막 클론한 저장소라면 현재 HEAD가 가리키고 있는 단 하나의 reflog만 존재할 것이기 때문에 reflog는 클론하고 시간이 흐른 경우에만 유용하다.
 
-reflog는 단순히 HEAD가 가리켰던 히스토리이다. 예를 들어 다음과 같은 히스토리에서:
+reflog는 단순히 HEAD가 가리켰던 히스토리이다. 위에서 사용한 히스토리에서 `git reflog`를 실행하면 다음과 같이 나온다:
 
-    *   ca53436 - (HEAD, master) Merge branch 'dev'
-    |\
-    | * bd579f6 - (dev) for fucks sake
-    * | 1e21187 - its sucks again
-    |/
-    * d062b00 - its sucks
+    4f2b862 HEAD@{0}: merge issue2: Merge made by recursive.
+    41947a1 HEAD@{1}: checkout: moving from issue2 to dev
+    3a6714f HEAD@{2}: commit: It sucks again
+    41947a1 HEAD@{3}: checkout: moving from dev to issue2
+    41947a1 HEAD@{4}: commit: It sucks
+    3b0b17d HEAD@{5}: merge issue1: Merge made by recursive.
+    40b4870 HEAD@{6}: checkout: moving from master to dev
+    40b4870 HEAD@{7}: checkout: moving from issue1 to master
+    3b1bfc5 HEAD@{8}: commit: Add issue1
+    40b4870 HEAD@{9}: checkout: moving from master to issue1
+    40b4870 HEAD@{10}: commit (initial): Initial Commit
 
-master 브랜치에서 `git reflog`를 실행하면 다음과 같이 나온다:
+reflog는 HEAD나 브랜치가 가리키는 커밋이 바뀔때마다 기록된다. 특정 커밋을 Checkout하면 HEAD가 가리키는 커밋이 바뀌기 때문에 reflog가 남는다. 
 
-    ca53436 HEAD@{0}: merge dev: Merge made by recursive.
-    1e21187 HEAD@{1}: commit: its sucks again
-    d062b00 HEAD@{2}: checkout: moving from dev to master
-    bd579f6 HEAD@{3}: commit: for fucks sake
-    d062b00 HEAD@{4}: checkout: moving from master to dev
-    d062b00 HEAD@{5}: commit (initial): its sucks
+`git show HEAD@{4}`는 `41947a1`에 대한 정보를 보여준다. HEAD뿐만 아니라 Branch에도 사용할 수 있다. `git reflog --all` 명령을 실행하면 같은 형식으로 branch 기준으로 보여준다:
 
-reflog는 HEAD가 가리키는 커밋이 바뀔때마다 기록된다. 특정 커밋을 Checkout하면 HEAD가 가리키는 커밋이 바뀌는 것이기 때문에 reflog가 남는다. 
-
-`git show HEAD@{4}`는 `d062b00`에 대한 정보를 보여준다. HEAD뿐만 아니라 Branch에도 사용할 수 있다. `git reflog --all` 명령을 실행하면 같은 형식으로 branch 기준으로 보여준다:
-
-    ca53436 refs/heads/master@{0}: merge dev: Merge made by recursive.
-    1e21187 refs/heads/master@{1}: commit: its sucks again
-    bd579f6 refs/heads/dev@{0}: commit: for fucks sake
-    d062b00 refs/heads/dev@{1}: branch: Created from HEAD
+    4f2b862 refs/heads/dev@{0}: merge issue2: Merge made by recursive.
+    3a6714f refs/heads/issue2@{0}: commit: It sucks again
+    41947a1 refs/heads/dev@{1}: commit: It sucks
+    3b0b17d refs/heads/dev@{2}: merge issue1: Merge made by recursive.
+    3b1bfc5 refs/heads/issue1@{0}: commit: Add issue1
+    40b4870 refs/heads/dev@{3}: branch: Created from HEAD
 
 HEAD와 마찬가지로 `git show master@{0}` 명령을 사용할 수 있다.
 
-즉, reflog는 로컬 저장소에서 무슨 짓을 했는지 추적하는데 도움이 된다. `git log`는 커밋 히스트로만을 보여주지만 `git reflog`는 각 포인터들이 가리켰던 커밋들을 보여준다.
+만약 `git reset --hard HEAD~1`라고 명령을 실행해서 브랜치가 HEAD~1을 가리키도록 했다. 그럼 다음과 같이 reflog가 남는다:
+
+    3a6714f refs/heads/issue2@{0}: commit: It sucks again
+    41947a1 refs/heads/dev@{0}: HEAD~1: updating HEAD
+    4f2b862 refs/heads/dev@{1}: merge issue2: Merge made by recursive.
+    41947a1 refs/heads/dev@{2}: commit: It sucks
+    3b0b17d refs/heads/dev@{3}: merge issue1: Merge made by recursive.
+    3b1bfc5 refs/heads/issue1@{0}: commit: Add issue1
+    40b4870 refs/heads/dev@{4}: branch: Created from HEAD
+
+이전 커밋으로 reset했기 때문에 `4f2b862`에 서 수정한 내용은 없어진다. 이 예제에서는 merge한 것이 취소된다. 그런데 잘못한 행동이라고 깨달았다. SHA 값을 어디 적어두고 다니는 것도 아니고 다시 돌릴 방법이 없다. 이 예제는 merge를 돌린 것이라 다시 merge해도 되지만 수정사항이 담긴 커밋이면 잃어 버리게 된다. 
+
+이 때 `git reflog --all` 명령을 실행시켜서 dev 브랜치가 이전에 가르키던 SHA 값을 찾아서 다시 `git reset --hard 4f2b862`라고 실행해서 복원할 수 있다.
+
+즉, reflog는 로컬 저장소에서 무슨 짓을 했는지 추적해서 문제를 해결하는데 도움이 된다. `git log`는 커밋 히스트로를 보여주지만 `git reflog`는 각 포인터들이 가리켰던 커밋들을 보여준다.
 
 reflog가 특이한점은 SHA 값을 인식하는 것이 아니라는 것이다. 그래서 `git show ca53436@{0}`은 에러가 난다. 꼭 HEAD와 branch 이름만 사용할 수 있다.
 
