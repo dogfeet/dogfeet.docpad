@@ -2,6 +2,7 @@
 layout: 'doc'
 title: 'Changwoo Park'
 name: 'Changwoo Park'
+email: 'pismute@gmail.com'
 github: 'pismute'
 twitter: 'pismute'
 gravata: 'pismute@gmail.com'

@@ -7,9 +7,22 @@ html lange: 'en', ->
     meta 'http-equiv': 'content-type', content: 'text/html; charset=utf-8'
     meta name: 'viewport', content: 'width=device-width, initial-scale=1'
 
-    title if 0 is @document.filename.indexOf @document.title then @site.title else @document.title
-    meta name: 'description', content: @document.description or ''
-    meta name: 'author', content: @document.author or ''
+    if 0 is @document.filename.indexOf @document.title
+      #document has not own title, not articles or authors
+      title @site.title
+      meta name: 'description', content: @site.description or ''
+      authorNames=[]
+      for document in @documents
+        if 0 is document.url.indexOf '/authors'
+          authorNames.push document.name
+
+      authors = if authorNames.length > 0 then authorNames.join(', ') else ''
+      meta name: 'author', content: authors
+    else 
+      #document has own title, articles or authors
+      title @document.title
+      meta name: 'description', content: @document.description or ''
+      meta name: 'author', content: @document.author or ''
 
     comment 'Icons'
     link rel: 'shortcut icon', href: 'images/favicon.ico'
