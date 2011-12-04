@@ -10,19 +10,20 @@ class LayoutPlugin extends DocpadPlugin
 
 	# Ammend our Template Data
 	renderBefore: ({documents, templateData, logger}, next) ->
-		templateData[ 'layout' ] = layout = (name, moreTemplateData) ->
+		templateData[ 'layout' ] = layout = (name, args...) ->
 			template = _templates[ name ]
 			if template?
-				template _.extend {}, _templateDataForCk, moreTemplateData
+				realTemplateData = _.extend {format:true}, templateData, {args}
+				logger.log 'debug', "include '#{name}' layout for @layout"
+				logger.log 'debug', "real template data's keys is #{_.keys realTemplateData}"
+				template realTemplateData
 			else
 				'layout not found'
-
-		_templateDataForCk = _.extend {}, templateData,
-			format: true
 
 		_templates={}
 
 		for own name, layout of @docpad.layouts
+			logger.log 'debug', "compiling '#{name}' layout for @layout"
 			_templates[ name ] = ck.compile layout.content
 
 		# Continue onto the next plugin

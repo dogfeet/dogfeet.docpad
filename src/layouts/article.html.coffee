@@ -30,8 +30,7 @@ article "#post.#{@document.class}", typeof: 'sioc:post', about: "#{@document.url
 
   footer ->
     span ->
-      text 'by '
-      @authors.render @document.author
+      @layout 'author-liks', @document.author
     text ' | '
     span property: 'dc:created', "#{@document.date.toShortDateString()}"
     text ' | '

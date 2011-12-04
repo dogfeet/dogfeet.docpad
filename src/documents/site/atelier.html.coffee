@@ -24,7 +24,7 @@ div '.row', ->
             else
               transAnchor = yield -> a href: trans, 'Ko-trans.'
 
-          authorAnchor = @authors.render authors
+          authorAnchor = @layout 'author-links', authors
 
           span "#{year}. #{origAnchor}(#{transAnchor}) by #{authorAnchor}"
 

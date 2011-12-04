@@ -12,8 +12,7 @@ for document in @documents
 
       footer ->
         span ->
-          text 'by '
-          @authors.render document.author
+          @layout 'author-links', document.author
         text ' | '
         span property: 'dc:created', "#{document.date.toShortDateString()}"
         text ' | '
