@@ -37,17 +37,6 @@ class TagsPlugin extends DocpadPlugin
 							@data[ key ]
 					else
 						@data
-				render: (href, tagname) ->
-					if typeof tagname is 'string'
-						tags = tagname.split ',' 
-					else
-						tags = tagname
-
-					rendered  = []
-					for tag in tags
-						tag = tag.trim()
-						rendered.push """<a href="#{href}##{tag.toLowerCase()}">#{tag}</a>"""
-					rendered.join ', '
 
 			for document in documents
 				tags = @getTags document[ 'tags' ]

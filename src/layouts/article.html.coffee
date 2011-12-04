@@ -29,17 +29,7 @@ article "#post.#{@document.class}", typeof: 'sioc:post', about: "#{@document.url
     h1 property: 'dcterms:title', "#{@document.title}"
 
   footer ->
-    span ->
-      @layout 'author-liks', @document.author
-    text ' | '
-    span property: 'dc:created', "#{@document.date.toShortDateString()}"
-    text ' | '
-    tagsRendered = []
-    for tag in @document.tags
-      tagsRendered.push """<a href="/site/tagmap.html##{tag.toLowerCase()}">#{tag}</a>"""
-    span tagsRendered.join ', '
-    text ' | '
-    span """<a href="#{@document.url}#disqus_thread" data-disqus-identifier="#{@document.url}"></a>"""
+    text @layout 'article-footer', @document
 
     style rel: 'stylesheet', media: 'screen, projection', scoped: 'scoped', ->
       """

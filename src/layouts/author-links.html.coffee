@@ -1,6 +1,3 @@
-#parameters
-#@authorLinks
-
 author = @args[0]
 
 if author? and typeof author is 'string'

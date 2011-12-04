@@ -14,12 +14,8 @@ for document in @documents
         a href: document.url, property: 'dc:title', ->
           strong "#{document.title}"
         div -> small ->
-          text ' posted in '
-          span @tags.render '/site/tagmap.html', document.tags
-          text ' by '
-          author = @authors[ document.author ]
-          if author
-            a href: "#{author.url}", "#{author.name}"
-          else
-            text "#{document.author}"
+          tagLinks = @layout 'tag-links', document.tags
+          authorLinks = @layout 'author-links', document.author
+
+          text " posted in #{tagLinks} by #{authorLinks}"
 

@@ -11,17 +11,7 @@ for document in @documents
           h1 document.title
 
       footer ->
-        span ->
-          @layout 'author-links', document.author
-        text ' | '
-        span property: 'dc:created', "#{document.date.toShortDateString()}"
-        text ' | '
-        tagsRendered = []
-        for tag in document.tags
-          tagsRendered.push """<a href="/site/tagmap.html##{tag.toLowerCase()}">#{tag}</a>"""
-        span tagsRendered.join ', '
-        text ' | '
-        span """<a href="#{document.url}#disqus_thread" data-disqus-identifier="#{document.url}"></a>"""
+        text @layout 'article-footer', document
 
       if document.firstRendered is undefined
         text @tool.summary document.contentRendered
