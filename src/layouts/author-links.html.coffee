@@ -14,4 +14,4 @@ if author? and typeof author is 'string'
     else
       rendered.push name
 
-  text "by #{rendered.join(', ')}"
+  text "#{rendered.join(', ')}"
