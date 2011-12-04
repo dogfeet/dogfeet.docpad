@@ -33,6 +33,9 @@ article "#post.#{@document.class}", typeof: 'sioc:post', about: "#{@document.url
 
     style rel: 'stylesheet', media: 'screen, projection', scoped: 'scoped', ->
       """
+      #social-buttons {
+        margin-left: 30px;
+      }
       """
     div '#social-buttons.pull-right', ->
       ul '.unstyled', ->
