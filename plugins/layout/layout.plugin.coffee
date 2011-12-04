@@ -10,10 +10,10 @@ class LayoutPlugin extends DocpadPlugin
 
 	# Ammend our Template Data
 	renderBefore: ({documents, templateData, logger}, next) ->
-		templateData[ 'layout' ] = layout = (name) ->
+		templateData[ 'layout' ] = layout = (name, moreTemplateData) ->
 			template = _templates[ name ]
 			if template?
-				template _templateDataForCk
+				template _.extend {}, _templateDataForCk, moreTemplateData
 			else
 				'layout not found'
 
