@@ -8,7 +8,7 @@ tags: ['힘내', 'git']
 
 git을 사용할 때 유용한 설정, 도구등을 모아 정리해보려고 합니다.
 
-![힘내](/articles/2011/git-/git-.png "힘내")
+![힘내](/articles/2011/git.png "힘내")
 
 ## git alias
 
