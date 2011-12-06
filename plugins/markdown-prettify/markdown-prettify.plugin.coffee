@@ -52,7 +52,8 @@ class MarkdownPrettifyPlugin extends DocpadPlugin
 	render: ({inExtension,outExtension,templateData,file, logger}, next) =>
 		try
 			if inExtension in ['md','markdown'] and outExtension is 'html'
-				codes = file.content.split '<pre><code>\s*[<pre><code>]{0,1}'
+				#codes = file.content.split /<pre><code>\s*[<pre><code>]{0,1}/
+				codes = file.content.split /<pre><code>/
 				pretties = []
 				for i in [0..codes.length]
 					code = codes[i]
