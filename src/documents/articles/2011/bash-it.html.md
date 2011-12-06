@@ -76,6 +76,6 @@ git source에 들어 있는 bash_completion코드가 포함돼 있어서 별도�
     [계정][시스템 이름][±][브랜치 ✓][현재 경로]
     $ git st ...
 
- *±  - 이 것은 git을 나타내는 기호다. 왜 Git icon인지 mySysGit을 설치해보면 안다. HG는 `☿`, SVN은 `⑆`, 그 외는 `○`을 보여준다.
- * ✓ - 현재 git 상태가 clean 상태라는 것을 의미한다. dirty 상태가 되면 `✗`를 보여준다.
+ * ±  - 이 것은 git을 나타내는 기호다. 왜 Git icon인지 mySysGit을 설치해보면 안다. HG는 `☿`, SVN은 `⑆`, 그 외는 `○`을 보여준다.
+ *  ✓ - 현재 git 상태가 clean 상태라는 것을 의미한다. dirty 상태가 되면 `✗`를 보여준다.
 

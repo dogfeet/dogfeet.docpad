@@ -6,13 +6,13 @@ date: '2011-11-25T16:06:05.000Z'
 tags: ['Docpad', 'Prettify', 'Markdown', 'CoffeeKup']
 ---
 
-Docpad는 CoffeeScript로 작성한 static page engine이다.
+Docpad는 CoffeeScript로 작성한 static page engine이다. 이 dogfeet 사이트는 docpad를 사용해 만들었다.
 
 ![Docpad](/articles/2011/docpad.png)
 
 ## Skeleton
 
-docpad는 일종의 사이트 템플릿을 제공하는데 그걸 skeleton이라고 부른다. docpad에서 만든 skeleton은 다음의 두 개다.
+docpad는 일종의 사이트 템플릿을 제공하는데 그걸 skeleton이라고 부른다. docpad에서 만든 skeleton은 다음의 세 개다.
 
  * [Kitchensink Skeleton][] - docpad 2부터 기본 skeleton. bootstrap ui로 된 예제
  * [Canvas Skeleton][] - 어제 배포된 따끈한 empty skeleton이다. 
@@ -38,7 +38,9 @@ docpad를 설치한다. -g는 global 영역에 설치하는 것으로 -g 옵션�
 
 그리고 해당 디렉토리로 이동하고 나서 `docpad run`을 실행하고 브라우저로 들어간다. 다른 예제들은 사용법이 같으므로 생략한다.
 
-## Plugin
+## Custom Plugin
+
+Docpad는 blog generator가 아니기 때문에 blog처럼 사용하려면 관련된 기능을 직접 만들어 사용해야 한다.
 
 Plugin에서 require를 통해 underscore나 moment같은 다른 모듈을 사용하는 경우에는 package.json을 꼭 작성해야 한다. package.json의 dependencies 블럭에 의존 모듈을 추가하지 않으면 모듈을 매번 수동으로 설치해야 한다.  package.json이 있으면 docpad는 자동을 모듈을 설치한다.
 

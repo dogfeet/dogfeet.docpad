@@ -2,6 +2,13 @@
 layout: 'default'
 ---
 
+style rel: 'stylesheet', media: 'screen, projection', scoped: 'scoped', ->
+  """
+  .article_footer {
+    margin-left: 10px;
+  }
+  """
+
 header ->
   h2 'Archives'
 for document in @documents
@@ -13,7 +20,7 @@ for document in @documents
       div '.span9', ->
         a href: document.url, property: 'dc:title', ->
           strong "#{document.title}"
-        div -> small ->
+        div '.article_footer', -> small ->
           tagLinks = @layout 'tag-links', document.tags
           authorLinks = @layout 'author-links', document.author
 

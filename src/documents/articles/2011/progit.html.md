@@ -10,6 +10,8 @@ github의 CIO인 [schacon](http://github.com/schacon)님이 쓰신 progit을 번
 시작한지 꽤 됐는데 진도가 느립니다. [progit 한글 버전 저장소][]에 6장까지 번역을 완료했습니다.
 계획과 많은 차이가 있지만 이제야 좀 정리가 돼서 일부라도 공개합니다.
 
+[progit 한글 버전 저장소]: https://github.com/dogfeet/progit
+
 ![progit](/articles/2011/progit/progit.book-big.jpg)
 
 6장까지 번역한 것을 빌드해서 올려 두었습니다.
@@ -26,4 +28,7 @@ github의 CIO인 [schacon](http://github.com/schacon)님이 쓰신 progit을 번
 
 ![힘내](/articles/2011/progit/git-.png)
 
-[progit 한글 버전 저장소]: https://github.com/dogfeet/progit
+### update
+
+ * [2011-12-06] - 7장은 제가, 8장은 'Sean Lee'님이 번역하기 시작했습니다. 올해가 가기전에 모든 챕터가 완료할 계획입니다.
+

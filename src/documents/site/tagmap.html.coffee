@@ -16,14 +16,24 @@ rowmap = (row, orig) ->
 
   ret
 
-cellular = rowmap 4, @tags.store()
+cellular = rowmap 3, @tags.store()
+
+style rel: 'stylesheet', media: 'screen, projection', scoped: 'scoped', ->
+  """
+  #tagmap {
+    margin-left: 10px;
+  }
+  .row > [class*="span"] {
+    margin-left: 10px;
+  }
+  """
 
 h1 'Tagmap'
 for row in cellular
-  div '.row', ->
+  div '#tagmap.row', ->
     for cell in row
       tag = @tags.store( cell )
-      div "##{cell}.span3", ->
+      div "##{cell}.span4", ->
         h4 tag.name
         ul ->
           for document in tag.documents
