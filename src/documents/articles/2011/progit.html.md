@@ -28,7 +28,3 @@ github의 CIO인 [schacon](http://github.com/schacon)님이 쓰신 progit을 번
 
 ![힘내](/articles/2011/progit/git-.png)
 
-### update
-
- * [2011-12-06] - 7장은 제가, 8장은 'Sean Lee'님이 번역하기 시작했습니다. 올해가 가기전에 모든 챕터가 완료할 계획입니다.
-
