@@ -38,7 +38,7 @@ html lang: 'en', ->
     link rel: 'stylesheet', href: '/styles/style.css', media: 'screen, projection'
     #link rel: 'stylesheet', href: '/styles/print.css', media: 'print'
 
-    text @blocks.styles.join('')
+    #text @blocks.styles.join('')
 
     comment 'Scripts'
 
@@ -65,7 +65,7 @@ html lang: 'en', ->
     script src: '/vendor/lang-yaml.js'
     script src: '/scripts/script.js'
 
-    text @blocks.scripts.join('')
+    #text @blocks.scripts.join('')
 
   body ->
     comment 'Topbar'
