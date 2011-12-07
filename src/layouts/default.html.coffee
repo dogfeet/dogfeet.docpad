@@ -75,7 +75,7 @@ html lange: 'en', ->
           a '.brand', href: '/', 'dogfeet'
 
           ul '.nav', ->
-            li -> a href: '/site/about.html', 'About'
+            #li -> a href: '/site/about.html', 'About'
             li -> a href: '/site/tagmap.html', 'Tagmap'
             li -> a href: '/site/archive.html', 'Archive'
             li -> a href: '/site/atelier.html', 'Atelier'
