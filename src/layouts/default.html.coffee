@@ -1,5 +1,5 @@
 doctype 5
-html lange: 'en', ->
+html lang: 'en', ->
   head ->
     comment 'Meta'
     meta charset: 'utf-8'
