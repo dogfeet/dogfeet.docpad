@@ -95,9 +95,9 @@ html lang: 'en', ->
         @layout 'aside'
 
       footer ->
-        p '&copy; Company 2011'
-        p style: 'float:right;', ->
-          text "This website was generated on #{@site.date.toIsoDateString()} and has #{@site.totalDocuments} documents"
+        span '&copy; dogfeet 2011, powered by <a href="https://github.com/balupton/docpad">Docpad</a>'
+        #p style: 'float:right;', ->
+        #  text "This website was generated on #{@site.date.toIsoDateString()} and has #{@site.totalDocuments} documents"
 
     comment 'DISQUS'
     script ->
