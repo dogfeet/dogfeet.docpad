@@ -151,7 +151,7 @@ HEAD와 마찬가지로 `git show master@{0}` 명령을 사용할 수 있다.
 
 이 때 `git reflog --all` 명령을 실행시켜서 dev 브랜치가 이전에 가르키던 SHA 값을 찾아서 다시 `git reset --hard 4f2b862`라고 실행해서 복원할 수 있다.
 
-즉, reflog는 로컬 저장소에서 무슨 짓을 했는지 추적해서 문제를 해결하는데 도움이 된다. `git log`는 커밋 히스트로를 보여주지만 `git reflog`는 각 포인터들이 가리켰던 커밋들을 보여준다.
+즉, reflog는 로컬 저장소에서 무슨 짓을 했는지 추적해서 문제를 해결하는데 도움이 된다. `git log`는 커밋 히스토리를 보여주지만 `git reflog`는 각 포인터들이 가리켰던 커밋들을 보여준다.
 
 reflog가 특이한점은 SHA 값을 인식하는 것이 아니라는 것이다. 그래서 `git show ca53436@{0}`은 에러가 난다. 꼭 HEAD와 branch 이름만 사용할 수 있다.
 
@@ -163,7 +163,8 @@ reflog가 특이한점은 SHA 값을 인식하는 것이 아니라는 것이다.
 
 `git log` 명령이 인식하는 것도 결국 SHA 값이라는 것을 기억해야 한다. master, HEAD, tag등의 포인터를 인자로 넘겨도 결국 git이 인식하는 것은 그 포인터가 가리키는 SHA 값이다. 그래서 SHA값을 직접 사용해도 된다.
 
-![예제](http://progit.org/figures/ch6/18333fig0601-tn.png 예제)
+![예제](http://progit.org/figures/ch6/18333fig0601-tn.png)
+
 progit의 예제
 
 ### Double Dot
