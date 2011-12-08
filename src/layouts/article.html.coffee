@@ -40,7 +40,9 @@ article "#post.#{@document.class}", typeof: 'sioc:post', about: "#{@document.url
     div '#social-buttons.pull-right', ->
       ul '.unstyled', ->
         articleUrl = "#{@site.url}#{@document.url}"
-        li -> a '.twitter-share-button', href: 'https://twitter.com/share', 'data-url': articleUrl, 'data-count': 'horizontal', 'Tweet'
+        li -> 
+          a '.twitter-share-button', href: 'https://twitter.com/share'
+          , 'data-url': articleUrl, 'data-count': 'horizontal', 'data-lang': 'en', 'Tweet'
         li -> div '.g-plusone', 'data-size': 'medium', 'data-href': articleUrl
         li -> div '.fb-like', 'data-href': articleUrl, 'data-send': 'false', 'data-layout': 'button_count', 'data-show-faces': 'false'
 
