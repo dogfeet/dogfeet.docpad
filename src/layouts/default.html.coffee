@@ -79,7 +79,7 @@ html lang: 'en', ->
             li -> a href: '/site/tagmap.html', 'Tagmap'
             li -> a href: '/site/archive.html', 'Archive'
             li -> a href: '/site/atelier.html', 'Atelier'
-            li -> a href: '/atom.xml', -> 
+            li -> a href: 'http://feeds.feedburner.com/github/dogfeet', ->
               img src: 'http://forum.tattersite.com/ko/style/Textcube/feed-icon.png'
 
           form '.pull-right', action: 'http://google.com/search', method: 'get', ->
