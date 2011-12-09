@@ -30,8 +30,9 @@ git을 사용할 때 유용한 설정, 도구등을 모아 정리해보려고 �
 
 이건 좀 많이 편리합니다. 우연히 인터넷에서 줍은( ? ) 건데 너무 편리합니다. 현 브랜치의 히스토리를 short SHA값, author 정보, 커밋 트리 그리고 히스토리에서 특정 커밋을 가르키는 refs(브랜치, 태그 등)가 있는지도 보여줍니다. 각각의 요소를 다른 색으로 칠해줍니다.
 
-    # Pimp-out log:
-    # From: http://www.jukie.net/bart/blog/pimping-out-git-log
     git config --global alias.lg "log --name-status --color --abbrev-commit --date=relative --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
 
+브랜치를 중심으로 히스토리를 보고 싶으면 다음과 같이 사용하는 게 좋다.
+
+    git config --global alias.tree "log --graph --decorate --pretty=oneline --abbrev-commit --all"
 
