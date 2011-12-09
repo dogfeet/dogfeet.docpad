@@ -57,7 +57,7 @@ if @document.relatedDocuments.length > 0
         li ->
           span "#{document.date.toShortDateString()}"
           text '&raquo;'
-          a herf: "#{document.url}", "#{document.title}"
+          a href: "#{document.url}", "#{document.title}"
 
 section '#comments', ->
   h3 'Feedback'
