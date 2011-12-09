@@ -1,6 +1,3 @@
-pre, pre > code {
-  background-color: #FEFBF3;
-}
 .container-fluid > .sidebar, .container-fluid > .content{
   padding-top: 60px;
 }
@@ -22,12 +19,4 @@ footer {
 
 section.content article.post {
 	margin-bottom: 50px;
-}
-
-section.content article img {
-	border: 1px solid #C0C0C0;
-}
-
-section.content h1 {
-	margin-bottom: 3px;
 }
