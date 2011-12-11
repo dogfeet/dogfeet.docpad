@@ -48,11 +48,11 @@ div '.row', ->
         , 'Sean Lee', 'accepted'
       translateIt '2011', 'Why git is Better than X'
         , 'http://whygitisbetterthanx.com/'
-        , 'http://dogfeet.github.com/whygitisbetter/'
+        , 'http://pismute.github.com/whygitisbetter/'
         , 'Changwoo Park'
       translateIt '2011', "Felix's Node.js Guide"
         , 'http://nodeguide.com/'
-        , 'http://dogfeet.github.com/nodeguide.com/'
+        , 'http://pismute.github.com/nodeguide.com/'
         , 'Changwoo Park'
       translateIt '2008', 'Grails User Guide v1.0'
         , 'http://grails.org/doc/1.0/'
