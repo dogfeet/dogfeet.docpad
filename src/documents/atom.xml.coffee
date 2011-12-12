@@ -5,9 +5,9 @@ anEntry = (document) ->
     tag 'updated', document.date.toString()
     tag 'id', "#{@site.url}#{document.url}"
     if document.firstRendered
-      tag 'content', type: 'html', -> document.firstRendered
+      tag 'content', type: 'html', -> document.firstRendered.replace('src="/articles', "src=\"#{@site.url}/articles")
     else
-      tag 'content', type: 'html', -> document.contentRendered
+      tag 'content', type: 'html', -> document.contentRendered.replace('src="/articles', "src=\"#{@site.url}/articles")
 
 text '<?xml version="1.0" encoding="utf-8"?>\n'
 tag 'feed', xmlns: 'http://www.w3.org/2005/Atom', ->
