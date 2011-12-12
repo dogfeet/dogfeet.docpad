@@ -30,6 +30,8 @@ html lang: 'en', ->
     link rel: 'apple-touch-icon', sizes: '72x72', href: 'images/apple-touch-icon-72x72.png'
     link rel: 'apple-touch-icon', sizes: '114x114', href: 'images/apple-touch-icon-114x114.png'
 
+    link rel: 'alternate', type: 'application/atom+xml', title: "@site.title &raquo; Feed", href: 'http://feeds.feedburner.com/github/dogfeet'
+
     comment 'Shims: IE6-8 support of HTML5 elements'
     comment '[if lt IE 9]>\n        <script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>\n    <![endif]'
     comment 'Styles'
