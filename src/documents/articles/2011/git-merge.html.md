@@ -8,7 +8,7 @@ tags: ['git', 'merge']
 
 커밋 히스토리는 굉장히 잘 관리해야 한다. 이 글은 merge를 잘해서 히스토리를 잘 관리하는 방법을 설명한다.
 
-git의 최고의 장점은 모든 것을 나중으로 미룰 수 있다는 것이다. 이 말의 의미는 언제나 히스토리를 원하는 데로 편집할 수 있다는 것을 의미한다. 기존의 커밋 여러 개를 하나로 합치거나 커밋 하나를 여러 개로 쪼갤 수 있다. 이미 커밋된 개체에 들어 있는 committer나 author 정보를 수정할 수도 있다. 이런 git의 막강한 기능을 이용해서 모든 참여자가 쉽게 이해할 수 있고 쉽게 관리할 수 있는 히스토리를 만들어 나아가야 한다. 히스토리를 단장하는 방법도 굉장히 흥미로운 주제지만 내용이 많아서 이 글에서 다루지 않는다. 나중에 다시 다루기로 하겠다.
+git의 최고의 장점은 모든 것을 나중으로 미룰 수 있다는 것이다. 이 말의 의미는 언제나 히스토리를 원하는 대로 편집할 수 있다는 것을 의미한다. 기존의 커밋 여러 개를 하나로 합치거나 커밋 하나를 여러 개로 쪼갤 수 있다. 이미 커밋된 개체에 들어 있는 committer나 author 정보를 수정할 수도 있다. 이런 git의 막강한 기능을 이용해서 모든 참여자가 쉽게 이해할 수 있고 쉽게 관리할 수 있는 히스토리를 만들어 나아가야 한다. 히스토리를 단장하는 방법도 굉장히 흥미로운 주제지만 내용이 많아서 이 글에서 다루지 않는다. 나중에 다시 다루기로 하겠다.
 
 히스토리를 단장하기 위해 다음과 같은 몇 가지 사항을 꼭 기억해야 한다.
 
@@ -17,13 +17,13 @@ git의 최고의 장점은 모든 것을 나중으로 미룰 수 있다는 것�
 
 ![힘내](/articles/2011/git-merge/thousand_sunny_ship.jpg)
 
-싸우전드 써니 호는 밀짚모자 해적단의 안전한 항해를 책임진다. 그러니 잘 관리해야 한다.
+예를 들어 '싸우전드 써니' 호는 밀짚모자 해적단의 안전한 항해를 책임지고 있기 때문에 아주 잘 관리해야 한다.
 
-보통 master, develop, pu(proposed updates), next 등으로 이름 짓는 브랜치가 긴 호흡 브랜치(long-runing branch)이다. 이 브랜치는 굉장히 오랫동안 유지하고 사실 거의 저장소에 항상 존재한다. 필요에 따라 삭제하기도 하지만 바로 다시 만들어야 하기 때문에 항상 필요하다. 각 브랜치는 브랜치 고유의 목적이 있다. 여기서 각 브랜치의 의미를 설명하지 않는다.
+보통 master, develop, pu(proposed updates), next 등으로 이름 짓는 브랜치가 긴 호흡 브랜치(long-runing branch)이다. 이 브랜치는 굉장히 오랫동안 유지하고 사실 거의 저장소에 내내 존재한다. 필요에 따라 삭제하기도 하지만 바로 다시 만들어야 하기 때문에 항상 필요하다. 각 브랜치는 브랜치 고유의 목적이 있다. 여기서 각 브랜치의 의미를 설명하지는 않는다.
 
 이 글에서는 긴 호흡 브랜치로 ship 브랜치를 사용한다.
 
-## merge, rebase, cherry-pick
+## Merge, Rebase, Cherry-pick
 
 먼저 merge, rebase, cherry-pick이 어떻게 다른지 알아보자. 각 명령어가 어떻게 다른지는 [Visual git guide][]에 잘 설명돼 있다.
 
@@ -31,7 +31,7 @@ merge, rebase, cherry-pick을 선택하기 전에 고려해야 하는 것 중의
 
 이미 공유하는 커밋이라면 기존의 커밋 개체를 바꾸면 안 되고 반드시 동료와 논의해야 한다. 그래야 동료가 혼란스러워하지 않는다.
 
-### merge
+### Merge
 
 긴 호흡 브랜치에 merge하는 것이 아니라면(토픽 브랜치에 merge하는 것이라면) 편한 방법으로 merge해도 된다. 토픽 브랜치는 보통 저장소에 올려 다른 사람과 공유하지 않기 때문에 커밋을 어떻게 작성하든 문제가 되지 않는다. 히스토리를 정돈하는 일은 저장소에 올려 다른 사람과 공유하기 전까지 미뤄도 괜찮다.
 
@@ -79,7 +79,7 @@ ship 브랜치 히스토리가 다음과 같다고 하자:
 
 `--no-commit` 옵션을 주면 말 그대로 merge한 후 commit하지 않는다. `--no--commit` 옵션이 없더라도 커밋 여러 개를 합친 것이기(squash) 때문에 merge만하고 자동으로 커밋해주지 않는다. 수동으로 커밋 메시지를 수정하고 커밋한다.
 
-### rebase
+### Rebase
 
 '프랑키'가 대포를 추가하는 사이에 '나미'는 'feature/tangerine' 브랜치를 만들고 귤 나무를 하나 심었다:
 
@@ -137,7 +137,7 @@ feature/tangerine의 히스토리를 잘 보자. feature/tangerine 브랜치에�
     * 23a973a - Add feature/sample
     * 1934594 - Add ship
 
-### cherry-pick
+### Cherry-pick
 
 '루피'는 고기와 과일을 가지고 돌아왔다. '루피'의 브랜치, feature/food는 다음과 같다:
 
@@ -160,15 +160,15 @@ ship 브랜치로 이동해서 `git cherry-pick 663ced1` 명령을 실행하면 
     * 23a973a - Add feature/sample
     * 1934594 - Add ship
 
-## fast-forward merge와 merge 커밋
+## Fast-forward Merge와 Merge 커밋
 
-merge 커밋을 해야 하는 이유는 대게 커밋 하나로 정리할 수 없기 때문이다. 이슈를 하나로 정리해서 히스토리를 선형적으로 관리하는 것도 좋은 방법이지만 커밋 하나로 정리할 수 없는 이슈를 하나로 정리해 버리면 나중에 추적하기도 관리하기도 어려워진다.
+merge 커밋을 해야 하는 이유는 대개 이슈사항을 커밋 하나로 정리할 수 없기 때문이다. 이슈를 하나로 정리해서 히스토리를 선형적으로 관리하는 것도 좋은 방법이지만 커밋 하나로 정리할 수 없는 이슈를 하나로 정리해 버리면 나중에 추적하기도 관리하기도 어려워진다.
 
-### fast-forward merge
+### Fast-forward Merge
 
 이슈를(토픽 브랜치를) 하나의 커밋으로 정리할 수 있다면 fast-forward merge가 낫다. 브랜치에 커밋이 하나면 그 커밋 메시지를 적절히 수정해서 merge하고 아니면 하나로 합쳐서 merge한다. 커밋이 하나인 브랜치를 merge할 때 merge 커밋을 히스토리에 남기면 브랜치 이름을 기록해 두는 것 이외에 아무런 이득이 없다.
 
-fast-forward merge하는 방법을 살펴보자. '프랑키'는 feature/fix-ship 브랜치를 만들어 뱃머리와 닿을 수리했다:
+fast-forward merge하는 방법을 살펴보자. '프랑키'는 feature/fix-ship 브랜치를 만들어 뱃머리와 닻을 수리했다:
 
     * 52f084e - (HEAD, feature/fix-ship) Fix anchor
     * eb1db0d - Fix sunny bow
@@ -201,7 +201,7 @@ ship은 '271fa93'를 가리키고 있고 feature/fix-ship은 그 커밋을 base�
      create mode 100644 anchor
      create mode 100644 sunny
 
-### merge 커밋
+### Merge 커밋
 
 merge 커밋은 단순하게 말해서 커밋의 집합이라고 생각할 수 있다. merge 커밋을 만들어야 하는 때는 여러 커밋을 묶어서 관리하고자 할 때이다.
 
@@ -212,7 +212,7 @@ merge 커밋을 하면 여러 개의 커밋을 하나로 관리하고 어떤 브
     $ git reset --hard HEAD~2
     HEAD is now at 271fa93 Add meats
 
-커밋이 두 개라서 feature 하나를 원복할 때 커밋 두 개를 모두 reset해야 한다.
+커밋이 두 개라서 feature 하나를 원래대로 복구 할 때 커밋 두 개를 모두 reset해야 한다.
 
 이제 `--no-ff`을 주고 merge 커밋을 만든다.
 
@@ -251,9 +251,9 @@ merge 커밋이 있기 때문에 'HEAD~1' 만으로도 feature/fix-ship에 해�
 
 ## 결론
 
-Vincent Driessen님은 [A successful Git branching model][git-flow-post]에서 --no-ff를 기본 옵션으로 해야 한다고 했지만, 꼭 그렇지 않다. 히스토리를 어떻게 관리할지에 따라 선택해야 하고 fast-forward merge해야 하는 경우도 매우 많다.
+Vincent Driessen는 [A successful Git branching model][git-flow-post]에서 --no-ff를 기본 옵션으로 해야 한다고 했지만, 꼭 그렇지 않다. 히스토리를 어떻게 관리할지에 따라 선택해야 하고 fast-forward merge해야 하는 경우도 매우 많다.
 
-실제로 Driessen님이 저 글의 내용을 구현한 [git-flow][]에서도 feature 브랜치에 commit이 하나만 있으면 develop 브랜치에 fast-forward로 merge한다.
+실제로 Driessen이 저 글의 내용을 구현한 [git-flow][]에서도 feature 브랜치에 commit이 하나만 있으면 develop 브랜치에 fast-forward로 merge한다.
 
 [progit]: http://dogfeet.github.com/articles/2011/progit.html
 [git-flow-post]: http://dogfeet.github.com/articles/2011/a-successful-git-branching-model.html
