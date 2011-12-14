@@ -20,3 +20,8 @@ footer {
 section.content article.post {
 	margin-bottom: 50px;
 }
+
+section.content article.post p {
+	text-align: justify;
+	line-height: 175%;
+}
