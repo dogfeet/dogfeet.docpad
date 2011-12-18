@@ -26,7 +26,7 @@ tags: ['git', 'diffmerge']
  * `mergetool.*.cmd`가 실제로 실행되는 명령어다.
  * `mergetool.*.trustExitCode`은 해당 Merge 도구의 Exit 코드가 Merge의 성공여부를 나타내면 true로 설정한다.
 
-이렇게 설정된 `~/.gitconfig/` 파일내용은 다음과 같다:
+이렇게 설정된 `~/.gitconfig` 파일내용은 다음과 같다:
 
     [merge]
         tool = diffmerge
@@ -53,6 +53,8 @@ difftool은 다음과 같이 설정한다:
 
  * `diff.tool`은 diff 도구를 새로 정의하는 것이다.
  * `difftool.*.cmd`가 실제로 실행되는 명령어다.
+
+이렇게 설정한 `~/.gitconfig` 파일내용은 다음과 같다:
 
     [diff]
         tool = diffmerge
