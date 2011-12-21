@@ -32,6 +32,16 @@ Kindle Fire는 Tablet이 아닌 것 같아요. Rooting하면 Tablet처럼 쓸 �
 
 Kindle Fire의 장점은 가격과 Biscuit이라고 할 수 있겠습니다. 지금 Kindle Fire로 '닥치고 정치'를 읽고 있습니다. 물론 인터파크에서 구입하고 Biscuit로 보고 있습니다. Rooting하는 것이 좀 귀찮지만 Tablet으로 ebook만 보실 분이라면 Kindle Fire도 괜찮은 것 같아요.
 
+## update
+
+### 2012-12-21
+
+Kindle Fire가 6.2.1로 업데이트 되면서 기존 rooting 방법을 막아 버렸습니다. Kindle Fire는 묻지도 따지지도 않는 잠수함 패치를 하는데, 그럼 그냥 막혀 버려요. 이번에는 아예 기존 rooting 프로그램을 쓸 수 없게 만들었습니다. [rootkindlefile.com][]에서 해결해 주길 기다리고 있습니다.
+
+앞으로도 rooting이 쉬울거라는 건 취소합니다.
+
+ebook 프로그램으로 yes24 app도 실치할 수 있더군요. 찾아 보면 대개는 가능할 것 같습니다. yes24, aladdin은 5번 다운로드 하는 방식이고 interpark는 동시에 5대만 등록해서 언제든지 다운로드 받는 방식입니다.
+
 [rootkindlefile.com]: http://rootkindlefire.com/kindle-fire-root/how-to-root-kindle-fire-for-mac-osx-or-linux/
 [Happy Danny]: http://luckydanny.blogspot.com/2011/12/blog-post.html
 
