@@ -12,9 +12,6 @@ for document in @documents
       footer ->
         text @layout 'article-footer', document
 
-      if document.firstRendered is undefined
-        text @tool.summary document.contentRendered
-      else
-        text @tool.summary document.firstRendered
+      text @tool.summary document.contentNoLayout
 
       p -> a '.btn', href: document.url, 'Read more &raquo;'

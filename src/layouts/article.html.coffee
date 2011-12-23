@@ -2,8 +2,6 @@
 layout: default
 ---
 
-@document.firstRendered or= @content
-
 script src: 'http://platform.twitter.com/widgets.js'
 script ->
   """

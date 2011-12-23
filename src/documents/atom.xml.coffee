@@ -16,10 +16,7 @@ encodeHtml = (doc) ->
 ###
 
 renderContent = (doc, siteUrl) ->
-  if doc.firstRendered
-    rendered = doc.firstRendered
-  else
-    rendered = doc.contentRendered
+  rendered = doc.contentNoLayout
 
   rendered = rendered.replace('src="/articles', "src=\"#{siteUrl}/articles")
 
