@@ -48,13 +48,17 @@
 	"docpad": {
 		"enabledPlugins": {
 			"admin": false,
-			"rest": false
+			"rest": false,
+			"markdown-prettify": true
 		},
 		"plugins": {
 			"coffee": {
 				"coffeekup": {
 					"format": true
 				}
+			},
+			"markdown-prettify": {
+				"synonyms": {}
 			}
 		}
 	}
