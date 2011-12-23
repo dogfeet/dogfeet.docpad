@@ -1,6 +1,5 @@
 --- 
 layout: 'default'
-date: '2009-05-21T16:06:05.000Z'
 ---
 
 for document in @documents
