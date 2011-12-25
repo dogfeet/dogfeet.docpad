@@ -1,6 +1,6 @@
 --- yaml
 layout: 'article'
-title: 'Git:GitHub Flow'
+title: 'GitHub Flow'
 author: 'Changwoo Park'
 date: '2011-12-22'
 tags: ['git', 'github', 'scott chacon']
@@ -8,7 +8,7 @@ tags: ['git', 'github', 'scott chacon']
 
 _이 글은 GitHub의 CIO인 [Scott Chacon][]님의 [github-flow][]를 정리한 글입니다. Chacon님은 [git-flow][]가 정리한 것처럼 github를 개발하는 데 사용하는 flow를 정했습니다._
 
-Chacon님은 [git-flow][]도 좋지만 Github는 명확히 release라고 부를 만한 시점이 없어서 git-flow를 사용할 수 없다고 한다. 그 외 세세한 차이점도 거론하긴 했지만 생략한다. release가 분명하지 않기 때문에 git-flow에서 제안하는 브랜치도 적용할 수 없다.
+Chacon님은 git-flow도 좋지만 Github는 명확히 Release라고 부를 만한 시점이 없어서 git-flow를 사용하지 않는다고 한다. 그 외 세세한 차이점도 거론하긴 했지만 생략한다. Release가 분명하지 않은 경우엔 확실히 git-flow를 적용하기 어렵다.
 
 ![love github](/articles/2011/github-flow/contact-github.png)
 
@@ -32,7 +32,7 @@ deployed 같은 브랜치를 만들어 deploy한 커밋을 관리할 수도 있�
 
 ### 브랜치는 항상 master 브랜치에서 만든다.
 
-`git checkout -b mine master` 처럼.
+`git checkout -b mine master` 처럼 master 브랜치에서 만든다. 
 
 ### 이름을 잘 짓는다.
 
