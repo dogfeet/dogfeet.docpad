@@ -7,16 +7,16 @@ article "#post.#{@document.class}", typeof: 'sioc:post', about: "#{@document.url
     h1 property: 'dcterms:title', "#{@document.title}"
   footer '.row', ->
     p ' '
-    img '.span2', src: "http://www.gravatar.com/avatar/#{@document.gravata}"
-    div '.span10', ->
+    div '.span4', ->
+      if @document.github?
+        iframe src:"http://githubbadge.appspot.com/badge/#{@document.github}?a=0", style: 'border: 0;height: 150px;width: 200px;overflow: hidden;'
+      else
+        img src: "http://www.gravatar.com/avatar/#{@document.gravata}"
+    div '.span8', ->
       if @document.twitter?
         div ->
           span -> strong 'twitter:'
           a href: "http://twitter.com/#!/#{@document.twitter}", "@#{@document.twitter}"
-      if @document.github?
-        div ->
-          span -> strong 'github:'
-          a href: "https://github.com/#{@document.github}", "#{@document.github}"
       if @document.links?
         div ->
           div -> strong 'Links ->'
