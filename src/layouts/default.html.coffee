@@ -98,7 +98,7 @@ html lang: 'en', ->
         @layout 'aside'
 
       footer ->
-        span 'Copyright &copy; 2008-2011 Dogfeet from coding to pixels, powered by <a href="https://github.com/balupton/docpad">Docpad</a>'
+        span 'Copyright &copy; 2008-2012 Dogfeet from coding to pixels, powered by <a href="https://github.com/balupton/docpad">Docpad</a>'
         #p style: 'float:right;', ->
         #  text "This website was generated on #{@site.date.toIsoDateString()} and has #{@site.totalDocuments} documents"
 
