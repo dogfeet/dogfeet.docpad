@@ -1,6 +1,6 @@
 anEntry = (url, lastmod, freq) ->
   tag 'url', ->
-    tag 'url', href: "#{@site.url}#{url}"
+    tag 'loc', "#{@site.url}#{url}"
     tag 'lastmod', lastmod
     tag 'changefreq', freq
 
