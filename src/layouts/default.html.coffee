@@ -9,7 +9,7 @@ html lang: 'en', ->
 
     if 0 is @document.filename.indexOf @document.title
       #document has not own title, not articles or authors
-      title @site.title
+      title "DOGFEET - #{@site.title}"
       meta name: 'description', content: @site.description or ''
       authorNames=[]
       for document in @documents
@@ -20,7 +20,7 @@ html lang: 'en', ->
       meta name: 'author', content: authors
     else 
       #document has own title, articles or authors
-      title @document.title
+      title "DOGFEET - #{@document.title}"
       meta name: 'description', content: @document.description or ''
       meta name: 'author', content: @document.author or ''
 

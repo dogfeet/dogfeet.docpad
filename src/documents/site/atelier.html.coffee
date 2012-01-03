@@ -1,5 +1,6 @@
 --- yaml
 layout: 'default'
+title: 'Atelier'
 ---
 
 h1 'Atelier'

@@ -11,7 +11,8 @@ class SitePlugin extends DocpadPlugin
 	renderBefore: ({documents, templateData}, next) ->
 		site = templateData.site
 		_.extend site,
-			title: 'function 개발새발(){...}'
+			title: '개발새발'
+			description: '정통 개발 주간 블로그입니다. 주 관심사는 학습과 WEB입니다.'
 			url: 'http://dogfeet.github.com'
 			disqusShortName: 'dogfeet-github'
 

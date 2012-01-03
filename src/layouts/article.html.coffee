@@ -2,6 +2,14 @@
 layout: default
 ---
 
+#generate for meta[name=description]
+if !@document.description
+  desc = @content.trim()
+  desc = desc.substring 0, desc.indexOf '\n'
+  #strip html tag
+  desc = desc.replace(/(<([^>]+)>)/ig,'')
+  @document.description = desc
+
 script src: 'http://platform.twitter.com/widgets.js'
 script ->
   """
@@ -20,8 +28,8 @@ script ->
     po.src = 'https://apis.google.com/js/plusone.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
   })();
-  """
 
+  """
 article "#post.#{@document.class}", typeof: 'sioc:post', about: "#{@document.url}", lang: 'ko-kr', ->
   header ->
     h1 property: 'dcterms:title', "#{@document.title}"

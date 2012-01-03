@@ -1,5 +1,6 @@
 --- yaml
 layout: 'default'
+title: 'Archive'
 ---
 
 style rel: 'stylesheet', media: 'screen, projection', scoped: 'scoped', ->
