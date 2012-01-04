@@ -28,7 +28,7 @@ anEntry = (document) ->
   tag 'entry', ->
     tag 'title', document.title
     tag 'link', href: "#{@site.url}#{document.url}"
-    tag 'updated', document.date.toString()
+    tag 'updated', document.date.toIsoDateString()
     tag 'id', "#{@site.url}#{document.url}"
     tag 'content', type: 'html', -> renderContent document, @site.url
 
