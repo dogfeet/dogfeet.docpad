@@ -10,6 +10,10 @@ if !@document.description
   desc = desc.replace(/(<([^>]+)>)/ig,'')
   @document.description = desc
 
+#generate for meta[name=keywords]
+if !@document.keywords and @document.tags
+  @document.keywords = @document.tags.join ','
+
 script src: 'http://platform.twitter.com/widgets.js'
 script ->
   """

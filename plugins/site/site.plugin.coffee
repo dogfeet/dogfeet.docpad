@@ -13,6 +13,7 @@ class SitePlugin extends DocpadPlugin
 		_.extend site,
 			title: '개발새발'
 			description: '정통 개발 주간 블로그입니다. 주 관심사는 학습과 WEB입니다.'
+			keywords: '학습,Learning,HTML5,Mobile,Web,iPhone,Android,Git,개발새발,dogfeet'
 			url: 'http://dogfeet.github.com'
 			disqusShortName: 'dogfeet-github'
 

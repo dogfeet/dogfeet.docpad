@@ -11,11 +11,13 @@ html lang: 'en', ->
       #document has own title, articles or authors
       title "DOGFEET - #{@document.title}"
       meta name: 'description', content: @document.description or ''
+      meta name: 'keywords', content: @document.keywords or ''
       meta name: 'author', content: @document.author or ''
     else
       #document has not own title, not articles or authors
       title "DOGFEET - #{@site.title}"
       meta name: 'description', content: @site.description or ''
+      meta name: 'keywords', content: @site.keywords or ''
       authorNames=[]
       for document in @documents
         if 0 is document.url.indexOf '/authors'
