@@ -7,7 +7,12 @@ html lang: 'en', ->
     meta 'http-equiv': 'content-type', content: 'text/html; charset=utf-8'
     meta name: 'viewport', content: 'width=device-width, initial-scale=1'
 
-    if 0 is @document.filename.indexOf @document.title
+    if @document.layout is 'article'
+      #document has own title, articles or authors
+      title "DOGFEET - #{@document.title}"
+      meta name: 'description', content: @document.description or ''
+      meta name: 'author', content: @document.author or ''
+    else
       #document has not own title, not articles or authors
       title "DOGFEET - #{@site.title}"
       meta name: 'description', content: @site.description or ''
@@ -18,11 +23,6 @@ html lang: 'en', ->
 
       authors = if authorNames.length > 0 then authorNames.join(', ') else ''
       meta name: 'author', content: authors
-    else 
-      #document has own title, articles or authors
-      title "DOGFEET - #{@document.title}"
-      meta name: 'description', content: @document.description or ''
-      meta name: 'author', content: @document.author or ''
 
     comment 'Icons'
     link rel: 'shortcut icon', href: 'images/favicon.ico'
