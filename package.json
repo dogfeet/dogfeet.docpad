@@ -38,9 +38,6 @@
 		"url" : "http://github.com/dogfeet/dogfeet.github.com.git"
 	},
 	"dependencies": {
-		"moment": "1.1.x",
-		"express": "2.5.x",
-		"docpad": "2.4.0"
 	},
 	"engines" : {
 		"node": ">=0.4.0"
