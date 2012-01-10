@@ -1,0 +1,39 @@
+---
+layout: 'article'
+title: 'jQuery: mixin plugin'
+author: 'Changwoo Park'
+date: '2009-02-05'
+tags: ["HTML","CSS","JS","jquery","mixin","plugin"]
+---
+
+<p>mixin이라는 용어가 적합한지 모르겠습니다. extend와 비슷한데 이 것은 선택된 dom으로 카피하는 것입니다.
+단순히 extend라는 용어가 jQuery에서 사용되고 있으므로 mixin이라는 용어를 선택하였습니다.</p>
+
+<pre><code>(function($){
+    $.fn.mixin = function(obj) {
+        for(var property in obj) if (obj.hasOwnProperty(property) ) {
+            this.each(function(i, it){
+                if( !$(it).attr(property) ){
+                    $(it).attr(property, obj[property]);
+                }else{
+                    it[property] = obj[property];
+                }
+            });
+        };
+
+        return this;
+    }
+})(jQuery); 
+</code></pre>
+
+<p>사용하는 법은 다음과 같습니다:</p>
+
+<pre><code>/*&lt;!--[CDATA[*/
+
+    &lt;script type="text/javascript"&gt;
+        $("#sample").mixin({prop:"sample"});
+    &lt;/script&gt;
+/*]]--&gt;*/ 
+</code></pre>
+
+<p>이제 #sample이라는 dom은 prop 프로퍼티를 가지게 됩니다. 어딘가에 필요해서 만들었습니다.</p>

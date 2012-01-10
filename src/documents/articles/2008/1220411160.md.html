@@ -1,0 +1,13 @@
+---
+layout: 'article'
+title: 'Ganymede에서 Javascript 편집할때 뺀찌먹는 문제.'
+author: 'Changwoo Park'
+date: '2008-09-03'
+tags: ["Eclipse","ganymede","javascript","jquery","OutOfMemory"]
+---
+
+<p> 자자, Ganymede를 설치했습니다. *.js 파일을 하나열 었습니다. 갑자기 eclipse.exe가 core 한 개를 통째로 차지하면서 eclipse가 느려지기 시작합니다. eclipse를 죽여도 프로세스가 완전히 죽지 않습니다. 그래서 강제로 kill합니다. 이게 근 한달동안 *.js 파일을 열지 못하게 만들었습니다. 그런데 어제부터 갑자기 Ganymede를 실행시키면 outofmemory error가 발생하고 무조건 core 한 개를 점유하더랍니다. 그래서 다음과 같이 eclipse.ini를 변경했습니다.</p>
+
+<blockquote>-showsplashorg.eclipse.platform&#8212;launcher.XXMaxPermSize256M-frameworkplugins\org.eclipse.osgi_3.4.0.v20080605-1900.jar-vmargs-Dosgi.requiredJavaVersion=1.5&#8212;Xms256m&#8212;Xmx1024m&#8212;XX:MaxPermSize=1024m&#8212;XX:+UseParallelGC&#8212;XX:+UseParallelOldGC</blockquote>
+
+<p> 그랬더니 outofmemory error가 발생 안할 뿐만 아니라 *.js를 열어도 cpu를 잡아 먹지 않습니다. 만쉐~~아마도 메모리가 부족해서 GC가 죽어라고 돌았나봅니다.ps&gt; 그런데 eclipse 인자에 &#8220;-&#8220;와 &#8220;&#8212;&#8221;의 차이는 뭘까요? 갑자기 궁금해집니다. 이병 인자와 일병 인자로 구분해서 뭔가 차별대우를 하는 것은 아닐까요.-<em>-;;;;ㅋㅋㅋ 기쁜 나머지 일하다 말고 글을 씁니다.-</em>-;;;;ps&gt; 음&#8230;좀 더 사용해 봤습니다만, 해결된 것이 아니라 메모리를 늘린만큼 시간적 여유를 벌어주는 것 뿐입니다. 근본적으로  eclipse Javascript 파서에 문제가 있는 것 같습니다. jQuery 스타일로 코드를 짜면 아주 바보가 돼버립니다&#8230;어찌해야 할까요.-_-;;;좀 더 찾아봐야 겠습니다.ps2&gt; 음 결국에 WTP에 있는 Javascript Development Tool을 제거 했습니다. 제거한 후 OutOfMemeory Error는 안뜨고 있습니다만, 여전이 느립니다&#8230;</p>

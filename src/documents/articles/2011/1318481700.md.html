@@ -1,0 +1,57 @@
+---
+layout: 'article'
+title: 'ssh-agent, bash-it plugin'
+author: 'Changwoo Park'
+date: '2011-10-13'
+tags: ["ssh-agent","bash-it","bash"]
+---
+
+<p>ssh key를 이용해서 인증 할때 매번 key 암호를 입력하는 것이 아니라 메모리에 올려놓고 계속 사용할 수 있다.</p>
+
+<p><a href="http://wiki.kldp.org/wiki.php/UsingSshAgent">ssh-agent를 사용하는 방법</a>은 이미 잘되 있는 문서가 많아서 다시 거론하지 않는다.</p>
+
+<p>다음과 같이 코드를 작성한다. 기본적으로 ssh-agent는 8 hours(28800 sec)안에 timeout 된다.</p>
+
+<p>$SSH_AGENT_TIMEOUT를 등록해서 값을 바꿀 수 있다:</p>
+
+<pre><code>function get_ssh_agent_timeout(){
+  #28800, 8 hours. then go home
+  local my_timeout=28800
+
+  [ "$SSH_AGENT_TIMEOUT" != "" ] &amp;&amp; my_timeout="$SSH_AGENT_TIMEOUT"
+
+  echo $my_timeout
+}
+
+function bind_ssh_agent(){
+  local agent_pid=`ps -U $USER | grep ssh-agent | grep -v grep  | awk '{print $1}' | xargs`
+
+  if [ "$agent_pid" = "" ]; then
+    ssh-agent -t $(get_ssh_agent_timeout) &gt; ~/.ssh/ssh_agent_rc
+
+    . ~/.ssh/ssh_agent_rc
+
+  else
+    . ~/.ssh/ssh_agent_rc
+
+  fi;
+}
+
+function ssh_add_to_ssh_agent(){
+  local id_key_file=$1
+  local added=`ssh-add -l | grep $id_key_file`
+
+  [ "$added" = "" ] &amp;&amp; ssh-add -t $(get_ssh_agent_timeout)
+}
+
+MY_KEY_FILE=~/.ssh/id_rsa
+
+if [ "$MY_KEY_FILE" != "" ]; then
+  bind_ssh_agent
+  ssh_add_to_ssh_agent $MY_KEY_FILE
+fi;
+</code></pre>
+
+<p>이 파일을 ${BASH}/plugins/available/ssh_agent.plugin.bash에 추가하고 ${BASH}/plugins/enabled/ssh_agent.plugin.bash에 링크를 걸면 동작한다.</p>
+
+<p>코드는 <a href="https://github.com/pismute/bash-it">github</a>의 mine 브랜치에 올려 두었다.</p>

@@ -1,0 +1,48 @@
+---
+layout: 'article'
+title: 'c++ downcasting with dynamic_cast'
+author: 'Changwoo Park'
+date: '2010-05-07'
+tags: ["c++","cpp","downcast","DownCasting","dynamic casting","dynamic_cast","virtual class"]
+---
+
+<p>클래스 정의</p>
+
+<pre><code>&lt;p&gt;
+&lt;/p&gt;
+
+class Base {
+    public:
+        virtual const char *getAlgorithm() = 0;
+    };
+
+    class Derive : public Base {
+    public:
+        const char *getAlgorithm() {
+            return "derive";
+        }   
+    };
+
+    class Derive2 : public Base {
+    public:
+        const char *getAlgorithm() {
+            return "derive2";
+        }   
+    }; 
+</code></pre>
+
+<p>downcasting</p>
+
+<pre><code>&lt;p&gt;
+&lt;/p&gt;
+&lt;textarea class="syntax-highlighter c"&gt;
+Base *b1 = new Derive();
+Base *b2 = new Derive2();
+
+Derive *d1 = dynamic_cast&lt;derive *&gt; (b1); // b1
+Derive *d2 = dynamic_cast&lt;derive *&gt; (b2); // null
+&lt;/textarea &gt;
+
+&lt;p&gt;restriction&lt;/p&gt;
+&lt;p&gt;base class must be virtual class&lt;/p&gt;
+</code></pre>

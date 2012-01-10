@@ -1,0 +1,160 @@
+---
+layout: 'article'
+title: 'JavaScript–How Prototypal Inheritance really works'
+author: 'Changwoo Park'
+date: '2011-09-30'
+tags: ["Prototypal inheritance","__proto__","prototype","JavaScript"]
+---
+
+<p><em>이 번역은 저자의 허가를 받지 않았습니다.</em></p>
+
+<p>prototypal inheritance에 대한 글들이 도처에 널려있는데 JavaScript는 이미 new를 이용한 prototypal inheritance를 지원한다. 그래서 prototypal inheritance를 정확히 이해하기 힘들다. 이 글은 JavaScript의 prototypal inheritance를 명확히 설명하고자 한다.</p>
+
+<h4>Prototypal Inheritance Definition</h4>
+
+<p>prototypal inheritance에 대한 글을 읽을 때 다음과 같은 정의를 자주 볼 수 있다:</p>
+
+<p><code>객체의 property에 접근할 때 JavaScript는 해당 property를 찾을 때까지 prototype chain을 따라 찾는다.</code> - <a href="http://bonsaiden.github.com/JavaScript-Garden/#object.prototype">JavaScript Garden</a></p>
+
+<p>많은 JavaScript 구현체들은 [<code>__proto__</code>][] 프로퍼티를 이용해 prototype chain을 만든다. 이 글어서는 먼저 <code>__proto__</code> 와 prototype의 차이를 살펴 볼 것이다.</p>
+
+<p>Note: <code>__proto__</code>는 표준이 아니기 때문에 직접 사용하지말아야 한다. 이 글에서 <code>__proto__</code>를 사용하는 것은 JavaScript가 inheritance를 어떻게 처리하는 지 설명하기 위해 사용하는 것이다.</p>
+
+<p>다음 코드는 JavaScript 엔진이 property를 어떻게 찾는지 보여주는 코드다(설명용).</p>
+
+<pre><code>#!js
+function getProperty(obj, prop) {
+  if (obj.hasOwnProperty(prop))
+    return obj[prop]
+
+  else if (obj.__proto__ !== null)
+    return getProperty(obj__proto__, prop)
+
+  else
+    return undefined
+}
+</code></pre>
+
+<p>이차원 Point 객체의 예를 보자. 이 Point 객체는 x,y 좌표와 print method를 가진다. 위에서 설명한 prototypal inheritance의 정의에 따라서 x, y, print property를 만든다. Point를 만들기 위해서 객체를 새로 만들고 <code>__proto__</code>에 Point를 할당한다.</p>
+
+<pre><code>#!js
+var Point = {
+  x: 0,
+  y: 0,
+  print: function () { console.log(this.x, this.y); }
+};
+
+var p = {x: 10, y: 20, __proto__: Point};
+p.print(); // 10 20
+</code></pre>
+
+<h4>JavaScript Weird Prototypal Inheritance</h4>
+
+<p>바로 위와 같은 코드를 제시하지 않고 prototypal inheritance를 가르치는 것이 문제다. 사람들은 위와 같은 코드 대신 다음과 같은 코드를 제시한다:</p>
+
+<pre><code>#!js
+function Point(x, y) {
+  this.x = x;
+  this.y = y;
+}
+Point.prototype = {
+  print: function () { console.log(this.x, this.y); }
+};
+
+var p = new Point(10, 20);
+p.print(); // 10 20
+</code></pre>
+
+<p>두 코두는 완전히 다르다. Point는 함수인데 prototype property와 new를 사용한다. 이게 뭥미?</p>
+
+<h5>How <code>new</code> works</h5>
+
+<p><a href="http://brendaneich.com/">Brendan Eich</a>는 JavaScript를 Java나 C++같은 Object Oriented programming language로 만들고 싶어 했다. new 연산자는 class의 instance를 만드는 것이다. 그래서 Brendan Eich은 다음과 같이 new를 정의했다:</p>
+
+<ul><li>C++에는 instance의 attribute를 초기화하는 constructor가 있기 때문에 new할 때 함수가 하나 필요하다.</li>
+<li>이 함수는 객체 어딘가에 있어야 한다. JavaScript는 prototypal language이기 때문에 함수의 prototype property에 두도록 하자.</li>
+</ul><p>new는 arguments가 있는 함수 F가 필요하다: new F(arguments&#8230;). new 세단게로 나뉘어 진행된다:</p>
+
+<ul><li>class의 instance를 만든다. 이때 만들어진 객체의 <code>__proto__</code>에 F.prototype이 할당된다.</li>
+<li>인자와 함께 함수 F를 호출하여 instance를 초기화한다.</li>
+<li>instance를 반환한다.</li>
+</ul><p>new가 무엇을 하는지 설명했다. JavaScript코드로 이 내용을 구현해보자:</p>
+
+<pre><code>function New (f) {
+  var n = { '__proto__': f.prototype }; /*1*/
+  return function () {
+    f.apply(n, arguments);              /*2*/
+    return n;                           /*3*/
+  };
+}
+</code></pre>
+
+<p>그리고 이게 잘되나 한번 테스트 해보자:</p>
+
+<pre><code>function Point(x, y) {
+  this.x = x;
+  this.y = y;
+}
+Point.prototype = {
+  print: function () { console.log(this.x, this.y); }
+};
+
+var p1 = new Point(10, 20);
+p1.print(); // 10 20
+console.log(p1 instanceof Point); // true
+
+var p2 = New (Point)(10, 20);
+p2.print(); // 10 20
+console.log(p2 instanceof Point); // true
+</code></pre>
+
+<h4>Real Prototypal Inheritance in JavaScript</h4>
+
+<p>new가 어떤 것인지 <a href="http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf">JavaScript specifications</a>에 설명돼 있지만 Douglas Crockford는 real Prototypal Inheritance를 하는 new를 만들었다. 그는 <a href="http://JavaScript.crockford.com/prototypal.html">Object.create</a>를 다음과 같이 구현했다:</p>
+
+<pre><code>Object.create = function (parent) {
+  function F() {}
+  F.prototype = parent;
+  return new F();
+};
+</code></pre>
+
+<p>이 것은 믿기 어려울 정도로 단순하다. 쉽게 객체를 만들고 prototype에 원하는 parent를 할당할 수 있게 돼있다. 만약 <code>__proto__</code>를 직접 사용한다고 가정하면 더 단순하다:</p>
+
+<pre><code>Object.create = function (parent) {
+  return { '__proto__': parent };
+};
+</code></pre>
+
+<p>다음 real prototypal inheritance를 사용한 예이다:</p>
+
+<pre><code>var Point = {
+  x: 0,
+  y: 0,
+  print: function () { console.log(this.x, this.y); }
+};
+
+var p = Object.create(Point);
+p.x = 10;
+p.y = 20;
+p.print(); // 10 20
+</code></pre>
+
+<h4>Conclusion</h4>
+
+<p>지금까지 prototypal inheritance가 무었인지, JavaScript가 어떻게 구현했는 지 삶펴봤다.</p>
+
+<p>그러나 real prototypal inheritance (Object.create and <code>__proto__</code>)에는 단점이 있다:</p>
+
+<ul><li>비표준: <code>__proto__</code>는 표준도 아니고 심지어 deprecated됐다. 그리고 native Object.create와 Douglas Crockford의 구현은 다르다.</li>
+<li>최적화 되지 않음: Object.create (native or custom)는 아직 최적화 돼지 않았다. 이 코드는 약 <a href="http://jsperf.com/object-create-vs-crockford-vs-jorge-vs-constructor/16">10배 느린 경우</a>도 있다..</li>
+</ul><p>더 읽을 만한 글들:</p>
+
+<ul><li><a href="http://JavaScript.crockford.com/prototypal.html">Douglas Crockford: Prototypal Inheritance</a></li>
+<li><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/proto">MDC Documentation: <code>__proto__</code></a></li>
+<li><a href="http://ejohn.org/blog/objectgetprototypeof/">John Resig: getPrototypeOf</a>(<a href="http://dogfeet.tumblr.com/post/11005288533/object-getprototypeof">번역</a>)</li>
+<li><a href="http://bonsaiden.github.com/JavaScript-Garden/#object.prototype">JavaScript Garden: Object.prototype</a></li>
+<li><a href="http://dmitrysoshnikov.com/ecmascript/chapter-7-2-oop-ecmascript-implementation/">Dmitry Shoshnikov: OOP: ECMAScript Implementation</a></li>
+<li><a href="http://JavaScriptweblog.wordpress.com/2010/06/07/understanding-JavaScript-prototypes/">Angus Croll: Understanding JavaScript prototypes</a></li>
+<li><a href="http://yehudakatz.com/2011/08/11/understanding-JavaScript-function-invocation-and-this/">Yehuda Katz: Understanding JavaScript Function Invocation and “this”</a></li>
+</ul><p>역주, 원작자가 주장하는 바가 무었인지 명확하지는 않습니다. 하지만 <code>__proto__</code>와 prototype에 대해서는 아주 잘 정리했습니다.</p>

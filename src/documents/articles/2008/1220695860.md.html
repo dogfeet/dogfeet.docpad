@@ -1,0 +1,141 @@
+---
+layout: 'article'
+title: 'Enum을 JSP 페이지에 노출 시키기'
+author: 'Changwoo Park'
+date: '2008-09-06'
+tags: ["appcliation","Enum","Java","jsp","ServletContextListener"]
+---
+
+<h2>개요</h2>
+
+<p>scriptlet은 독이라고 생각합니다. scriptlet을 잘쓰고 있는 지인에게 &#8216;scriptlet은 독이이야&#8217;라고 말했다가 미움받았습니다만 어쨌든 scriptlet을 안쓰고 jsp짜려니까 좀 골때려지는 부분들이 있습니다. gsp에서는 어떨까요. 음 gsp도 한번 찾아봐야 겠습니다. 먼가 방법이 있을까 찾아보니 Spring Interceptor를 이용해서 Enum을 request 스콥에 노출시켜주는 글[1]이 있었습니다.</p>
+
+<p>request 스콥에 노출시키는 방법은 [1]에서도 지적했듯이 다음과 같은 방법이 있을 수 있겠습니다.</p>
+
+<ul><li>ServletFilter</li>
+<li>Spring Interceptor</li>
+<li>Controller</li>
+</ul><p>하지만 Enum을 요청마다 매번 request에 넣어주는게 좀 그래보였습니다(사실 이 정도는 WAS에서 티도 안날 것이기 때문에 아무 문제 없을 것입니다.)
+어쨌든 저장소를 application 스콥으로 잡고 WAS가 기동할 때 넣어줄 수 있도록 ContextListener로 구현하기로 했습니다. 음. 이렇게 구현하면 hot swap시 어떻게 처리될지 모르겠네요. 이 것도 찾아봐야겠네요. 공부할게 너무 많네요.</p>
+
+<h2>예제</h2>
+
+<p>다음과 같은 enum 클래스가 있다고 하면:</p>
+
+<pre><code>package kr.pismute
+
+public enum Week {
+  MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY;
+} 
+</code></pre>
+
+<p>jsp에서 다음과 같이 사용할 수 있습니다. 사실 applicationSope이란 내장객체라는게 참 촌스럽습니다. 그냥 application으로 하지 못할 이유라도 있었는지…</p>
+
+<pre><code>${applicationScope.week.MONDAY} 
+</code></pre>
+
+<p>Week라는 클래스 이름은 자바 네이밍 컨벤션에 따라 week으로 바꿔서 넣습니다. GoldenWeek였다면 goldenWeek로 바뀌겠죠.</p>
+
+<p>이제 web.xml에 이 ContextListner를 넣어줍니다:</p>
+
+<pre><code>&lt;context-param&gt;
+    &lt;param-name&gt;enumServletContextConfig&lt;/param-name&gt;
+    &lt;param-value&gt;kr.pismute.Week&lt;/param-value&gt;
+&lt;/context-param&gt;
+
+&lt;listener&gt;
+    &lt;listener-class&gt;kr.pismute.EnumContextListener&lt;/listener-class&gt;
+&lt;/listener&gt; 
+</code></pre>
+
+<p>Enum에 빈을 추가해서 사용할할 수도 있습니다. Week에 다음과 같이 추가하고:</p>
+
+<pre><code>private Integer day;
+
+  public Integer getDay(){
+    return day;
+  } 
+</code></pre>
+
+<p>jsp에서 다음과 같이 day 프로퍼티를 사용할 수 있습니다.</p>
+
+<pre><code>${applicationScope.week.MONDAY.day} 
+</code></pre>
+
+<h2>Code</h2>
+
+<pre><code>pacakge kr.pismute
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+
+/**
+ * JSP에서 ENUM 클래스에 접근할 수 있도록 ServletContext에 넣어줍니다.
+ * 
+ * @author pismute
+ *
+ */
+public class EnumContextListener implements ServletContextListener {
+    public void contextDestroyed(ServletContextEvent sce) {
+    }
+
+    public void contextInitialized(ServletContextEvent sce) {
+        String param = sce.getServletContext().getInitParameter("enumServletContextConfig");
+        String[] params = param.split(",");
+
+        for(String className : params) {
+            className = className.trim();
+            this.loadEnum(className, sce.getServletContext());
+        }
+    }
+
+    /**
+     * Enum 인스턴스를 찾아서 Map&lt;name, Enum&lt;?&gt;&gt; 맵으로 변환하고
+     * ServletContext에 넣습니다.
+     * 
+     * @param className
+     */
+    @SuppressWarnings("unchecked")
+    private void loadEnum(String className, ServletContext context) {
+        Map&lt;String, Enum&lt;?&gt;&gt; ret = null;
+
+        try {
+            Class&lt;Enum&gt; clazz = (Class&lt;Enum&gt;)Class.forName(className);
+            Enum[] enums = clazz.getEnumConstants();
+
+            ret = new HashMap&lt;String, Enum&lt;?&gt;&gt;(enums.length);
+            for(Enum e : enums) {
+                ret.put(e.name(), e);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        ret = Collections.unmodifiableMap(ret);
+        context.setAttribute(this.getAlias(className), ret);
+    }
+
+    /**
+     * 클래스 첫 문자를 소문자로 바꿔서 alias를 만듭니다.
+     * 
+     * @param className
+     * @return
+     */
+    private String getAlias(String className) {
+        String[] token = className.split("\\.");
+        String alias = token[token.length - 1].trim();
+        String initial = alias.substring(0, 1);
+        String suffix = alias.substring(1);
+
+        initial = initial.toLowerCase();
+        alias = initial + suffix;
+
+        return alias;
+    }
+}
+</code></pre>

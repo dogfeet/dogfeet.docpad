@@ -1,0 +1,13 @@
+---
+layout: 'article'
+title: 'gails + eclipse에서의 에러'
+author: 'Changwoo Park'
+date: '2008-08-26'
+tags: ["Eclipse","Grails","native2ascii"]
+---
+
+<p> 지난달 새로운 groovy plugin이 배포 됐습니다. Ganymede에 맞춰 발표된 이 <a href="http://docs.codehaus.org/display/GROOVY/2008/07/25/Groovy+Eclipse+plugin+updated+to+Groovy+1.5.6+and+Eclipse+3.4" target="_blank">플러그인</a>은 아직 뭐가 달라진 건지 잘 모르겠습니다.-_-;;; 어찌됐건 grails를 eclipse에서 import하여 실행시키면 다음과 같은 에러가 발생합니다.</p>
+
+<blockquote>[native2ascii] Converting 11 files from <span style="font-weight: bold;">C:\grails-1.0.3\test\grails-app\i18n</span> to<span style="font-weight: bold;">C:\Documents and Settings\master&#46;grails\1.0.3\projects\test\resources\grails-ap</span><span style="font-weight: bold;">p\i18n</span><span style="color: rgb(212, 26, 1);">Error starting Sun&#8217;s native2ascii:</span></blockquote>
+
+<p>이 문제는 jdk를 인식하지 못해서 생기는 문제입니다. JAVA_HOME이 jre로 설정된 경우에 발생된다고 합니다. 하지만 JAVA_HOME을 jdk로 잡아주고 eclipse를 실행시켜도, eclipse에서는 저런 에러가 발생합니다(적어도 제가 알고 있는 바로는&#8230;). jdk/lib/tool.jar를 프로젝트에 추가하면 해결됩니다. 단순하지만 project의 설정을 변경한다는 것이 마음에 들지않아요. 아&#8230;</p>

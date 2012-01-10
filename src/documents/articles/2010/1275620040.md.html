@@ -1,0 +1,16 @@
+---
+layout: 'article'
+title: 'Extract privatekey and publickey from p12'
+author: 'Changwoo Park'
+date: '2010-06-04'
+tags: ["P12","pfx","PKCS12","privatekey","publickey","RSA","X509"]
+---
+
+<pre><code>$ openssl pkcs12 -in seanlee_yessign.p12 -clcerts -nokeys -out cert.pem
+$ openssl x509 -in cert.pem -pubkey -noout &gt; pub.key
+
+$ cat pub.key 
+$ openssl rsa -text -pubin -in pub.key -noout 
+</code></pre>
+
+<p></p>
