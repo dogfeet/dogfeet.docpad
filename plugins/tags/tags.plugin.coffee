@@ -21,6 +21,10 @@ class TagsPlugin extends DocpadPlugin
 				store: (tagname, obj) ->
 					if tagname
 						key = tagname.toLowerCase()
+
+						#for safety
+						key = ['--',key,'--'].join '' if key in ['__proto__', 'prototype']
+
 						if obj
 							#set
 							if @data[ key ]
