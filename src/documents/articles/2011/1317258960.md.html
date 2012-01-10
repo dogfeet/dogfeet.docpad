@@ -1,0 +1,182 @@
+---
+layout: 'article'
+title: 'New in JavaScript 1.8'
+author: 'Changwoo Park'
+date: '2011-09-29'
+tags: ["JavaScript","New In JavaScript","JavaScript Standard"]
+---
+
+<p>New in JavaScript 1.8</p>
+
+<p>JavaScript 1.8을 사용하려면 script 엘리먼트를 다음과같이 정의해야 한다.</p>
+
+<pre><code>#!html
+&lt;script type="application/JavaScript;version=1.8"&gt; ... your code ... &lt;/script&gt;
+</code></pre>
+
+<h4>Expression closures</h4>
+
+<p><a href="http://en.wikipedia.org/wiki/Lambda_calculus#Lambda_calculus_and_programming_languages">Lambda notation</a>처럼 함수를 정의할 수 있다.</p>
+
+<p>다음과 같은 코드는:</p>
+
+<pre><code>#!js
+function(x) { return x * x; }
+</code></pre>
+
+<p>다음과 같이 작성할 수 있다:</p>
+
+<pre><code>function(x) x * x
+</code></pre>
+
+<p>event listeners는 다음 처럼 할 수 있고:</p>
+
+<pre><code>document.addEventListener("click", function() false, true);
+</code></pre>
+
+<p>Array closure로도 사용할 수 있다:</p>
+
+<pre><code>elems.some(function(elem) elem.type == "text");
+</code></pre>
+
+<h4>Generator expressions</h4>
+
+<p>Array comprehension의 치명적인 결함은 메모리를 많이 쓴다는 것이다. 모든 결과를 새 Array의 담기 때문에 발생한다. 크기가 작은 Array를 입력받는 다면 상관없지만 크기가 크면 문제가 된다.</p>
+
+<p>만면 Generator는 lazy하게 그때그때 값을 계산해 낸다. Generator expression이 Array comprehension과 다른 점은 <code>[]</code> 블럭안에 <code>for each...in</code>대신 <code>for...in</code>을 쓴다는 것이다. 그리고 Array를 반환하는 것이 아니라 Generator를 반환하고 lazy하게 값을 뽑아 쓴다.</p>
+
+<p>다음의 예에서 it가 거대한 Iterator라고 가정하면 다음과 같이 새로운 Iterator를 만들 수 있다:</p>
+
+<pre><code>var it2 = (i * 2 for (i in it));
+print(it2.next()); // The first value from it, doubled
+print(it2.next()); // The second value from it, double
+</code></pre>
+
+<p>함수 인자에도 사용할 수 있는데 이 때에는 <code>[]</code> 블럭을 생략해도 된다:</p>
+
+<pre><code>var result = doSomething(i * 2 for (i in it));
+</code></pre>
+
+<h4>More Array extras</h4>
+
+<p>이것은 ECMAScript 5에 포함된 내용이고 아직 지원하지 않는 browser를 위한 fallback은 다음과 같다:</p>
+
+<pre><code>if ( !Array.prototype.reduce ) {
+  Array.prototype.reduce = function reduce(accumulator){
+        var i, l = this.length, curr;
+
+        if(typeof accumulator !== "function") // ES5 : "If IsCallable(callbackfn) is false, throw a TypeError exception."
+          throw new TypeError("First argument is not callable");
+
+        if((l == 0 || l === null) &amp;&amp; (arguments.length &lt;= 1))// == on purpose to test 0 and false.
+          throw new TypeError("Array length is 0 and no second argument");
+
+        if(arguments.length &lt;= 1){
+          curr = this[0]; // Increase i to start searching the secondly defined element in the array
+          i = 1; // start accumulating at the second element
+        }
+        else{
+          curr = arguments[1];
+        }
+
+        for(i = i || 0 ; i &lt; l ; ++i){
+          if(i in this)
+            curr = accumulator.call(undefined, curr, this[i], i, this);
+        }
+
+        return curr;
+      };
+  }
+</code></pre>
+
+<h5>reduce()</h5>
+
+<p>이해를 돕기 위해 다음과 같은 함수를 보자:</p>
+
+<pre><code>[0,1,2,3,4].reduce(function(previousValue, currentValue, index, array){
+  return previousValue + currentValue;
+});
+</code></pre>
+
+<p>callback이 호출될때마다 상태는 다음과 같다:</p>
+
+<pre><code>#!none
+-----------------------------------------------------------------------------------
+|             | previousValue | currentValue | index | array       | return value |
+-----------------------------------------------------------------------------------
+| first call  |             0 |            1 |     1 | [0,1,2,3,4] |            1 |
+| second call |             1 |            2 |     2 | [0,1,2,3,4] |            3 |
+| third call  |             3 |            3 |     3 | [0,1,2,3,4] |            6 |
+| fourth call |             6 |            4 |     4 | [0,1,2,3,4] |           10 |
+-----------------------------------------------------------------------------------
+</code></pre>
+
+<p>reduce()가 최종적으로 반환하는 값은 마지막 값인 10이다.</p>
+
+<p>reduce()에 초기값을 넘겨줄 수 도 있다:</p>
+
+<pre><code>#!js
+[0,1,2,3,4].reduce(function(previousValue, currentValue, index, array){
+  return previousValue + currentValue;
+}, 10);
+</code></pre>
+
+<p>callback마다 상태는 다음과 같다:</p>
+
+<pre><code>#!none
+-----------------------------------------------------------------------------------
+|             | previousValue | currentValue | index | array       | return value |
+-----------------------------------------------------------------------------------
+| first call  |            10 |            0 |     0 | [0,1,2,3,4] |           10 |
+| second call |            10 |            1 |     1 | [0,1,2,3,4] |           11 |
+| third call  |            11 |            2 |     2 | [0,1,2,3,4] |           13 |
+| fourth call |            13 |            3 |     3 | [0,1,2,3,4] |           16 |
+| fifth call  |            16 |            4 |     4 | [0,1,2,3,4] |           20 |
+-----------------------------------------------------------------------------------
+</code></pre>
+
+<p>똑같이 reduce()함수는 20을 반환한다.</p>
+
+<p>reduce()를 이용해 Array의 합을 구하는 법은 다음과 같다:</p>
+
+<pre><code>#!js
+var total = [0, 1, 2, 3].reduce(function(a, b){ return a + b; });
+// total == 6
+</code></pre>
+
+<p>2차원 Array를 펼 수도 있다:</p>
+
+<pre><code>var flattened = [[0,1], [2,3], [4,5]].reduce(function(a,b) {
+  return a.concat(b);
+});
+// flattened is [0, 1, 2, 3, 4, 5]
+</code></pre>
+
+<h5>reduceRight()</h5>
+
+<p>reduceRight()는 순서가 반대라는 것을 빼고 reduce()와 동일하다. 예제를 보자:</p>
+
+<pre><code>#!js
+[0,1,2,3,4].reduceRight(function(previousValue, currentValue, index, array){
+  return previousValue + currentValue;
+});
+</code></pre>
+
+<p>결과는 다음과 같다:</p>
+
+<pre><code>#!none
+-----------------------------------------------------------------------------------
+|             | previousValue | currentValue | index | array       | return value |
+-----------------------------------------------------------------------------------
+| first call  |             4 |            3 |     3 | [0,1,2,3,4] |            7 |
+| second call |             7 |            2 |     2 | [0,1,2,3,4] |            9 |
+| third call  |             9 |            1 |     1 | [0,1,2,3,4] |           10 |
+| fourth call |            10 |            0 |     0 | [0,1,2,3,4] |           10 |
+-----------------------------------------------------------------------------------
+</code></pre>
+
+<p>reduce()와 마찬가지로 reduceRight()는 10을 반환한다.</p>
+
+<h4>JavaScript 1.8 compatibility</h4>
+
+<p>브라우저 호환 테이블은 <a href="http://robertnyman.com/javascript/#javascript-1-8-compatibility">여기</a></p>

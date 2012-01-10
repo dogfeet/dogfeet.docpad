@@ -1,0 +1,95 @@
+---
+layout: 'article'
+title: 'markdown, textile, syntaxhighlighter plugin for jQuery'
+author: 'Changwoo Park'
+date: '2010-04-20'
+tags: ["HTML","CSS","JS","Blog","javascript","jquery","makrdown","SyntaxHighlighter","Textile"]
+---
+
+<h2>Markdown</h2>
+
+<p>markdown은 <a href="http://www.attacklab.net/">showdown</a>을 사용했습니다. jQuery의 훌륭한 인터페이스를 잊을 수 없어 껍데기를 살짝 씌웠습니다.</p>
+
+<p>먼저 다음 파일을 포함시킴니다.</p>
+
+<pre><code>&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script  src="jquery.markdown.js"&gt;&lt;/script&gt; 
+</code></pre>
+
+<p>다음과 같이 javascript를 넣어줍니다.</p>
+
+<pre class="syntax-highlighter javascript">$(".markdown").markdown()                                         
+</pre>
+
+<p>그리고 markdown을 작성합니다.</p>
+
+<pre><code>test markdown
+-----------------
+</code></pre>
+
+<p>원하는 데로 css selector를 적용해서 사용할 수 있습니다.</p>
+
+<h2>Textile</h2>
+
+<p>textile도 <a href="http://www.jrm.cc/"><a href="http://www.jrm.cc/">http://www.jrm.cc/</a></a>의 것을 사용했습니다. markdown과 마찬가지로 jQuery plugin으로 만들었습니다.</p>
+
+<p>먼저 의존성을 해결합니다.</p>
+
+<pre><code>&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script  src="jquery.textile.js"&gt;&lt;/script&gt; 
+</code></pre>
+
+<p>다음과 같이 javascript를 넣어줍니다.</p>
+
+<pre><code>$(".textile").textile() 
+</code></pre>
+
+<p>그리고 textile을 작성합니다.</p>
+
+<pre><code>h1. test textile
+</code></pre>
+
+<h2>SyntaxHighlighter</h2>
+
+<p><a href="http://alexgorbatchev.com/wiki">SyntaxHighlighter</a>는 정말 훌륭한 툴입니다. 대부분의 언어를 지원하고 잘 관리되고 있습니다.</p>
+
+<p>그러나 Usage가 맘에 들지 않습니다. SyntaxHighlighter가 강제하는 Usage는 정말 맘에 들지 않습니다. unobstrusive에 따라서 유연한 사용법이 필요했습니다. 그래서 소스를 뜯어보고 jQuery plugin으로 wrapping했습니다.
+wrapping하면서 다음의 두 가지를 수정했습니다.</p>
+
+<ul><li>Usage 변경 - 기존의 SyntaxHighlighter가 제공하는 Usage를 무시하고 jQuery 스타일로 사용할 수 있도록 했습니다. 하지만 완벽하지 않습니다. unobstrusive하게 만들려면 손대야 할게 많더군요.-_-;;;</li>
+<li>lazily loading - shCore.js를 제외하고는 모두 그때 그때 다운로드 합니다. 예를들어 class에 &#8216;java&#8217;라고 정의된 dom을 발견하는 순간 &#8216;shBrushJava.js&#8217;를 다운로드합니다. 파일은 SyntaxHighlighter에서 호스팅되는 파일을 받아옵니다.</li>
+</ul><p>먼저 의존성을 해결합니다.</p>
+
+<pre><code>&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script  src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js"&gt;&lt;/script&gt;
+&lt;script  src="jquery.syntaxhighlighter.js"&gt;&lt;/script&gt; 
+</code></pre>
+
+<p>다음과 같이 javascript를 넣어줍니다.</p>
+
+<pre><code>$(".syntax-highlighter").highlight() 
+</code></pre>
+
+<p>그리고 code를 작성합니다.</p>
+
+<pre><code>&lt;pre class="syntax-highlighter java"&gt;public class Java{
+}
+&lt;/pre&gt; 
+</code></pre>
+
+<p>jQuery를 이용하여 아주 유연하게 blog에 markdown, textile, syntaxhighlighter를 적용할 수 있습니다. 이제 글을 작성하는게 너무 수월해 졌습니다. 지금 이 글도 markdown + syntaxhighlighter를 적용해 작성하고 있습니다. 시간이 허락하면 좀 더 정리하고 수정해서 정식으로 공개하고 싶지만, 지금은 일단 돌아가게만 했습니다.</p>
+
+<h2>주의사항</h2>
+
+<p>현재 버그가 있어서 syntaxhighlighter를 가장 나중에 실행해야 합니다. 물론 나중에 실행하는 것도 문제가 있습니다.-_-;;;이 부분은 고민해보고 해결해야 겠습니다.</p>
+
+<pre><code>$(function(){
+    $(".markdown").markdown();
+    $(".textile").textile();
+    $(".syntax-highlighter").highlight(); //이 줄이 제일 마지막에 나와야 합니다. 전부 DOM을 수정하는 거라 에러가 나는 것 같습니다. 
+}); 
+</code></pre>
+
+<h2>다운로드</h2>
+
+<p><a href="http://dogfeet-support.appspot.com/static/tistory/182.attachment.blogscript.zip">blogscript.zip</a></p>

@@ -1,0 +1,71 @@
+---
+layout: 'article'
+title: 'Spring MVC & iBatis Example - jPetStore 분석 (3) 설정 살펴보기 2 - to Databse'
+author: 'Changwoo Park'
+date: '2009-09-20'
+tags: ["Java","Spring","Grails","Beans","jpetstore","spring","springmvc"]
+---
+
+<p>아마도 이전의 분석글에서 실행한 jpetstore에서 대부분의 메뉴가 동작하지 않았을 것이다. 에러 메시지를 살펴보면 &#8216;Could not open JDBC Connection&#8217;이 보인다. 즉 DB설정이 제대로 되지 않았다는 것이다. Database를 설정하기 위해서 web.xml 설정파일부터 다시 살펴본다.</p>
+
+<pre><code>&lt;!--
+- Location of the XML file that defines the root application context.
+- Applied by ContextLoaderServlet.
+-
+- Can include "/WEB-INF/dataAccessContext-local.xml" for a single-database
+- context, or "/WEB-INF/dataAccessContext-jta.xml" for a two-database context.
+--&gt;
+&lt;context-param&gt;
+&lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+&lt;param-value&gt;/WEB-INF/dataAccessContext-local.xml /WEB-INF/applicationContext.xml&lt;/param-value&gt;
+&lt;!--
+&lt;param-value&gt;/WEB-INF/dataAccessContext-jta.xml  /WEB-INF/applicationContext.xml&lt;/param-value&gt;
+--&gt;
+&lt;/context-param&gt; 
+</code></pre>
+
+<p>대충 훓어보다보며 &#8216;dataAccessContext&#8217; 이 부분이 보인다. 옳거니 여기구나. &#8216;context-param&#8217;은 일종의 환경변수 등록이다. 즉 다음과 같이 서블릿이 실행되기 전에 변수를 등록해 놓는 것이다.</p>
+
+<pre><code>contextConfigLocation = /WEB-INF/dataAccessContext-local.xml /WEB-INF/applicationContext.xml 
+</code></pre>
+
+<p><a href="http://static.springsource.org/spring/docs/2.5.x/api/org/springframework/web/context/ContextLoader.html" target="_self" title="[http://static.springsource.org/spring/docs/2.5.x/api/org/springframework/web/context/ContextLoader.html]로 이동합니다.">contextConfigLocation</a>에 지정된 Context파일은 Spring Framework 초기화 작업이 읽고 사용한다. 변수 값으로는 dataAccessContext-local.xml, applicationContext.xml 두 파일의 경로를 설정하였다.</p>
+
+<ul style="list-style-type: square; "><li>dataAccessContext-local.xml은 DataAccess, 즉 DataBase와 직접적 관련이 있는 Context 파일이다.</li>
+<li>applicationContext.xml은 DataAccess로부터 얻은 데이터에 대한 처리를 하는 Business Logic작업이 이루어지는 Business Layer에 대한 Context 파일이다.</li>
+</ul><p>위의 두 파일을 살펴보기 전에, Context파일들을 살펴볼수록 정의하는 Beans의 종류가 많아지기 때문에 Bean을 생성하는 Class이름과 패키지 이름을 잘 살펴봐야 한다.</p>
+
+<ul style="list-style-type: square; "><li>org.springframework.* - Spring Framework Bean</li>
+<li>org.springframework.samples.jpetstore.* - Example에서 사용되는 사용자가 작성하는 Bean</li>
+<li>기타 패키지 - 기타 JDBC나 라이브러리 Bean</li>
+</ul><p><b>
+</b></p>
+
+<p><b>dataAccessContext-local.xml</b></p>
+
+<p>주석을 살펴보면 JPetStore에서 Data를 Access하는 Layer에 관한 Context정의라는 것을 알 수 있다. 아래로 내려가다보면 dataSource Bean에 대한 정의가 보인다. 여기에서 실제 Database에 대한 JDBC연결을 정의함을 볼 수 있다. (휴, 겨우 이제 처음에 제시했던 질문으로). JDBC에 대한 연결 파라미터는 ${jdbc.driverClassName}와 같이 설정하고 있는데, 이것의 실제 값은 WEB-INF/jdbc.properties 파일에 정의되어 있고, 다시 이 JDBC 설정파일의 위치는 다음에 살펴볼 applicationContext.xml에 propertyConfigurer Bean에 정의되어 있다.</p>
+
+<p><b>applicationContext.xml</b></p>
+
+<p>주석을 살펴보면 Sample Application의 Business Layer Bean의 정의를 포함하며, 주로 DAO에 접근하기 위한 Bean, (AOP를 통한) Transaction Advice 등을 정의하는 것을 볼 수 있다.</p>
+
+<p>다시 dataSource Bean으로 돌아와서, dataSource에서 사용하는 값이 정의된 /war/WEB-INF/jdbc.properties 파일을 열어보면 jdbc 연결에 필요한 파라미터들이 정의되어있다. 이 샘플은 기본적으로 HSQLDB를 사용한다. 따라서 HSQLDB의 구동이 필요한데, 이것을 위한 파일들은 /db/hsqldb에 위치한다. 샘플을 돌려보는 운영체제에 따라 server.bat나 server.sh파일을 실행한다. 나의 경우, server.sh파일을 &#8216;sh server.sh&#8217;나 chmod로 권한을 줘서 실행하면 잘 실행이 되지 않았다(실행은 되는데 샘플 데이터 구축이 잘 안됌). &#8216;cat server.sh&#8217;하여 그 내용을 똑같이 따라 입력하였더니 HSQLDB가 실행이 되는 것을 볼 수 있었다. manager.sh(manager.bat)파일은 현재 실행중인 HSQLDB에 접속해서 Query를 실행해 볼 수 있는 간단한 클라이언트다.</p>
+
+<pre><code>SeanMacBook:~/Documents/Workspace/spring-framework/spring-framework-2.5.5/samples/jpetstore/db/hsqldb$ java -classpath ../../../../lib/hsqldb/hsqldb.jar org.hsqldb.Server -database jpetstore
+[Server@5d173]: [Thread[main,5,main]]: checkRunning(false) entered
+[Server@5d173]: [Thread[main,5,main]]: checkRunning(false) exited
+[Server@5d173]: Startup sequence initiated from main() method
+[Server@5d173]: Loaded properties from [/Users/Yee/Documents/Workspace/spring-framework/spring-framework-2.5.5/samples/jpetstore/db/hsqldb/server.properties]
+[Server@5d173]: Initiating startup sequence...
+[Server@5d173]: Server socket opened successfully in 6 ms.
+[Server@5d173]: Database [index=0, id=0, db=file:jpetstore, alias=] opened sucessfully in 344 ms.
+[Server@5d173]: Startup sequence completed in 353 ms.
+[Server@5d173]: 2009-09-20 19:36:26.022 HSQLDB server 1.8.0 is online
+[Server@5d173]: To close normally, connect and execute SHUTDOWN SQL
+[Server@5d173]: From command line, use [Ctrl]+[C] to abort abruptly&lt;font class="Apple-style-span" face="굴림, gulim, tahoma, sans-serif"&gt;&lt;span class="Apple-style-span" style="white-space: normal;"&gt;
+&lt;/span&gt;&lt;/font&gt; 
+</code></pre>
+
+<p>자 이제 다시 브라우저로 돌아와서 Fish메뉴에 다시 접근해 보면 Database로부터 Data를 가져오는것을 확인할 수 있다. 자, 이제 Context 파일을 통해서 Bean들의 관계를 다음과 같이 간략히 정리해 볼 수 있다. 붉은색은 Sample에서 작성하는 Bean, 초록색은 iBatis의 Bean, 파란색은 JDBC Bean이라고 보면 되겠다. 다음은 iBatis부분을 좀 더 살펴볼 것이다.</p>
+
+<p><img src="http://dogfeet-support.appspot.com/static/tistory/150.attachment.jpetstoreBeans.png" alt="" height="568" width="489"/></p>

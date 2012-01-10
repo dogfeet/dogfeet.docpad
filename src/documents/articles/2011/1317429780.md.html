@@ -1,0 +1,58 @@
+---
+layout: 'article'
+title: 'prompt에 branch 나오게 하기'
+author: 'Changwoo Park'
+date: '2011-10-01'
+tags: ["git","bash","prompt"]
+---
+
+<p>shell에서 current directory가 어떤 working directory인지 어떤 branch인지 prompt에 나오게 하는 방법입니다.</p>
+
+<p>원문은 예쁘게 색칠되지만 저는 검은 바탕에 힌 글자를 선호하기 때문에 삭제했습니다.</p>
+
+<p>색칠하고 싶으면 다음 것을:</p>
+
+<pre><code>#!bash
+function parse_git_branch {
+  git branch --no-color 2&gt; /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+function proml {
+  local        BLUE="\[\033[0;34m\]"
+  local         RED="\[\033[0;31m\]"
+  local   LIGHT_RED="\[\033[1;31m\]"
+  local       GREEN="\[\033[0;32m\]"
+  local LIGHT_GREEN="\[\033[1;32m\]"
+  local       WHITE="\[\033[1;37m\]"
+  local  LIGHT_GRAY="\[\033[0;37m\]"
+  case $TERM in
+    xterm*)
+    TITLEBAR='\[\033]0;\u@\h:\w\007\]'
+  ;;
+  *)
+    TITLEBAR=""
+  ;;
+  esac
+
+  PS1="${TITLEBAR}\
+  $BLUE[$RED\$(date +%H:%M)$BLUE]\
+  $BLUE[$RED\u@\h:\w$GREEN\$(parse_git_branch)$BLUE]\
+  $GREEN\$ "
+  PS2='&gt; '
+  PS4='+ '
+}
+proml
+</code></pre>
+
+<p>저처럼 흑백으로 하고 싶다면 다음 것을:</p>
+
+<pre><code>function parse_git_branch {
+  git branch --no-color 2&gt; /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+PS1="[$(date +%H:%M)][\u@\h:\w\$(parse_git_branch)]\$ "
+PS2='&gt; '
+PS4='+ '
+</code></pre>
+
+<p>.bash_profile에 넣으면 됩니다.</p>

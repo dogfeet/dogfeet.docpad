@@ -1,0 +1,53 @@
+---
+layout: 'article'
+title: 'bash-it-a-day, custom plugin.'
+author: 'Changwoo Park'
+date: '2011-10-27'
+tags: ["bash-it"]
+---
+
+<p>bash-it을 fork해서 나만의 저장소를 github에 만들고, 각 서버의 계정마다 clone해서 사용하고 있습니다.</p>
+
+<p>근데 이게 좀 귀찮군요. 동기화 해주는게 영 그래요. 환경이 똑같으니 너무 좋은데 귀찮았습니다.</p>
+
+<p>그래서 로그인 할 때 하루에 한번 fetch/merge를 수행하는 plugin을 만들었습니다. linux command를 찾느라 시간이 좀 걸렸습니다.</p>
+
+<pre><code>#!bash
+function bash_it_a_day(){
+  local today=`date +%Y%m%d`
+  local file="/tmp/bash_it_a_day_$USER"
+  local truncated=""
+
+  if [ -f $file ]; then
+    local uname=`uname`
+
+    [ $uname = "Linux" ] &amp;&amp; truncated=`date +%Y%m%d --reference=$file`
+
+    [ $uname = "Darwin" ] &amp;&amp; truncated=`stat -t %Y%m%d -f %Sm $file`
+
+  fi
+
+  if [ "$truncated" != "$today" ]; then
+    cd $BASH
+
+    local git_pid=`ps -U $USER | grep git | grep -v grep  | awk '{print $1}' | xargs`
+
+    if [ $git_pid = "" ]; then
+      git checkout mine
+      git fetch origin
+      git merge origin/mine
+    fi
+
+    &gt; $file #truncate file
+
+    cd ~
+  fi
+
+}
+
+bash_it_a_day
+</code></pre>
+
+<p>이렇게 파일을 만들어서 $BASH/custom/bash-it-a-day.bash로 넣습니다.</p>
+
+<p>그러면 로그인할 때마다 fetch/merge를 하는데 하루에 한번만 합니다.</p>

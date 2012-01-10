@@ -1,0 +1,119 @@
+---
+layout: 'article'
+title: 'Flex: GeneralCairngormEvent & GeneralCairngormCmd'
+author: 'Changwoo Park'
+date: '2009-11-04'
+tags: ["RIA","as3Query","Cairngorm","Command","EVENT","flex"]
+---
+
+<p> Flex를 시작한지 얼마되지 않았지만, Cairngorm Framework의 문제가 눈에 선합니다. 만들어야할 파일이 너무 많습니다. 아주 간단한 처리를 위해서도 파일을 계속 만들어 주어야 합니다. Adobe에서 Cairngorm plug-in for flex builder(eclipse)를 제공해서 위저드를 사용할 수도 있지만 jQuery에서 함수 하나로 처리하던 추억을 떠올리면 한숨만 나옴니다.</p>
+
+<p>그래서 고민끝에 General Event와 Cmd를 만들어 봤습니다. 조금 더 발전 시켜서 jQuery처럼 함수 하나로 처리할 수 있는 api를 설계해 볼까 생각중입니다. <a title="[http://tech.nitoyon.com/blog/2008/01/as3query_alpha.html]로 이동합니다." target="_blank" href="http://tech.nitoyon.com/blog/2008/01/as3query_alpha.html">as3Query</a>를 수정하면 jQuery같은 모습도 갖출 수 있을 것이라고 생각합니다. as3Query를 공개한 후 업데이트가 없어서 정말 작동하는 걸까라는 의심을 해봅니다만 아무리 찾아도 이 것보다 나은 것을 찾을 수가 없습니다.</p>
+
+<p>GeneralCairngormEvent</p>
+
+<pre><code>package event
+{
+    import com.adobe.cairngorm.control.CairngormEvent;
+    import com.adobe.serialization.json.JSON;
+    import cmd.GeneralCairngormCmd;
+
+    import mx.binding.utils.BindingUtils;
+    import mx.binding.utils.ChangeWatcher;
+    import mx.controls.Alert;
+
+    public class GeneralCairngormEvent extends CairngormEvent
+    {
+        public static const EVENT_ID:String = "GENERAL_CAIRNGORM_EVENT";
+        [Bindable]
+        public var placeHolder:* = null;
+        protected var caller:String = null;
+        public function GeneralCairngormEvent()
+        {
+            super(EVENT_ID, bubbles, cancelable);
+
+            var e:Error = new Error();
+            caller = e.getStackTrace().split("\n", 3)[2];
+        }
+
+        public function bindProperty(site:Object, prop:String, commitOnly:Boolean = false):ChangeWatcher{
+            return BindingUtils.bindProperty(site, prop, this, "placeHolder", commitOnly);
+        }
+
+        public function bindSetter(setter:Function, commitOnly:Boolean=false):ChangeWatcher{
+            return BindingUtils.bindSetter(setter, this, "placeHolder", commitOnly);    
+        }
+
+        //ICOMMAND
+        public var execute:Function = function(evt:GeneralCairngormEvent, cmd:GeneralCairngormCmd):void{}
+
+        //IRESPOND
+        public var result:Function = function(data:Object):void{
+            placeHolder = data.result;
+            trace("[GeneralCairngormEvent]" + caller);
+            trace("[GeneralCairngormEvent]" + JSON.encode(data.result));
+        }
+
+        public var fault:Function = function(info:Object):void{
+            var msg:String = "[GeneralCairngormEvent]" + caller + info;
+
+            Alert.show(msg);
+
+            trace(msg);
+        }
+    }
+} 
+</code></pre>
+
+<p>GeneralCairngormCmd</p>
+
+<pre><code>package cmd
+{
+    import com.adobe.cairngorm.commands.ICommand;
+    import com.adobe.cairngorm.control.CairngormEvent;
+    import event.GeneralCairngormEvent;
+
+    import mx.rpc.IResponder;
+
+    public class GeneralCairngormCmd implements ICommand, IResponder
+    {
+        var evt:GeneralCairngormEvent = null;
+
+        public function execute(event:CairngormEvent):void
+        {
+            evt = GeneralCairngormEvent(event);
+            evt.execute(evt, this);
+        }
+
+        public function result(data:Object):void
+        {
+            evt.result(data);
+        }
+
+        public function fault(info:Object):void
+        {
+            evt.fault(info);
+        }
+
+    }
+} 
+</code></pre>
+
+<p>용례(Bladeds)</p>
+
+<pre><code>var evt:GeneralCairngormEvent = new GeneralCairngormEvent();
+evt.bindProperty(myGrid, 'dataProvider');
+evt.execute = function(evt:GeneralCairngormEvent, cmd:GeneralCairngormCmd):void{
+    var remocon:MyRemocon = new MyRemocon(cmd);
+    remocon.getXXXXX();
+}
+evt.dispatch(); 
+</code></pre>
+
+<p>보시는 봐와 같이 몇 가지 장점이 생겼습니다.</p>
+
+<ol><li>Event를 만들 필요 없다.</li>
+<li>Cmd를 만들 필요 없다.</li>
+<li>게다가 Model도 많들 필요 없다.</li>
+<li>ModelLocator관리 되는 Model을 사용하지 않기 때문에 재사용성이 증가한다.</li>
+</ol><p>삽질 끝에 조금 개선시켰지만 그래도 Cairngorm framework을 완전히 걷어내는 날을 꿈꾸고 있습니다.</p>

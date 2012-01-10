@@ -1,0 +1,159 @@
+---
+layout: 'article'
+title: 'Part 2: Spring @MVC & Spring 3.0 REST integration'
+author: 'Changwoo Park'
+date: '2010-04-19'
+tags: ["Java","Spring","Grails","Spring 3","Spring finance","Stefan Schmidt","번역"]
+---
+
+<h2>Part 2: Spring @MVC &amp; Spring 3.0 REST integration</h2>
+
+<p>이전 글에서 Spring Finance Manager 어플리케이션을 소개하고 나서 소개할 기술들에 대해 줄곧 고민했습니다. 이 글은 Spring 3.0 M1부터 처음 도입된 REST 특징을 위주로 설명하고자 합니다.</p>
+
+<p><img src="http://dogfeet-support.appspot.com/static/tistory/179.attachment.class_diagram_part_1.png" alt="" height="253" width="520"/></p>
+
+<p>이 글에서는 쉽게 이해할 수 있도록 클래스 다이어그램의 모든 코드를 게재하지 않았습니다. 이 글에서는 오직 하나의 콘트롤러, 서비스 그리고 Person, Address 두 개의 도메인 객체만으로 구성된 Spring MVC 어플리케이션을 만들기로 했습니다.</p>
+
+<h2>프로젝트 코드 저장소와 빌드 방법</h2>
+
+<p>SVN 저장소가 필요해서 Google code에 프로젝트를 만들었습니다. 프로젝트 페이지는 <a href="http://code.google.com/p/spring-finance-manager">여기</a>이고 SVN 저장소는 다음과 같이 이용할 수 있습니다:</p>
+
+<pre><code>svn checkout <a href="http://spring-finance-manager.googlecode.com/svn/tags/FinanceManager-0.1/">http://spring-finance-manager.googlecode.com/svn/tags/FinanceManager-0.1/</a> 
+</code></pre>
+
+<p>자세한 빌드 방법은 <a href="http://code.google.com/p/spring-finance-manager/wiki/BuildAndInstall">여기</a>에 있습니다.</p>
+
+<h2>Spring @MVC</h2>
+
+<p>말했던데로 이 어플리케이션은 Spring @MVC를 사용했습니다. PersonController.java를 보면 Spring MVC의 콘트롤러는 어노테이션을 사용한 POJO 빈이라는 것을 알 수 있습니다. 이 어노테이션들은 빈을 Spring 어플리케이션 컨텍스트에 컨트롤러로 등록해 줍니다.</p>
+
+<pre><code>@Controller
+@RequestMapping("/person/**")
+public class PersonController {
+
+    @Autowired
+    private PersonService personService;
+
+    @RequestMapping(value = "person/{id}", method = RequestMethod.GET)
+    public String show(@PathVariable("id") Long id, ModelMap modelMap) {
+        Assert.notNull(id, "Identifier must be provided.");
+
+        modelMap.addAttribute("person", personService.find(id));
+
+        return "person/show";
+    }
+
+    //further methods omitted
+} 
+</code></pre>
+
+<p>분명, 여러분은 @Controller 어노테이션에 친숙할 것입니다. 이 어노테이션은 컨트롤러 클래스를 Spring 어플리케이션 컨텍스트에 MVC 컨트롤러로 등록합니다. 설정해야 할 것은 Spring이 @Controller 어노테이션이 달린 Pojo 빈을 알 수 있게 FinanceManager-serlvet.xml에 설정하는 것뿐입니다:</p>
+
+<pre><code>&lt;context:component-scan base-package="net.stsmedia.financemanager" use-default-filters="false"&gt;
+
+&lt;context:include-filter expression="org.springframework.stereotype.Controller" type="annotation"&gt;
+
+&lt;/context:include-filter&gt;
+&lt;/context:component-scan&gt; 
+</code></pre>
+
+<p>@Controller 어노테이션 이외에도 @RequestMapping 어노테이션으로 URI-클래스 매핑을 정의했습니다. 이 어노테이션은 컨트롤러를 &#8216;/FinanceManager/person/&#8217;와 그 하위 URI에 매핑시킵니다. 만약 Spring @MVC가 생소하시다면 Jurergen Hoeller의 블로그에서 &#8216;<a href="%5Bhttp://stsmedia.net/spring-finance-part-2-spring-mvc-spring-30-rest-integration/">Annotated Web MVC Controllers in Spring 2.5</a>&#8216;란 글을 참고하세요.</p>
+
+<p>@Autowired 어노테이션으로 PersionService를 주입하면 show() 메소드를 살펴볼 준비가 된 것입니다. 이 메소드는 REST 스타일로 특정 사람의 상세정보를 얻어오는데 사용됩니다.</p>
+
+<h2>Spring 3.0 REST</h2>
+
+<p>@RequestMapping 어노테이션으로 URI-메소드 매핑도 할 수 있습니다. 게다가, RequestMethod로 HTTP 요청 메소드를 명시한 @RequestMapping을 show() 메소드에 정의했습니다. &#8216;/FinanceManager/person/1&#8217;에 대한 GET 요청은 id가 1인 사람의 상세정보를 반환할 것입니다. Spring Dispatcher 서블릿은 GET, HEAD, POST, PUT, DELETE 메소드를 지원합니다.</p>
+
+<p>Spring 3.0은 @PathVariable 어노세이션을 도입했습니다. 그래서 요청 URI에 공급된 값을 얻기가(binding) 매우 쉬워졌습니다. @PathVariable은 Spring 3.0 REST의 핵심 입니다. 위 코드에서 path variable은 {id}를 가르킵니다. &#8216;@PathVariable(&#8220;id&#8221;) Long id&#8217;만으로도 자동으로 Long 객체로 매핑됩니다. 이 것은 Spring의 기본 프로퍼티 에티터 덕택 입니다.</p>
+
+<p>남은 것은 personService.find(id)로 질의하는 것과 ModelMap 객체로 결과를 넘기는 것입니다. 여러분이 보신대로 show() 메소드는 스트링만을 반환합니다. 이 스트링은 결과가 보여질 view의 위치를 나타냅니다. InternalResourceViewResolver는 &#8220;person/show&#8221;를 &#8220;/WEB-INF/jsp/person/show.jsp&#8221;로 매핑시켜 줍니다:</p>
+
+<pre><code>&lt;bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"&gt;
+&lt;/bean&gt; 
+</code></pre>
+
+<p>update.jsp 페이지를 살펴봅시다:</p>
+
+<pre><code>&lt;form:form action="/FinanceManager/person/${person.id}" method="PUT" modelattribute="person"&gt;
+[...]
+&lt;/form:form&gt; 
+</code></pre>
+
+<p>HTTP 메소드가 &#8216;method=&#8221;PUT&#8221;&#8217;으로 정의된 것을 주목해야 합니다. 이 것은 웹 브라우저가 직접적으로 지원하는 것이 아니라서 web.xml에 리스너를 하나 추가로 등록해야 합니다(대부분의 웹 브라우저는 GET과 POST만을 지원합니다):</p>
+
+<pre><code>&lt;filter&gt;
+    &lt;filter-name&gt;httpMethodFilter&lt;/filter-name&gt;
+    &lt;filter-class&gt;org.springframework.web.filter.HiddenHttpMethodFilter&lt;/filter-class&gt;
+&lt;/filter&gt;
+
+&lt;filter-mapping&gt;
+    &lt;filter-name&gt;httpMethodFilter&lt;/filter-name&gt;
+    &lt;servlet-name&gt;FinanceManager&lt;/servlet-name&gt;
+&lt;/filter-mapping&gt; 
+</code></pre>
+
+<h2>REST Mappings</h2>
+
+<p>이 단에서 REST mappings에 대해 매우 자세히 설명하고 싶어요. 다음에 나올 PersionController를 위해서도 말이죠. Spring Finance Manager같은 보통의 웹 어플리케이션은 네가지 기능이 사용자에게 노출됩니다. 이 네가지 기능은 새로 자원(a person)을 만드는 것(Create), 존제하는 자원(a person)의 상세정보를 보여주거나 읽는 것(Read), 자원(a person) 정보를 수정하는 것(Update), 자원(a person)을 삭제하는 것(Delete)입니다. 우리는 Person 엔티티를 읽고 관리하는 것을 CRUD라고 부름니다. REST 어플리케이션을 만들 때 다음과 같은 패턴을 따르는 것이 권장됩니다. 다음은 CRUD가 HTTP 메소드에 어떻게 매핑되는 지를 보여줍니다:</p>
+
+<table><tbody><tr><th>HTTP</th>
+    <th>CRUD</th> 
+  </tr><tr><td>POST</td>
+    <td>CREATE</td>
+ 
+  </tr><tr><td>GET</td>
+    <td>READ</td>
+ 
+  </tr><tr><td>PUT</td>
+    <td>UPDATE</td>
+ 
+  </tr><tr><td>DELETE</td>
+    <td>DELETE</td>
+ 
+  </tr></tbody></table><p>MVC 컨트롤러는 표준 CRUD 이외에도 create.jsp, update.jsp의 폼을 위한 폼 백킹 오브젝트(form backing object)를 지원해야 합니다. 다음은 PersonController에 REST 매핑을 적용한 표입니다:</p>
+
+<table><tbody><tr><th>Resource</th>
+    <th>GET</th>
+    <th>PUT</th>
+    <th>POST</th>
+    <th>DELETE</th> 
+  </tr><tr><td>Collection URI such as <a href="http://domain.com/financemanager/person/">http://domain.com/financemanager/person/</a></td>
+    <td>사람들의 목록, 예를 들어 시스템에 등록된 모든 사람을 나열합니다.</td>
+    <td>사용되지 않습니다.</td>
+    <td>Id를 자동으로 생성하여 사람을 생성합니다.</td>
+    <td>사용되지 않습니다.</td>
+ 
+  </tr><tr><td>Member URI such as <a href="http://domain.com/financemanager/person/5">http://domain.com/financemanager/person/5</a></td>
+    <td>id가 5인 사람의 상세정보를 가져옵니다.</td>
+    <td>id가 5인 사람을 갱신합니다.</td>
+    <td>사용되지 않습니다.</td>
+    <td>id가 5인 사람을 삭제합니다.</td>
+ 
+  </tr><tr><td>Member URI such as <a href="http://domain.com/financemanager/person/form">http://domain.com/financemanager/person/form</a></td>
+    <td>생성(Create) 폼 - 초기화 된 사람을 반환합니다.</td>
+    <td>사용되지 않습니다.</td>
+    <td>사용되지 않습니다.</td>
+    <td>사용되지 않습니다.</td>
+ 
+  </tr><tr><td>Member URI such as <a href="http://domain.com/financemanager/person/5/form">http://domain.com/financemanager/person/5/form</a></td>
+    <td>갱신(Update) 폼 - 폼 바인딩으로 미리 데이터가 채워진 사람을 반환합니다.</td>
+    <td>사용되지 않습니다.</td>
+    <td>사용되지 않습니다.</td>
+    <td>사용되지 않습니다.</td>
+ 
+  </tr></tbody></table><p>|</p>
+
+<p>이 테이블은 Spring Finance Manager에서 사용하는 REST 매핑의 개요입니다. 여러분이 보신데로 첫 두 줄은 자원을 관리하는 것이고 나머지 두 줄은 Spring MVC를 사용할 때 필요한 폼 매핑을 추가한 것입니다. create.jsp와 update.jsp가 별로 다르지 않다면 하나로 합치는 것도 가능하다. 하지만 생성 폼의 REST 매핑은 HTTP POST 메시지를 보내고 업데이트 폼은 HTTP PUT 메시지를 보낸다. 그리므로, 두 폼을 합칠려면 JSP 페이지와 콘트롤러에 좀 더 다듬어야(hacking) 합니다.</p>
+
+<h2>결론과 부가 정보</h2>
+
+<p>이 글에서는 Spring @MVC 어노테이션 스타일과 Spring @MVC의 REST 기능을 이용해서 Spring MVC 프레임워크를 사용해봤습니다. 나는 XML, ATOM, RSS, JSON같은 문서들이 생성되게 해주는 content negotiation은 설명하지 않았습니다. 하지만 Spring Finance Manager에 걸맞는 유즈 케이스를 제안해 주시는 분이 있으면 나는 기쁘게 이 시리즈의 한 파트로 추가시킬 것입니다.</p>
+
+<p>나는 여러분이 내 동료 Arjen Poutsma, Alef Arendsen의 글도 참고하길 바랍니다.</p>
+
+<ul><li><a href="http://blog.springsource.com/2009/03/08/rest-in-spring-3-mvc/">REST in Spring 3</a>: @MVC: Arjen이 Spring 3.0 REST 지원의 주요 기능을 소개합니다.</li>
+<li><a href="http://blog.springsource.com/2009/03/16/adding-an-atom-view-to-an-application-using-springs-rest-support/">Adding an Atom view to an application using Spring’s REST support</a>: Alef는 Spring 3.0 REST content negotiation을 사용하여 ATOM 피드를 생성하는 방법을 설명합니다.</li>
+</ul><p>또, Spring 3.0 M3 문서부터는 이 기능들이 설명될 것입니다.</p>
+
+<p>이 시리즈의 다음 파트로 나는 Spring Finance Manager의 내부 구현에 대해 설명할 계획입니다. 특히 도메인 모델에 대한 주요 아이디어들을 정리할 계획입니다. 이 것은 DDD와 관련이 있습니다. 게다가 JPA API, Hibernate, HSQL DB를 샘플 어플리케이션에 통합하는 것을 다룰 것입니다.</p>

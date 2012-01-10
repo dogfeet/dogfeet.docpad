@@ -1,0 +1,21 @@
+---
+layout: 'article'
+title: 'Flex: 에잇 버그 투성이2'
+author: 'Changwoo Park'
+date: '2009-11-09'
+tags: ["RIA","flex"]
+---
+
+<p>data[&#8220;hoho&#8221;] = &#8220;asdf&#8221; 와 data.hoho = &#8220;asdf&#8221;는 뭔가 다르다.</p>
+
+<p>ArrayCollection에 event handler를 달아서 property change event를 handling하려구 했는데</p>
+
+<p>data.hoho와 같이 사용하면 제대로 동작하는데, data[&#8220;hoho&#8221;]와 같이 하면 뭔가 이벤트가 이상해진다.</p>
+
+<p>그것도 항상그런 것이 아니라 예외적으로(물론 패턴은 정해져 있는 것 같다.) 꼬인다.</p>
+
+<p>한번에(라인마다 2~3개를 동시에) 처리하면 PropertyChangeEvent가 꼬이는 걸까?</p>
+
+<p>뭔가 확실하게 동작해주지 않는다.</p>
+
+<p>아 짜증나</p>

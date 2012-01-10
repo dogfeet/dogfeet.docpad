@@ -1,0 +1,66 @@
+---
+layout: 'article'
+title: 'JAVA7 요약'
+author: 'Changwoo Park'
+date: '2011-09-09'
+tags: ["java7"]
+---
+
+<p>참고: <a href="http://radar.oreilly.com/2011/09/java7-features.html">http://radar.oreilly.com/2011/09/java7-features.html</a></p>
+
+<h4>Diamond Operator</h4>
+
+<p>다음과 같이 양쪽에 모두 정의했어야 했는데:</p>
+
+<pre><code>#!java
+Map&lt;String, List&lt;Trade» trades = new TreeMap&lt;String, List&lt;Trade» ();
+</code></pre>
+
+<p>이제 한쪽만 해주면 된다:</p>
+
+<pre><code>Map&lt;String, List&lt;Trade» trades = new TreeMap &lt;&gt; ();
+</code></pre>
+
+<p>&lt;&gt; 이걸 Diamond Operator라고 부른다.</p>
+
+<h4>switch..case 문에 string 지원.</h4>
+
+<p>String.equals() 메소드를 이용한다.</p>
+
+<h4>try{} 구문에서 자동으로 리소스 해제해줌</h4>
+
+<p>리소스(Connections, Files, Input/OutStreams, etc) 를 자동으로 close한다. 
+try{}&#8230;구문이 끝나면 java.lang.AutoCloseable를 구현한 리소스가 해제된다.</p>
+
+<h4>상수에 <code>_</code> 사용가능</h4>
+
+<pre><code>int thousand =  1_000;
+int million  =  1_000_000;
+</code></pre>
+
+<p>예뻐졌다.</p>
+
+<h4>exception handling하는 부분이 강화됨</h4>
+
+<p>handling 코드가 같은 경우에는 Interface를 구현하던가 아니면 각각 처리했어야 했는데. 단순해짐.</p>
+
+<pre><code>public void newMultiCatch() {
+  try {
+    methodThatThrowsThreeExceptions();
+  } catch (ExceptionOne | ExceptionTwo | ExceptionThree e) {
+    // log and deal with all Exceptions
+  }
+}
+</code></pre>
+
+<h4>New file system API (NIO 2.0)</h4>
+
+<ul><li><p>Path, Paths, FileSystem, FileSystems 등등의 인터페이스가 생겨서 파일시스템을 다루기 좀 더 쉬워짐. 기존에 파일시스템을 다루는 문제는 그동안 그지같아서 직접 닦아줘야 했었는데 많은 부분이 강화됨. copy, move, createSymbolicLink같은 것들이 생겼음.</p></li>
+<li><p>File change notifications - 그래서 파일시스템 이벤트를 핸들링할 수 있게됨.</p></li>
+</ul><h4>Fork and Join</h4>
+
+<p>Multi core을 효율적으로 사용할 수 있도록 ForkJoinPool이라는 게 생겼음.</p>
+
+<h4>java.lang.invoke 패키지 추가</h4>
+
+<p>invokedynamic라고 부르고 다른 동적언어를 위해 추가됐다고 함.</p>

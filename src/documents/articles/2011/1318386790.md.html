@@ -1,0 +1,79 @@
+---
+layout: 'article'
+title: 'Build distfile using Ant with Git revision'
+author: 'Changwoo Park'
+date: '2011-10-12'
+tags: ["ant","git","revision","os"]
+---
+
+<p>배포파일을 생성할 때 프로젝트 Git의 Revision정보를 이용하는 Ant 스크립트를 알아본다.</p>
+
+<p>우선 Git의 Revision정보를 얻기 위해서는 적어도 Annotated Tag가 하나는 있어야 Revision 정보를 만들 수 있다. 이 Tag를 기준으로 얼마나 수정되었는가를 Count하여 Revision 숫자를 만들기 때문이다.</p>
+
+<p>굳이 Tag를 기준으로 Revision을 Count하지 않아도 날짜정보나 기타 정보를 활용하여 Revision 정보를 만들수도 있다.</p>
+
+<pre><code>project-dir $ git tag
+build
+project-dir $ git describe
+build-138-geba356c
+project-dir $ git describe --contains --all HEAD
+branchA
+</code></pre>
+
+<p>각 명령을 살펴보면:</p>
+
+<ul><li>git tag&#160;: 현재 설정된 tag의 목록 확인</li>
+<li>git describe&#160;: 가장 최근 tag로부터 revision count랑 현재 commit의 앞부분 hash값 확인</li>
+<li>git describe &#8212;contains &#8212;all HEAD&#160;: 현재 작업중인 branch의 이름 확인</li>
+</ul><p>자 이제 이 값들을 이용해서 배포 파일을 만들면 된다.</p>
+
+<pre><code>....
+&lt;target name="dist"&gt;
+  &lt;exec executable="git" outputproperty="rev"&gt;
+    &lt;arg value="describe"/&gt;
+  &lt;/exec&gt;
+  &lt;exec executable="git" outputproperty="branch"&gt;
+    &lt;arg value="describe"/&gt;
+    &lt;arg value="--contains"/&gt;
+    &lt;arg value="--all"/&gt;
+    &lt;arg value="HEAD"/&gt;
+  &lt;/exec&gt;
+  &lt;script language="javascript"&gt;&lt;![CDATA[
+    rev = project.getProperty("rev");
+    index = rev.lastIndexOf("-");
+    counter = rev.substring(0, index);
+    project.setProperty("rev",counter);
+  ]]&gt;&lt;/script&gt;
+
+  &lt;echo&gt;Git Branch: ${branch}&lt;/echo&gt;
+  &lt;echo&gt;Git Rev.  : ${rev}&lt;/echo&gt;
+
+  &lt;condition property="dist.path" value="z:"&gt;
+    &lt;os family="windows" /&gt;
+  &lt;/condition&gt;
+  &lt;condition property="dist.path" value="/NetworkDirectory/dist-file-server"&gt;
+    &lt;os family="mac" /&gt;
+  &lt;/condition&gt;
+  &lt;fail unless="dist.path"&gt;No dist.path set for this OS!&lt;/fail&gt;
+
+  &lt;echo&gt;FileSrv Path: ${dist.path}&lt;/echo&gt;
+
+  &lt;copy todir="${dist.path}/distfiles/Project-${rev}.${branch}" overwrite="true"&gt;
+    &lt;fileset dir="."&gt;
+      &lt;include name="*.war"/&gt;
+    &lt;/fileset&gt;
+  &lt;/copy&gt;
+  &lt;copy todir="${dist.path}/distfiles/Project-last" overwrite="true"&gt;
+    &lt;fileset dir="."&gt;
+      &lt;include name="*.war"/&gt;
+    &lt;/fileset&gt;
+  &lt;/copy&gt;
+&lt;/target&gt;
+....
+</code></pre>
+
+<p>위의 스크립트에서 rev 변수의 경우 &#8216;build-138-geba356c&#8217; 값에서 hash 부분은 잘라내고 &#8216;build-138&#8217; 값만 이용하도록 Javascript로 수정하였다.</p>
+
+<p>condition 스크립트로 os별 현재 mount되어있는 배포 파일 서버의 위치를 지정해주었다.</p>
+
+<p>마지막으로 배포하는 지점에 위에서 가져온 프로젝트의 revision 정보를 가지고 디렉토리를 만들고 배포파일을 복사하는 작업까지 마치도록 한다.</p>

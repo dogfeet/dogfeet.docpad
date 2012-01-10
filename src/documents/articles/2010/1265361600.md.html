@@ -1,0 +1,18 @@
+---
+layout: 'article'
+title: 'UIView를 Touch해서 Keyboard없애기. Hide Keyboard when touching background of UIView.'
+author: 'Changwoo Park'
+date: '2010-02-05'
+tags: ["Cocoa","iPhone"]
+---
+
+<p><pre><code>@implementation MyView
+
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [eachOfTextField1 resignFirstResponder];
+    [eachOfTextField2 resignFirstResponder];
+    [eachOfTextField3 resignFirstResponder];
+}
+
+@end
+</code></pre></p>

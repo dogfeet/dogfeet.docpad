@@ -1,0 +1,72 @@
+---
+layout: 'article'
+title: 'tav:Brain-free command-line options parser'
+author: 'Changwoo Park'
+date: '2011-10-22'
+tags: ["nodejs","JavaScript","tav","cli"]
+---
+
+<p>무뇌아인 저에게 딱 맞는 파서입니다. 좀더 고급형 cli parser도 많지만 아 뇌가 없어서 힘이 들어요.</p>
+
+<p>다음과 같이 대충 만들고:</p>
+
+<pre><code>#!/usr/bin/env node
+var opts = require('tav').set();
+console.log(opts, opts.args);
+</code></pre>
+
+<p>라고 만들고 나서 대충 실행하면:</p>
+
+<pre><code>#!/usr/bin/env bash
+$node app.js --host=localhost --port=8080 --debug arg1 arg2
+{ host: 'localhost', port: 8080, debug: true } [ 'arg1', 'arg2' ]   
+</code></pre>
+
+<p>됩니다.</p>
+
+<p>규칙도 정의할 수 있는데</p>
+
+<p>다음과 같이 만들고:</p>
+
+<pre><code>#!/usr/bin/env node
+var opts = require('tav').set({
+    //value가 없기 때문에 host는 required 옵션입니다.
+    host: {
+        note: 'Hostname'
+    },
+    //value가 있기 때문에 port는 optional 옵션입니다.
+    port: {
+        note: 'Binding port',
+        value: 80
+    },
+    debug : {
+        note : 'Debug this',
+        value : false
+    }
+    //여기에 정의되지 않는 정의하지 않은 옵션은 unexpected입니다.
+}, "Very cool app");
+console.log(opts);
+</code></pre>
+
+<p>정의한대로 usage를 자동으로 구성해줍니다. <code>--help</code>주면 전체 볼 수 있습니다. <code>--help</code>가 없으면 그때그때 필요한 것만 보여줍니다&#8230;</p>
+
+<pre><code>#!/usr/bin/env bash
+$node app.js --host=localhost --debug arg1 arg2 --help
+Very cool app
+
+Hostname
+    --host *required
+Binding port
+    --port
+Debug this
+    --debug
+Help. This message.
+    --help
+</code></pre>
+
+<p>옵션의 속성은 <code>Required</code>, <code>Unexpected</code>, <code>Optional</code>이 있어요.</p>
+
+<ul><li>Required: 꼭 입력해야 하는 옵션입니다.</li>
+<li>Unexpected: 넣으면 안돼는 것입니다.</li>
+<li>Optional: 생략가능한 것입니다.</li>
+</ul><p>나이스한 컨벤션을 이용해서 정말 간단하게 구현했습니다. tav는 페니키아어로 mark, sign이라는 뜻이라고 합니다. 에로틱한 이름이 어울릴 것 같은데 수학적이네요.</p>
