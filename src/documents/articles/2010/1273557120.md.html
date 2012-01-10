@@ -1,0 +1,139 @@
+---
+layout: 'article'
+title: 'DES Encryption and Decryption in groovy'
+author: 'Changwoo Park'
+date: '2010-05-11'
+tags: ["Cipher","Decryption","des","Encryption","Groovy","Java"]
+---
+
+<pre><code>import java.security.spec.KeySpec
+import javax.crypto.*
+import javax.crypto.spec.*
+import sun.misc.*
+
+class DesCipher implements Runnable {
+    public void run() throws Exception {
+        testDESKey()
+        println();
+
+        println("== DesCipher ==")
+
+        String myKeyString = "aaaaaaaa"
+        println("KeyString    : " + myKeyString)
+        println("KeyString HEX: " + getHexString(myKeyString.getBytes()))
+
+        KeySpec desKeySpec = new DESKeySpec(myKeyString.getBytes())
+        SecretKey key = SecretKeyFactory.getInstance("DES").generateSecret(desKeySpec)
+        println("Key algo     : " + key.getAlgorithm())
+        println("Key       HEX: " + getHexString(key.getEncoded()))
+
+        String myPlain = "this is my plain text"
+        Cipher desCipher = Cipher.getInstance("DES/ECB/PKCS5Padding")
+
+        desCipher.init(Cipher.ENCRYPT_MODE, key)
+        byte[] myEncrypt = desCipher.doFinal(myPlain.getBytes("UTF8"))
+
+        println(String.format("Plain        : %s (%d)", 
+            myPlain, myPlain.size()))
+        println(String.format("Plain     HEX: %s (%d)", 
+            getHexString(myPlain.getBytes()), myPlain.size()))
+        println(String.format("Encoded   HEX: %s (%d)", 
+            getHexString(myEncrypt), myEncrypt.size()))
+
+        desCipher.init(Cipher.DECRYPT_MODE, key)
+        byte[] myDecrypt = desCipher.doFinal(myEncrypt)
+        println(String.format("Decoded   HEX: %s (%d)", 
+            getHexString(myDecrypt), myDecrypt.size()))
+        println(String.format("Decoded      : %s (%d)", 
+            new String(myDecrypt), new String(myDecrypt).size()))
+    }
+
+    public void testDESKey() {
+
+        println ("== test DES Key ==")
+        BASE64Encoder HEX = new BASE64Encoder()
+        String myKeyString
+        SecretKey key
+        KeySpec desKeySpec
+
+        // try 1        
+        myKeyString = "thisissecretkey1"
+        desKeySpec = new DESKeySpec(myKeyString.getBytes("UTF8"))
+        key = SecretKeyFactory.getInstance("DES").generateSecret(desKeySpec)
+        println("keyString : " + getHexString(myKeyString.getBytes("UTF8")))
+        println("Key       : " + getHexString(key.getEncoded()))
+
+        // try 2
+        myKeyString = "thisissecretkey2"
+        desKeySpec = new DESKeySpec(myKeyString.getBytes("UTF8"))
+        key = SecretKeyFactory.getInstance("DES").generateSecret(desKeySpec)
+        println("keyString : " + getHexString(myKeyString.getBytes("UTF8")))
+        println("Key       : " + getHexString(key.getEncoded()))
+
+        // try 3
+        myKeyString = "thisissecretkey3"
+        desKeySpec = new DESKeySpec(myKeyString.getBytes("UTF8"))
+        key = SecretKeyFactory.getInstance("DES").generateSecret(desKeySpec)
+        println("keyString : " + getHexString(myKeyString.getBytes("UTF8")))
+        println("Key       : " + getHexString(key.getEncoded()))
+
+        // try 4
+        myKeyString = "thisissecretkey3123123123123123"
+        desKeySpec = new DESKeySpec(myKeyString.getBytes("UTF8"))
+        key = SecretKeyFactory.getInstance("DES").generateSecret(desKeySpec)
+        println("keyString : " + getHexString(myKeyString.getBytes("UTF8")))
+        println("Key       : " + getHexString(key.getEncoded()))
+
+        // try 5
+        myKeyString = "thisissecret"
+        desKeySpec = new DESKeySpec(myKeyString.getBytes("UTF8"))
+        key = SecretKeyFactory.getInstance("DES").generateSecret(desKeySpec)
+        println("keyString : " + getHexString(myKeyString.getBytes("UTF8")))
+        println("Key       : " + getHexString(key.getEncoded()))
+
+        // try 6
+        myKeyString = "thisisse"
+        desKeySpec = new DESKeySpec(myKeyString.getBytes("UTF8"))
+        key = SecretKeyFactory.getInstance("DES").generateSecret(desKeySpec)
+        println("keyString : " + getHexString(myKeyString.getBytes("UTF8")))
+        println("Key       : " + getHexString(key.getEncoded()))
+
+        // try 7
+        myKeyString = "thisissa"
+        desKeySpec = new DESKeySpec(myKeyString.getBytes("UTF8"))
+        key = SecretKeyFactory.getInstance("DES").generateSecret(desKeySpec)
+        println("keyString : " + getHexString(myKeyString.getBytes("UTF8")))
+        println("Key       : " + getHexString(key.getEncoded()))
+
+        // try 7
+        myKeyString = "seansean"
+        desKeySpec = new DESKeySpec(myKeyString.getBytes("UTF8"))
+        key = SecretKeyFactory.getInstance("DES").generateSecret(desKeySpec)
+        println("keyString : " + getHexString(myKeyString.getBytes("UTF8")))
+        println("Key       : " + getHexString(key.getEncoded()))
+
+        println();
+        println("Results:")
+        println(" key string's length must be equan or greater than 8");
+        println(" key string's in position of 9th or more is ignored");
+    }
+
+    public static String getHexString(byte[] b) throws Exception {
+        String result = "" 
+        for (int i=0; i &lt; b.length; i++) {
+            result += Integer.toString( ( b[i] &amp; 0xff ) + 0x100, 16).substring( 1 )
+        }   
+        return result
+    }   
+
+    private static String bytes2String(byte[] bytes) {
+        StringBuffer stringBuffer = new StringBuffer()
+        for (int i=0; i &lt; bytes.length; i++) {
+            stringBuffer.append((char) bytes[i])
+        }   
+        return stringBuffer.toString()
+    }   
+} 
+</code></pre>
+
+<p></p>

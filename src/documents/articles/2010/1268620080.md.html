@@ -1,0 +1,33 @@
+---
+layout: 'article'
+title: 'Groovy Servlet'
+author: 'Changwoo Park'
+date: '2010-03-15'
+tags: ["Java","Spring","Grails","Groovy","groovyservlet","GsP","templateservlet","Tomcat"]
+---
+
+<p><b>Install Tomcat.</b></p>
+
+<p><b>Setting Context.</b></p>
+
+<p><b>Download groovy-all.jar to &#8216;WEB-INF/lib&#8217;</b></p>
+
+<p><b>Setting Tomcat policy</b>
+<a href="http://haxx.sinequanon.net/2009/06/security-policy/">http://haxx.sinequanon.net/2009/06/security-policy/</a></p>
+
+<p><b>Setting web.xml</b></p>
+
+<pre><code>&lt;servlet&gt;
+  &lt;servlet-name&gt;gsp&lt;/servlet-name&gt;
+  &lt;servlet-class&gt;groovy.servlet.TemplateServlet&lt;/servlet-class&gt;
+  &lt;init-param&gt;
+  &lt;param-name&gt;encoding&lt;/param-name&gt;
+  &lt;param-value&gt;UTF-8&lt;/param-value&gt;
+  &lt;/init-param&gt;
+&lt;/servlet&gt;
+
+&lt;servlet-mapping&gt;
+  &lt;servlet-name&gt;gsp&lt;/servlet-name&gt;
+  &lt;url-pattern&gt;*.gsp&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+</code></pre>

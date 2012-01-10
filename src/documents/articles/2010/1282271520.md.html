@@ -1,0 +1,14 @@
+---
+layout: 'article'
+title: '한 줄 구구단 in scheme'
+author: 'Changwoo Park'
+date: '2010-08-20'
+tags: ["Iterator","scheme","구구단"]
+---
+
+<p>구구단 scheme</p>
+
+<pre><code>#lang scheme (do ([i 1 (+ i 1)]) [(= i 10)] (do ([j 1 (+ j 1)]) [(= j 10)] (printf "~ax~a=~a~n" i j (* i j)))) 
+</code></pre>
+
+<p>iterator를 쉽게 배워보는 계기가 됨. 발단은 <a href="http://me2day.net/darjeeling/2010/08/19#21:40:53">이곳 다즐링님 포스팅</a></p>
