@@ -87,4 +87,5 @@ Staging Area와 `HEAD~18`과 비교하려면 다음과 같이 한다:
 
     git log --name-only
 
-[diff-unified-format]: http://dogfeet.tumblr.com/post/10629323570/diff-unified-format
+[diff-unified-format]: /articles/2011/1316924580.html
+
