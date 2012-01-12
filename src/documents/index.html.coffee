@@ -2,16 +2,22 @@
 layout: 'default'
 ---
 
+i = 0
 for document in @documents
   if 0 is document.url.indexOf '/articles'
-    article '.post', ->
-      header ->
-        a href: document.url, ->
-          h1 document.title
+    i++
+    if i < 10
+      article '.post', ->
+        header ->
+          a href: document.url, ->
+            h1 document.title
 
-      footer ->
-        text @layout 'article-footer', document
+        footer ->
+          text @layout 'article-footer', document
 
-      text @tool.summary document.contentNoLayout
+        text @tool.summary document.contentNoLayout
 
-      p -> a '.btn', href: document.url, 'Read more &raquo;'
+        p -> a '.btn', href: document.url, 'Read more &raquo;'
+
+p -> a '.btn.info.right', href: '/site/archive.html', 'go to Archive &raquo;'
+
