@@ -1,7 +1,7 @@
 --- yaml
 layout: 'article'
 title: 'Pro Git 번역 회고'
-author: 'Changwoo Park', 'Sean Lee'
+author: 'Sean Lee, Changwoo Park'
 date: '2012-1-12'
 tags: ['회고', 'retrospection', 'progit', '번역']
 ---
@@ -40,13 +40,13 @@ tags: ['회고', 'retrospection', 'progit', '번역']
 
 <img alt="iBooks" height="500" src="/articles/2012/progit/ibooks.jpg" />
 
-**Lee** &raquo; 글쓰기를 위해서 WriteRoom을 사용하였다. 창우형은 대부분의 작업을 터미널에서 vim을 사용했다고 한다. 둘 다 모두 글쓰기에서는 고정폭 글꼴을 사용하기 위해 나눔고딕코딩폰트를 사용했다.
+**Lee** &raquo; 글쓰기를 위해서 [WriteRoom](http://www.hogbaysoftware.com/products/writeroom)을 사용하였다. 창우형은 대부분의 작업을 터미널에서 vim을 사용했다고 한다. 둘 다 모두 글쓰기에서는 고정폭 글꼴을 사용하기 위해 [나눔고딕코딩폰트](http://dev.naver.com/projects/nanumfont)를 사용했다.
 
 <img alt="Writeroom" width="500" src="/articles/2012/progit/writeroom.png" />
 
 **Park** &raquo; 터미널에서 vim으로 작업했다. vim은 익숙하기도 했고 언제 어디서는 인터넷만 연결되면 되기 때문에 좋다.
 
-**Lee** &raquo; 번역을 도와줄 사전으로는 맥 기본 사전, 아이폰에서 Dictionary Universal, Wiktionary를 이용하였다. 맥이나 아이폰에서는 사용자 사전을 추가할 수 있어서 한영/영한 사전 및 시소러스 사전을 유용하게 사용했다. 온라인 한글 맞춤범 검사기와 워드프로세서 한글을 종종 사용하기도 했다.
+**Lee** &raquo; 번역을 도와줄 사전으로는 맥 기본 사전, 아이폰에서 [Dictionary Universal](http://itunes.apple.com/us/app/dictionary-universal/id312088272?mt=8), [Wiktionary](http://wiktionary.org)를 이용하였다. 맥이나 아이폰에서는 사용자 사전을 추가할 수 있어서 한영/영한 사전 및 시소러스 사전을 유용하게 사용했다. 온라인 한글 맞춤범 검사기와 워드프로세서 한글을 종종 사용하기도 했다.
 
 <img alt="Universal Dictionary" height="500" src="/articles/2012/progit/ubdic.jpg" />
 
@@ -56,19 +56,19 @@ tags: ['회고', 'retrospection', 'progit', '번역']
 
 [우리말 배움터]: http://urimal.cs.pusan.ac.kr/urimal_new/
 
-**Lee** &raquo; 번역 소스 관리를 위해서 윈래 Pro Git이 호스팅되고 있는 GitHub에서 프로젝트를 dogfeet/progit로 Fork하여 작업했다. 개인적으로 iMac과 MBP를 옮 겨다닐 때는 BitBucket의 Private 저장소를 사용했다. GitHub가 좋긴하지만 결재하지 않아서 Private 저장소가 없었다. 소스의 Branch와 Commit을 관 리하기 위해 GitX를 사용했다. 번역 소스를 관리하기 위해 전에는 Subversion을 사용했는데 Git은 번역을 위한 프로젝트에서도 정말 괜찮았다! 아니 Git이 유일한 도구처럼 느껴졌다. 번역하면서 사용한 Git-Flow Pattern를 따로 정리할 예정이다.
+**Lee** &raquo; 번역 소스 관리를 위해서 윈래 Pro Git이 호스팅되고 있는 [GitHub](http://github.com)에서 프로젝트를 dogfeet/progit로 Fork하여 작업했다. 개인적으로 iMac과 MBP를 옮 겨다닐 때는 BitBucket의 Private 저장소를 사용했다. GitHub가 좋긴하지만 결재하지 않아서 Private 저장소가 없었다. 소스의 Branch와 Commit을 관 리하기 위해 GitX를 사용했다. 번역 소스를 관리하기 위해 전에는 Subversion을 사용했는데 Git은 번역을 위한 프로젝트에서도 정말 괜찮았다! 아니 Git이 유일한 도구처럼 느껴졌다. 번역하면서 사용한 Git-Flow Pattern를 따로 정리할 예정이다.
 
 **Park** &raquo; Github만 사용했다. BitBucket도 써보고 싶지만 아직 Github도 다 모른다. 나는 Git때문에 Github을 사용하는 것인지 Github때문에 Git을 사용하는 것인지 모를 정도로 Github가 맘에 든다.
 
 <img src="/articles/2012/progit/gitx-progit.png" alt="GitX" width="500" />
 
-**Lee** &raquo; HTML, ePub, Mobi, PDF 출력물을 빌드하기 위해 따로 Ubuntu 서버를 하나 사용했다. x-server를 사용하지 않고 빌드하기 위해 약간의 빌드 스크립트를 수정해서 사용하였으며 주로 pandoc과 xelatex 관련 패키지와 한글 폰트 패키지를 설치하고, Jenkins(구 Hudson)에 빌드스크립트를 등록하여 원격으로 빌드하곤 했다.
+**Lee** &raquo; HTML, ePub, Mobi, PDF 출력물을 빌드하기 위해 따로 Ubuntu 서버를 하나 사용했다. x-server를 사용하지 않고 빌드하기 위해 약간의 빌드 스크립트를 수정해서 사용하였으며 주로 pandoc과 xelatex 관련 패키지와 한글 폰트 패키지를 설치하고, [Jenkins](http://jenkins-ci.org)(구 Hudson)에 빌드스크립트를 등록하여 원격으로 빌드하곤 했다.
 
 **Park** &raquo; 나는 Mac에서 빌드했다. 처음에는 무척이나 골치 아팠지만 결국 방법을 찾아내고 버그도 수정했다. schacon님이 이 fix도 accept해주었다. GitHub로 번역을 진행하면 이런 소소한 즐거움도 알게 됐다.
 
 <img alt="Jenkins" width="500" src="/articles/2012/progit/jenkins-progit.png" />
 
-**Lee** &raquo; 번역을 함께 진행하기 위해서 커뮤니케이션도구로 Yammer를, 서로 출력물을 항상 최신 것으로 공유하기 위해 Dropbox를 사용하였다. 업무용 커뮤니케이션도구로 메신저도 좋고 메일도 좋지만 Yammer를 강추하는 바이다!
+**Lee** &raquo; 번역을 함께 진행하기 위해서 커뮤니케이션도구로 [Yammer](http://yammer.com)를, 서로 출력물을 항상 최신 것으로 공유하기 위해 [Dropbox](http://dropbox.com)를 사용하였다. 업무용 커뮤니케이션도구로 메신저도 좋고 메일도 좋지만 Yammer를 강추하는 바이다!
 
 **Park** &raquo; yammer는 정말 좋은 도구다. 4년정도 같이 공부해오면서 2011년과 같이 알찬 해는 없었다. 거기에는 yammer에 힘이 컸다고 생각한다. 위키도 사용해보고 이슈트레커도 사용해봤지만 모두 실패하고 지금은 그냥 yammer로 토론하고 yammer에 메모한다.
 
@@ -76,9 +76,12 @@ tags: ['회고', 'retrospection', 'progit', '번역']
 
 ## 닥치고 번역에 중요한거 ##
 
-**Lee** &raquo; 번역도 일종의 모험이다. 훌륭한 선장과 항해사를 갖추고 출발했었으면 더 좋았겠지만 그렇지 못했다. 그래서 애초에 목표를 크게 잡지도 않았다. 영어를 읽는 것보다는 쉽게 읽을 수 있게 하자는 것. Git은 내용이 많기 때문에 어짜피 영문으로 또 읽어볼 필요도 있으니 처음 사다리를 그릴때 한글로 좀 더 쉽게 그릴 수 있게 하자는 것 정도였다. 한글판을 읽었으면 영문으로도 한번 더 읽거나 영문으로 된 다른 자료를 더 읽기를 권한다.
+**Lee** &raquo; 우선 배가 항해를 하는데 좋든 좀 모자라든 선장이나 항해사 없이 제대로 된 길을 가는 것은 불가능하다. 이번 프로젝트는 일꾼 두 명이 땀을 뻘뻘 흘리면서 열심히 노를 젓는 일만 할줄 알기에 자주 방향을 잃어가며 작업할 수 밖에. 틈틈히 Yammer로 대화를 하며 방향을 잡아갔지만 적당한 경험있는 편집자가 틀을 잡아줄 수 있었다면 좀 더 좋은 번역을 할 수 있지 않았을까.
 
-**Lee** &raquo; 방향을 잡아 주는 경험있는 편집자가 없었기 때문에 일관적으로 번역하기 쉽지 않았다. 틈틈히 Yammer로 토론하며 방향을 잡아 갔고 서로 리뷰를 했다. 특히 중요하게 생각한 점은 최종 결정은 마지막에 수정하는 사람이 결정하기로 했다. 그래서 아쉬운 사람이 한번 더 검토했다. 경험있는 리더가 있었으면 더 좋은 번역을 할 수 있지 않았을까?
+**Park** &raquo; 특히 중요하게 생각한 점은 최종 결정은 마지막에 수정하는 사람이 결정하기로 했다. 그래서 아쉬운 사람이 한번 더 검토했다.
+
+**Park** &raquo; 번역도 일종의 모험이다. 훌륭한 선장과 항해사를 갖추고 출발했었으면 더 좋았겠지만 그렇지 못했다. 그래서 애초에 목표를 크게 잡지도 않았다. 영어를 읽는 것보다는 쉽게 읽을 수 있게 하자는 것. Git은 내용이 많기 때문에 어짜피 영문으로 또 읽어볼 필요도 있으니 처음 사다리를 그릴때 한글로 좀 더 쉽게 그릴 수 있게 하자는 것 정도였다. 한글판을 읽었으면 영문으로도 한번 더 읽거나 영문으로 된 다른 자료를 더 읽기를 권한다.
+
 
 <img alt="Translation" width="500" src="/articles/2012/progit/tran.jpg" />
 <p style="text-align: center; font-size: 80%">출처: [casaubon](http://casaubon.tv)</p>
