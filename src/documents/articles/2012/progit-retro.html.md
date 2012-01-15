@@ -2,7 +2,7 @@
 layout: 'article'
 title: 'Pro Git 번역 회고'
 author: 'Sean Lee, Changwoo Park'
-date: '2012-1-12'
+date: '2012-1-15'
 tags: ['회고', 'retrospection', 'progit', '번역']
 ---
 
