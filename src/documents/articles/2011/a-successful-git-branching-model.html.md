@@ -3,7 +3,7 @@ layout: 'article'
 title: 'A successful git branching model'
 author: 'Changwoo Park'
 date: '2011-12-06'
-tags: ['git', 'git-flow']
+tags: ['git', 'git-flow', 'Workflow']
 ---
 
 _[Vincent Driessen]님은 2010년 1월에 [A successful Git branching model][original]을 썼는데 매우 훌륭한 글입니다. Driessen님은 이 글에서 설명한 내용을 '[git-flow][]'로 구현해 놓았습니다. 번역하도록 허락해주신 Driessen님께 감사드립니다._

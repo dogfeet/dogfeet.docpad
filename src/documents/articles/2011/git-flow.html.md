@@ -3,7 +3,7 @@ layout: 'article'
 title: 'Git:git-flow'
 author: 'Changwoo Park'
 date: '2011-12-09'
-tags: ['git', 'git-flow']
+tags: ['git', 'git-flow', 'Workflow']
 ---
 
 [git-flow][]를 설명하는 글, [A successful git branching model][git-flow-post]을 먼저 읽어 보는 게 좋다. 저 글에 설명된 것을 쉽게 할 수 있도록 구현한 게 git-flow다.
