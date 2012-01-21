@@ -2,7 +2,7 @@
 layout: 'article'
 title: 'Git:Todo Plugin'
 author: 'Changwoo Park'
-date: '2012-01-16'
+date: '2012-01-21'
 tags: ['Git', 'Todo', 'Remote Tracking Branch', 'Branch']
 ---
 
@@ -18,8 +18,8 @@ Pro Git 저장소를 예제로 사용하여 설명한다:
 
  * ![checkouted][]가 표기된 ko 브랜치가 Checkcout한 브랜치다.
  * ![base_branch][]가 표기된 ko 브랜치가 기준 브랜치다. 이 브랜치를 기준으로 다른 브랜치의 ![ahead][]이나 ![behind][]을 계산한다.
- + ![ahead][]가 표기된 private-ko-build-ebook 브랜치는 ko 브랜치에 없는 커밋이 3개 있다.
- + ![behind][]이 표기된 private-ko-build-ebook 브랜치는 ko 브랜치에 있는 커밋이 23개 없다.
+ + ![ahead][]가 표기된 private-ko-build-ebook 브랜치는 ko 브랜치에 없는 커밋이 3개 있다는 것을 의미한다.
+ + ![behind][]가 표기된 private-ko-build-ebook 브랜치는 ko 브랜치에 있는 커밋이 23개 없다는 것을 의미한다.
 
 기본적으로 로컬 브랜치만 보여준다.
 
@@ -65,6 +65,10 @@ Tag는 흰색으로 보여준다:
 	mkdir ~/bin
 	cd ~/bin
 	ln -s ~/git-todo/git-todo git-todo
+
+## 결론
+
+새해 복 많이 받으세요:)
 
 [git-branch-a-v]: /articles/2012/git-branch-a-v.html
 [git-todo.repo]: https://github.com/pismute/git-todo

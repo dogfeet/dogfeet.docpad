@@ -12,7 +12,7 @@ GitHub의 CIO인 [schacon][]이 쓴 [progit][] 번역을 완료했습니다. 부
 
 ## progit
 
-다음 Format의 파일로 배포하고 있고 다운 받아서 읽으실 수 있습니다. `2012-01-13` 빌드한 파일입니다:
+다음 Format의 파일로 배포하고 있고 다운 받아서 읽으실 수 있습니다. `2012-01-13`에 빌드한 파일입니다:
 
  * [progit.ko.epub](http://dogfeet.github.com/progit/progit.ko.epub)
  * [progit.ko.mobi](http://dogfeet.github.com/progit/progit.ko.mobi)
