@@ -3,7 +3,7 @@ layout: 'article'
 title: 'Git:Todo Plugin'
 author: 'Changwoo Park'
 date: '2012-01-21'
-tags: ['Git', 'Todo', 'Remote Tracking Branch', 'Branch']
+tags: ['Git', 'Todo', 'Branch']
 ---
 
 branch 정보를 요약해주는 Plugin을 만들었다. 각 브랜치에 마지막 커밋 정보(SHA, 메시지, 시각, 커밋터)를 보여주고 그 브랜치가 기준 브랜치에서 얼마나 멀어졌는지 보여준다.
