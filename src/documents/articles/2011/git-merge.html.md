@@ -3,7 +3,7 @@ layout: 'article'
 title: 'Git:merge'
 author: 'Changwoo Park'
 date: '2011-12-10'
-tags: ['git', 'merge']
+tags: ['Git', 'Branch', 'Merge', 'Rebase']
 ---
 
 커밋 히스토리는 굉장히 잘 관리해야 한다. 이 글은 merge를 잘해서 히스토리를 잘 관리하는 방법을 설명한다.
