@@ -45,6 +45,10 @@ tag 'feed', xmlns: 'http://www.w3.org/2005/Atom', ->
         tag 'name', document.name
         tag 'email', document.email
 
+  i=0
   for document in @documents
-    anEntry document if 0 is document.url.indexOf '/articles'
+    if 0 is document.url.indexOf '/articles'
+      i++
+      if i < 10
+        anEntry document 
 
