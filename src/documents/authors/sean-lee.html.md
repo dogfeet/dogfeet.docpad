@@ -1,6 +1,5 @@
 --- yaml
 layout: 'author'
-title: 'Sean Lee'
 name: 'Sean Lee'
 email: 'sean@weaveus.com'
 github: 'lethee'

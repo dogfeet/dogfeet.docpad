@@ -1,6 +1,5 @@
 --- yaml
 layout: 'author'
-title: 'Changwoo Park'
 name: 'Changwoo Park'
 email: 'pismute@gmail.com'
 github: 'pismute'

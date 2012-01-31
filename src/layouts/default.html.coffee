@@ -7,7 +7,7 @@ html lang: 'en', ->
     meta 'http-equiv': 'content-type', content: 'text/html; charset=utf-8'
     meta name: 'viewport', content: 'width=device-width, initial-scale=1'
 
-    if @document.layout is 'article'
+    if @document.layout is 'article' or @document.layout is 'author'
       #document has own title, articles or authors
       title "dogfeet - #{@document.title}"
       meta name: 'description', content: @document.description or ''
