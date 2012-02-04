@@ -32,7 +32,7 @@ html lang: 'en', ->
     link rel: 'apple-touch-icon', sizes: '72x72', href: 'images/apple-touch-icon-72x72.png'
     link rel: 'apple-touch-icon', sizes: '114x114', href: 'images/apple-touch-icon-114x114.png'
 
-    link rel: 'alternate', type: 'application/atom+xml', title: "@site.title &raquo; Feed", href: 'http://feeds.feedburner.com/github/dogfeet'
+    link rel: 'alternate', type: 'application/atom+xml', title: "#{@site.title} &raquo; Feed", href: 'http://feeds.feedburner.com/github/dogfeet'
 
     comment 'Shims: IE6-8 support of HTML5 elements'
     comment '[if lt IE 9]>\n        <script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>\n    <![endif]'
@@ -62,11 +62,12 @@ html lang: 'en', ->
     div '.navbar navbar-fixed-top', ->
       div '.navbar-inner', ->
         div '.container-fluid', ->
-          text """<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-          </a>"""
+          a '.btn.btn-navbar', 'data-toggle':'collapse', 'data-target':'.nav-collapse', ->
+            span '.icon-bar', ''
+            span '.icon-bar', ''
+            span '.icon-bar', ''
           a '.brand', href: '/', 'dogfeet'
-          
+
           div '.nav-collapse', ->
             ul '.nav', ->
               li -> a href: '/site/tagmap.html', 'Tagmap'
@@ -88,7 +89,7 @@ html lang: 'en', ->
 
         aside '.sidebar span2', ->
           @layout 'aside'
-          
+
       footer '.footer', ->
         p 'Copyright &copy; 2008-2012 Dogfeet from coding to pixels, powered by <a href="https://github.com/balupton/docpad">Docpad</a>'
 
@@ -103,7 +104,6 @@ html lang: 'en', ->
           (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
       }());
       """
-
 
     comment 'GA'
     script ->
