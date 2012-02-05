@@ -1,7 +1,7 @@
 --- yaml
 layout: 'article'
 title: 'SMACSS: Brief Notes - Part 1'
-author: 'Changwoo Park'
+author: 'Changwoo Park, Sean Lee'
 date: '2012-2-4'
 tags: ['CSS', 'SMACSS', 'Jonathan Snook', 'Review']
 ---
