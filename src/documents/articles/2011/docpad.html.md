@@ -81,7 +81,7 @@ google prettify는 특별히 언어를 명시하지 않아도 자동으로 찾�
 
 기본적으로 Template Engine이기 때문에 다양한 function을 사용할 수 없다. nodejs의 다양한 api들을 template에서 사용하고 싶은 것이다. 나는 CoffeeKup이외의 지식이 빈약하기 때문에 다른 Template Engine에 관한 예제는 올리지 않는다.
 
-#### @tool.moment
+#### `@tool.moment`
 
 CoffeeKup의 경우에 Tempate Data에 함수를 담아 넘기고 그 함수를 사용할 수 있다. Plugin으로 Template Data에 momentjs를 넘기고 그 것을 사용하는 예제를 보자.
 
@@ -112,7 +112,7 @@ Template 페이지에서 이 것을 이용한 소스를 만들면 다음과 같�
     dateWrapper = @tool.moment document.date
     dateWrapper.format 'MMM DD' #ex) JAN 01
 
-#### @tool.summary
+#### `@tool.summary`
 
 index 페이지에서는 글들의 summary만 보여주고 싶었다. docpad는 부가기능이 별로 없기 때문에 고민이 좀 됐는데 의외로 간단히 해결했다.
 
@@ -141,7 +141,7 @@ authors Plugin인 저자를 소개하는 페이지를 만들고 다른 문서의
 
     blahblah
 
-docpad는 이 문서를 처리해서 `{name:'ahmooge', url:'/authors/ahmooge.html', content: 'blahblah..', contentRendered: '<span>blahblah</span>'}`라는 객체로 만든다. 이 객체를 document 객체라고 하자(실제 코드에서도 document다). authors plugin은 `/src/documents/authors/`안에 잇는 파일을 모아서 template data의 @authors.data 객체에 담아준다. 'Kim'라는 document1와 'Park'라는 document2가 있으면 @authors.data에는 `{"Kim": document1, "Park":document2}`라는 객체가 들어가게 된다. 
+docpad는 이 문서를 처리해서 `{name:'ahmooge', url:'/authors/ahmooge.html', content: 'blahblah..', contentRendered: '<span>blahblah</span>'}`라는 객체로 만든다. 이 객체를 document 객체라고 하자(실제 코드에서도 document다). authors plugin은 `/src/documents/authors/`안에 잇는 파일을 모아서 template data의 `@authors.data` 객체에 담아준다. 'Kim'라는 document1와 'Park'라는 document2가 있으면 `@authors.data`에는 `{"Kim": document1, "Park":document2}`라는 객체가 들어가게 된다. 
 
 그럼 CoffeeKup template에서 사용해보자:
 

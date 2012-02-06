@@ -67,7 +67,7 @@ Tag body는 두 가지 방법으로 정의할 수 있다. 먼저 `title 'Hello W
 
 이 두 가지는 구현이 조금 다르다. 문법에서 보이듯이 전자는 'Hello World'라는 스트링이 인자로 넘어가는 거고 후자는 'Hello World'라는 스트링을 반환하는 함수가 넘어간다. JavaScript로 표현하면 `function(){return 'Hello World';}`같은 함수가 넘어가는 것이다. CoffeeKup은 다르게 해석해 주기 때문에 필요에 따라 선택해 사용한다.
 
-### #id.class
+### `#id.class`
 
 id와 class를 표현하는 방법은 두가지다 하나는 이미 설명대로 attribute를 기술하는 방법이 있고:
 
