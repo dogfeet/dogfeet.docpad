@@ -89,7 +89,7 @@ section '#comments', ->
 	
 	text """
     <div class="well span10 offset1">
-      <div class="fb-like" data-href="http://dogfeet.github.com#{@document.url}" data-send="true" data-width="450" data-show-faces="true"></div>
-	    <div class="fb-comments" data-href="http://dogfeet.github.com#{@document.url}" data-num-posts="1"></div>
+      <div class="fb-like" data-href="#{@site.url}#{@document.url}" data-send="true" data-width="450" data-show-faces="true"></div>
+	    <div class="fb-comments" data-href="#{@site.url}#{@document.url}" data-num-posts="1"></div>
 	  </div>
 	"""
