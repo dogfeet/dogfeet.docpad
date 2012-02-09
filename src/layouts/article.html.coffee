@@ -60,14 +60,15 @@ article "#post.#{@document.class}", typeof: 'sioc:post', about: "#{@document.url
 
 
 if @document.relatedDocuments.length > 0
-  section '#related', ->
-    h3 'Related Posts'
-    ul ->
-      for document in @document.relatedDocuments
-        li ->
-          span "#{document.date.toShortDateString()}"
-          text '&raquo;'
-          a href: "#{document.url}", "#{document.title}"
+	section '#related', ->
+		h3 'Related Posts'
+		div '.alert alert-info', ->
+			ul ->
+				for document in @document.relatedDocuments
+					li ->
+						span "#{document.date.toShortDateString()}"
+						text '&raquo;'
+						a href: "#{document.url}", "#{document.title}"
 
 section '#comments', ->
   h3 'Feedback'

@@ -46,3 +46,7 @@ section.content article p {
 	text-align: justify;
 	line-height: 175%;
 }
+
+#related ul {
+	margin-bottom: 0;
+}
