@@ -73,7 +73,7 @@ section '#comments', ->
   h3 'Feedback'
 
   text """
-<div id="disqus_thread"></div>
+<div id="disqus_thread" class="well"></div>
 <script type="text/javascript">
     var disqus_shortname = '#{@site.disqusShortName}';
     var disqus_identifier = '#{@document.url}';
