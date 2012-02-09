@@ -14,8 +14,8 @@ if tag?
 
     tag = @tags.store name
     if tag?
-      rendered.push """<a href="#{href}##{name.toLowerCase()}">#{name}</a>"""
+      rendered.push """<a href="#{href}##{name.toLowerCase()}" class="btn btn-tag btn-info">#{name}</a>"""
     else
       rendered.push name
 
-  text "#{rendered.join ', '}"
+  text "#{rendered.join ' '}"

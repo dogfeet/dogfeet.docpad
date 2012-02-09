@@ -46,3 +46,9 @@ section.content article p {
 	text-align: justify;
 	line-height: 175%;
 }
+
+.btn-tag {
+	padding: 2px 5px 3px;
+	font-size: 0.85em;
+	line-height: 120%;
+}
