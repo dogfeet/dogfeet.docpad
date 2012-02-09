@@ -86,4 +86,10 @@ section '#comments', ->
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     """
-
+	
+	text """
+    <div class="well span10 offset1">
+      <div class="fb-like" data-href="http://dogfeet.github.com#{@document.url}" data-send="true" data-width="450" data-show-faces="true"></div>
+	    <div class="fb-comments" data-href="http://dogfeet.github.com#{@document.url}" data-num-posts="1"></div>
+	  </div>
+	"""
