@@ -38,8 +38,8 @@ div '.row', ->
     ###
     translateIt '2011', 'Progit'
       , 'http://progit.org/'
-      , 'https://github.com/dogfeet/progit'
-      , 'Changwoo Park, Sean Lee', 'in-progress'
+      , 'http://dogfeet.github.com/articles/2012/progit.html'
+      , 'Changwoo Park, Sean Lee'
     translateIt '2011', 'JavaScript Garden'
       , 'http://bonsaiden.github.com/JavaScript-Garden/'
       , 'http://bonsaiden.github.com/JavaScript-Garden/ko/'
