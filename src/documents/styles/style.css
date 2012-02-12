@@ -52,3 +52,7 @@ section.content article p {
 	font-size: 0.85em;
 	line-height: 120%;
 }
+
+#related ul {
+	margin-bottom: 0;
+}
