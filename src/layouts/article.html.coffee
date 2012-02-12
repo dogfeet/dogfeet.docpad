@@ -72,8 +72,9 @@ if @document.relatedDocuments.length > 0
 section '#comments', ->
   h3 'Feedback'
 
-  text """
-<div id="disqus_thread"></div>
+  div '.row', -> 
+    text """
+<div id="disqus_thread" class="well span10 offset1"></div>
 <script type="text/javascript">
     var disqus_shortname = '#{@site.disqusShortName}';
     var disqus_identifier = '#{@document.url}';
