@@ -38,6 +38,12 @@
 		"url" : "http://github.com/dogfeet/dogfeet.github.com.git"
 	},
 	"dependencies": {
+		"moment" : "1.4.x",
+		"underscore" : "1.3.x",
+		"coffee-script" : "1.2.x"
+	},
+	"devDependencies": {
+	
 	},
 	"engines" : {
 		"node": ">=0.4.0"

@@ -1,5 +1,6 @@
 --- 
 layout: 'default'
+date: '2000-1-1'
 ---
 
 i = 0
@@ -15,7 +16,7 @@ for document in @documents
         footer ->
           text @layout 'article-footer', document
 
-        text @tool.summary document.contentNoLayout
+        text @tool.summary document.contentRenderedWithoutLayouts
 
         p -> a '.btn', href: document.url, 'Read more &raquo;'
 

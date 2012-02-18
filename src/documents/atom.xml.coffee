@@ -1,3 +1,7 @@
+---
+date: '2000-1-1'
+---
+
 ###
 encodeHtml = (doc) ->
   i = doc.length;
@@ -16,7 +20,7 @@ encodeHtml = (doc) ->
 ###
 
 renderContent = (doc, siteUrl) ->
-  rendered = doc.contentNoLayout
+  rendered = doc.contentRenderedWithoutLayouts
 
   rendered = rendered.replace('src="/articles', "src=\"#{siteUrl}/articles")
 
