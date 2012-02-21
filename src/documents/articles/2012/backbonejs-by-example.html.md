@@ -23,14 +23,14 @@ tags: ['backbone.js', 'MVC', 'Chaker Nakhli']
     <!doctype html>
     <html>
         <head>
-            <link rel='stylesheet' type='text/css' href='editor.css'>
-            <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7/jquery.min.js'></script>
-            <script src='http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.2.1/underscore-min.js'></script>
-            <script src='http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.5.3/backbone-min.js'></script>
-            <script src='editor.js'></script>
+            <link rel="stylesheet" type="text/css" href="editor.css">
+            <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+            <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.2.1/underscore-min.js"></script>
+            <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.5.3/backbone-min.js"></script>
+            <script src="editor.js"></script>
         </head>
         <body>
-            <div id='page' style='width:2000px;height:2000px;'></div>
+            <div id="page" style="width:2000px;height:2000px;"></div>
         </body>
     </html>
 
