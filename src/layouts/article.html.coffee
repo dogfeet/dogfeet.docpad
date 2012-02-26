@@ -50,14 +50,16 @@ article "#post.#{@document.class}", typeof: 'sioc:post', about: "#{@document.url
     div '#social-buttons.pull-right', ->
       ul '.unstyled', ->
         articleUrl = "#{@site.url}#{@document.url}"
+        twitters = @authors.toTwitter @document.author
+        twitters = twitters.substr(1)
+
         li -> 
           a '.twitter-share-button', href: 'https://twitter.com/share'
-          , 'data-url': articleUrl, 'data-count': 'horizontal', 'data-lang': 'en', 'Tweet'
+          , 'data-url': articleUrl, 'data-via': twitters, 'data-count': 'horizontal', 'data-lang': 'en', 'Tweet'
         li -> div '.g-plusone', 'data-size': 'medium', 'data-href': articleUrl
         li -> div '.fb-like', 'data-href': articleUrl, 'data-send': 'false', 'data-layout': 'button_count', 'data-show-faces': 'false'
 
   div property: 'sioc:content', -> "#{@content}"
-
 
 if @document.relatedDocuments.length > 0
 	section '#related', ->
