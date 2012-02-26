@@ -30,7 +30,7 @@ renderContent = (doc, siteUrl) ->
 
 anEntry = (document) ->
   tag 'entry', ->
-    tag 'title', document.title
+    title '<![CDATA[ ' + document.title + ' ]]>'
     tag 'link', href: "#{@site.url}#{document.url}"
     tag 'updated', document.date.toIsoDateString()
     tag 'id', "#{@site.url}#{document.url}"
@@ -38,7 +38,7 @@ anEntry = (document) ->
 
 text '<?xml version="1.0" encoding="utf-8"?>\n'
 tag 'feed', xmlns: 'http://www.w3.org/2005/Atom', ->
-  title @site.title
+  title '<![CDATA[ ' + @site.title + ' ]]>'
   tag 'link', href: "#{@site.url}/atom.xml", rel: 'self'
   tag 'link', href: @site.url
   tag 'updated', @site.date.toIsoDateString()
