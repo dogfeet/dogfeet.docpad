@@ -33,7 +33,7 @@ _이 글은 [By example: Continuation-passing style in JavaScript][]를 번역�
 
 시작하자.
 
-# '컨티뉴에이션-패싱 스타일'이 뭐야?
+## '컨티뉴에이션-패싱 스타일'이 뭐야?
 
 만약 컨티뉴에이션을 지원하는 언어을 사용한다는 것은 프로그래머가 예외와 백트래킹, 스레드, 제네레이터(generator)등의 제어 구조를 추가할 수 있다는 것을 의미한다.
 
@@ -53,8 +53,7 @@ _이 글은 [By example: Continuation-passing style in JavaScript][]를 번역�
 
 컨티뉴에이션은 퍼스트-클래스 리턴 포인트(first-class return point)이다.
 
-
-## 예제: 항등 함수
+### 예제: 항등 함수
 
 항등 함수가 하나 있다:
 
@@ -74,8 +73,7 @@ _이 글은 [By example: Continuation-passing style in JavaScript][]를 번역�
         ret(x) ;
     }
 
-
-## 예제: 단순무식한 팩토리얼
+### 예제: 단순무식한 팩토리얼
 
 아래는 보통의 단순무식한 팩토리얼이다:
 
@@ -101,8 +99,7 @@ _이 글은 [By example: Continuation-passing style in JavaScript][]를 번역�
         console.log(n); // 콘솔에 120이 출력된다.
     })
 
-
-## 예제: Tail-recursive 팩토리얼
+### 예제: Tail-recursive 팩토리얼
 
 아래는 tail-recursive 팩토리얼의 구현이다.
 
@@ -130,8 +127,7 @@ _이 글은 [By example: Continuation-passing style in JavaScript][]를 번역�
             tail_fact(n-1,n*a,ret) ;
     }
 
-
-# CPS와 Ajax
+## CPS와 Ajax
 
 Ajax는 자바스크립트의 XMLHttpRequest 객체를 이용해 비동기적으로 서버에서 데이터를 가져오는 웹 프로그래밍 기술이다.
 
@@ -149,62 +145,62 @@ XMLHttpRequest를 이용하면 블로킹 프로시저인 'fetch(url)'을 작성�
 
 이렇게 코딩하는 과정에서 부분적으로 코딩 스타일이 CPS로 자연스레 변한다.
 
-## fetch 구현
+### fetch 구현
 
 콜백 유무에 따라 non-blocking 모드나 블러킹 모드를 스위칭하며 동작하는 fetch는 어렵지 않게 구현할 수 있다:
 
     /*
      fetch는 클라이언트에서 서버로 리퀘스트를
      보낼 때 블로킹될 수도 있고 안될 수도 있다.
-
+    
      만약 url만 넘겨주면 프로시저는 블로킹되고
      url이 가리키는 페이지의 내용을 리턴한다.
-
+    
      만약 onSuccess 콜백이 주어지면 
      프로시저는 논 블로킹이 된다. 
      콜백은 페이지의 내용을 
      인자로 받아 호출될 것이다.
-
+    
      만약 onFail 콜백까지 주어지면
      요청이나 응답이 실패했을 때에 
      onFail이 fatch 프로시저에 의해서 호출된다.
     */
-
+    
     function fetch (url, onSuccess, onFail) {
         // 콜백을 정의했을 때만 비동기로 작동한다.
-        varasync = onSuccess ?true:false;
+        var async = onSuccess? true: false;
         // (이 라인의 비효율성에 대해 태클 걸지 
         //  않길 바란다. 이건 중요한 게 아니다.)
-
-        varreq ; // XMLHttpRequest 객체.
-
+    
+        var req ; // XMLHttpRequest 객체.
+    
         // XMLHttpRequest 콜백:
         function rocessReqChange() {
             if(req.readyState == 4) {
                 if(req.status == 200) {
                     if(onSuccess)
-                        onSuccess(req.responseText, url, req) ;
-                }else{
+                        onSuccess(req.responseText, url, req);
+                } else {
                     if(onFail)
-                        onFail(url, req) ;
+                        onFail(url, req);
                 }
             }
         }
-
+    
         // XMLHttpRequest 객체를 만든다:
         if(window.XMLHttpRequest)
-            req =newXMLHttpRequest();
+            req =new XMLHttpRequest();
         elseif(window.ActiveXObject)
-            req =newActiveXObject("Microsoft.XMLHTTP");
-
+            req =new ActiveXObject("Microsoft.XMLHTTP");
+    
         // 비동기 모드라면 콜백을 세팅한다:
         if(async)
             req.onreadystatechange = processReqChange;
-
+    
         // 서버로 요청한다.
         req.open("GET", url, async);
         req.send(null);
-
+    
         // 비동기 모드라면,
         //  요청 객체를 리턴한다; 아니라면
         //  응답을 리턴하다.
@@ -215,25 +211,23 @@ XMLHttpRequest를 이용하면 블로킹 프로시저인 'fetch(url)'을 작성�
     }
 
 
-## 예제: 데이터 가져오기
+### 예제: 데이터 가져오기
 
 UID의 이름을 가져오는 프로그램이 필요하다고 치고, fetch를 이용해서 두 버전(동기, 비동기)을 다 만들어보자.
 
     // 요청이 끝날 때까지 블로킹된다:
-    varsomeName = fetch("./1031/name") ;
-
+    var someName = fetch("./1031/name") ;
+    
     document.write ("someName: "+ someName +"<br>") ;
-
+    
     // 블로킹되지 않는다:
     fetch("./1030/name",function(name) {
         document.getElementById("name").innerHTML = name ;
     }) ;
 
-
 ([예제][])
 
-
-# CPS and non-blocking programming
+## CPS and non-blocking programming
 
 [node.js][]는 블로킹 프로시저가 없는 자바스크립트를 위한 고성능, 서버사이드 플랫폼이다. 
 
@@ -241,7 +235,7 @@ node.js에서는 보통의 블로킹되는 프로시저(e.g. 네트워크, 파�
 
 프로그램을 CPS로 변환하는 것으로 node.js 프로그래밍 다운 프로그래밍이 뭔지 살펴보자.
 
-## 예제 : 간단한 웹 서버
+### 예제 : 간단한 웹 서버
 
 node.js 웹 서버는 파일을 읽는 프로시저에 컨티뉴에이션을 넘긴다. select를 이용하는 것보다 CPS를 이용하는 것이 더 간단한 non-blocking IO이다.
 
@@ -249,74 +243,74 @@ node.js 웹 서버는 파일을 읽는 프로시저에 컨티뉴에이션을 넘
     var http = require('http') ;
     var url = require('url') ;
     var fs = require('fs') ;
-
+    
     // 웹 서버 루트 경로:
     var DocRoot ="./www/";
-
+    
     // 콜백을 넘겨주면서 웹 서버를 만든다:
     var httpd = http.createServer(function(req, res) {
         sys.puts(" request: "+ req.url) ;
-
+    
         // url 파싱:
-        varu = url.parse(req.url,true) ;
-        varpath = u.pathname.split("/") ;
-
+        var u = url.parse(req.url,true) ;
+        var path = u.pathname.split("/") ;
+    
         // 경로에서 .. 를 없앤다.
-        varlocalPath = u.pathname ;
+        var localPath = u.pathname ;
         //  "<dir>/.." => ""
-        varlocalPath = localPath.replace(/[^/]+\/+[.][.]/g,"") ;
+        var localPath = localPath.replace(/[^/]+\/+[.][.]/g,"") ;
         //  ".." => "."
-        varlocalPath = DocRoot + 
+        var localPath = DocRoot + 
         localPath.replace(/[.][.]/g,".") ;
-
+    
         sys.puts(" local path: "+ localPath) ;
-
+    
         // 요청받은 파일을 읽어서 되돌려 보낸다.
         // Note: readFile은 현재 컨티뉴에이션을 넘겨받는다.
         fs.readFile(localPath,function(err,data) {
-            varheaders = {} ;
-
+            var headers = {} ;
+    
             if(err) {
                 headers["Content-Type"] ="text/plain";
                 res.writeHead(404, headers);
                 res.write("404 File Not Found\n") ;
                 res.end() ; 
-            }else{
-                varmimetype = MIMEType(u.pathname) ;
-
+            } else {
+                var mimetype = MIMEType(u.pathname) ;
+    
                 // 만약 'content type'을 못 찾으면
                 // 클라이언트가 알아서 하도록 놔두자.
                 if(mimetype)
                     headers["Content-Type"] = mimetype ;
-
+    
                 res.writeHead(200, headers) ;
                 res.write(data) ;
                 res.end() ;
             }
         }) ;
     }) ;
-
+    
     // 확장자와 MIME 타입을 매핑 시킨다:
     var MIMETypes = {
-        "html":"text/html",
+        "html" :"text/html",
         "js"   :"text/javascript",
         "css"  :"text/css",
         "txt"  :"text/plain"
     } ;
-
-    function IMEType(filename) {
-        varparsed = filename.match(/[.](.*)$/) ;
+    
+    function MIMEType(filename) {
+        var parsed = filename.match(/[.](.*)$/) ;
         if(!parsed)
             return false;
-        varext = parsed[1] ;
+        var ext = parsed[1] ;
         return MIMEType[ext] ;
     }
-
+    
     // 8000번 포트를 리스닝(listening) 포트로 하여 서버를 시작한다:
     httpd.listen(8000) ;
 
 
-# 분산 컴퓨팅을 위한 CPS
+## 분산 컴퓨팅을 위한 CPS
 
 CPS를 사용하면 로컬과 분산에서 처리하는 것이 더 간단해진다.
 
@@ -348,7 +342,7 @@ fact 프로시저가 블로킹되어 서버에서 응답이 오기까지 기다�
         }) ;
     }
 
-# CPS로 예외처리하기
+## CPS로 예외처리하기
 
 프로그램을 CPS로 작성하면, 언어의 표준 예외처리 매커니즘이 쓸모없어진다. 하지만, CPS로 예외처리를 구현하는 것은 어렵지 않다.
 
@@ -361,12 +355,12 @@ fact 프로시저가 블로킹되어 서버에서 응답이 오기까지 기다�
     function fact (n) {
         if(n < 0)
             throw "n < 0";
-        elseif(n == 0)
+        else if(n == 0)
             return 1 ;
         else
             return n * fact(n-1) ;
     }
-
+    
     function total_fact (n) {
         try{
             return fact(n) ;
@@ -374,7 +368,7 @@ fact 프로시저가 블로킹되어 서버에서 응답이 오기까지 기다�
             return false;
         }
     }
-
+    
     document.write("total_fact(10): "+ total_fact(10)) ;
     document.write("total_fact(-1): "+ total_fact(-1)) ;
 
@@ -391,24 +385,24 @@ fact 프로시저가 블로킹되어 서버에서 응답이 오기까지 기다�
                     ret(n*t0);
                 }, thro);
     }
-
+    
     function total_fact (n,ret) {
         fact (n,ret,
             function(ex) {
                 ret(false);
             });
     }
-
+    
     total_fact(10,function(res) {
         document.write("total_fact(10): "+ res);
     });
-
+    
     total_fact(-1,function(res) {
         document.write("total_fact(-1): "+ res);
     });
 
 
-# 컴파일에서 CPS
+## 컴파일에서 CPS
 
 지난 30년간 CPS는 함수형 언어 컴파일러에서 사용하는 강력한 중간 표현식이었다.
 
@@ -416,7 +410,7 @@ CPS는 함수의 리턴, 예외, [퍼스트-클래스 컨티뉴에이션(first-c
 
 다시 말해서, CPS는 컴파일러 대신에 많은 것들을 해결해준다. 
 
-## 람다 계산법을 CPS로 바꾸기
+### 람다 계산법을 CPS로 바꾸기
 
 람다는 보편적인 계산을 할 수 있는 표현식(어플리케이션, 익명함수 변수 레퍼런스)을 가진 Lisp의 축소판이다. 
 
@@ -435,24 +429,23 @@ CPS는 함수의 리턴, 예외, [퍼스트-클래스 컨티뉴에이션(first-c
                    (cps-convert f `(lambda (,$f)
                         ,(cps-convert e `(lambda (,$e)
                             (,$f ,$e ,cont))))))]
-
+    
             [`(lambda (,v) ,e)
                 ; =>
                  (let (($k (gensym 'k)))
                    `(,cont (lambda (,v ,$k)
                         ,(cps-convert e $k))))]
-
+    
             [(? symbol?)
                 ; =>
                 `(,cont ,term)]))
-
+    
     (define (cps-convert-program term)
         (cps-convert term '(lambda (ans) ans)))
 
 관심 있는 사람은, [올리비에 댄비(Olivier Danvy)]가 효과적인 CPS 변환기에 관한 많은 논문을 써냈으니 참고하길 바란다.
 
-
-# JavaScript에서 call/cc 구현하기
+## JavaScript에서 call/cc 구현하기
 
 만약 어떤 자바스크립트 코드를 CPS로 바꾸고 싶다면 call/cc는 간단하게 정의할 수 있다.
 
@@ -461,7 +454,7 @@ CPS는 함수의 리턴, 예외, [퍼스트-클래스 컨티뉴에이션(first-c
     }
 
 
-# 더 읽어 볼 것 
+## 더 읽어 볼 것 
 
  * [JavaScript: The Definitive Guide][], the best book on JavaScript.
  * [JavaScript: The Good Parts][], the only other good JavaScript book.
