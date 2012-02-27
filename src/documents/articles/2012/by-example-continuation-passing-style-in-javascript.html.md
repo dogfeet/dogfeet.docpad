@@ -28,7 +28,7 @@ _이 글은 [By example: Continuation-passing style in JavaScript][]를 번역�
  * 분산 프로그래밍을 위한 CPS 
  * CPS를 이용해서 예외처리하는 방법 
  * 미니말 Lisp을 위한 CPS 컨버터 
- * <strike>Lisp에서 call/cc 구현하는 방법</strike>[^1]
+ * <strike>Lisp에서 call/cc 구현하는 방법</strike><sup>이 섹션은 이해가 모자라 제거했다.</sup>
  * 자바스크립트에서 call/cc 구현하는 방법 
 
 시작하자.
@@ -245,16 +245,16 @@ node.js에서는 보통의 블로킹되는 프로시저(e.g. 네트워크, 파�
 
 node.js 웹 서버는 파일을 읽는 프로시저에 컨티뉴에이션을 넘긴다. select를 이용하는 것보다 CPS를 이용하는 것이 더 간단한 non-blocking IO이다.
 
-    varsys = require('sys') ;
-    varhttp = require('http') ;
-    varurl = require('url') ;
-    varfs = require('fs') ;
+    var sys = require('sys') ;
+    var http = require('http') ;
+    var url = require('url') ;
+    var fs = require('fs') ;
 
     // 웹 서버 루트 경로:
-    varDocRoot ="./www/";
+    var DocRoot ="./www/";
 
     // 콜백을 넘겨주면서 웹 서버를 만든다:
-    varhttpd = http.createServer(function(req, res) {
+    var httpd = http.createServer(function(req, res) {
         sys.puts(" request: "+ req.url) ;
 
         // url 파싱:
@@ -297,7 +297,7 @@ node.js 웹 서버는 파일을 읽는 프로시저에 컨티뉴에이션을 넘
     }) ;
 
     // 확장자와 MIME 타입을 매핑 시킨다:
-    varMIMETypes = {
+    var MIMETypes = {
         "html":"text/html",
         "js"   :"text/javascript",
         "css"  :"text/css",
@@ -412,7 +412,7 @@ fact 프로시저가 블로킹되어 서버에서 응답이 오기까지 기다�
 
 지난 30년간 CPS는 함수형 언어 컴파일러에서 사용하는 강력한 중간 표현식이었다.
 
-CPS는 함수의 리턴, 예외, 퍼스트-클래스 컨티뉴에이션(first-class continuation)[^2]을 제거한다. 함수 호출은 그냥 하나의 점프 명령어로 치환된다.
+CPS는 함수의 리턴, 예외, [퍼스트-클래스 컨티뉴에이션(first-class continuation)][^2]을 제거한다. 함수 호출은 그냥 하나의 점프 명령어로 치환된다.
 
 다시 말해서, CPS는 컴파일러 대신에 많은 것들을 해결해준다. 
 
@@ -470,7 +470,6 @@ CPS는 함수의 리턴, 예외, 퍼스트-클래스 컨티뉴에이션(first-cl
  * My post [on programming with continuations by example][].
  * [Jay McCarthy][] et al.'s papers on a continuation-based web-server.
 
-[^1]: 이 섹션은 이해가 모자라 제거했다.
 [^2]: http://en.wikipedia.org/wiki/Continuation#First-class_continuations
 
 [By example: Continuation-passing style in JavaScript]:http://matt.might.net/articles/by-example-continuation-passing-style/
