@@ -34,11 +34,11 @@ script ->
   })();
 
   """
-article "#post.#{@document.class}", typeof: 'sioc:post', about: "#{@document.url}", lang: 'ko-kr', ->
+article "#post .post .#{@document.class}", typeof: 'sioc:post', about: "#{@document.url}", lang: 'ko-kr', ->
   header ->
     h1 property: 'dcterms:title', "#{@document.title}"
 
-  footer ->
+  footer '.modern-font .small-font', ->
     text @layout 'article-footer', @document
 
     style rel: 'stylesheet', media: 'screen, projection', scoped: 'scoped', ->

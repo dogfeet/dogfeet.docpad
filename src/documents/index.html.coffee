@@ -13,7 +13,7 @@ for document in @documents
           a href: document.url, ->
             h1 document.title
 
-        footer ->
+        footer '.modern-font .small-font', ->
           text @layout 'article-footer', document
 
         text @tool.summary document.contentRenderedWithoutLayouts

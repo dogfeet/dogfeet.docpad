@@ -30,13 +30,15 @@ style rel: 'stylesheet', media: 'screen, projection', scoped: 'scoped', ->
   """
 
 h1 'Tagmap'
-for row in cellular
-  div '#tagmap.row', ->
-    for cell in row
-      tag = @tags.store( cell )
-      div "##{cell}.span4", ->
-        h4 tag.name
-        ul ->
-          for document in tag.documents
-            li -> a href: "#{document.url}", "#{document.title}"
+
+section ".tagmap", ->
+  for row in cellular
+    div '#tagmap.row', ->
+      for cell in row
+        tag = @tags.store( cell )
+        div "##{cell}.span4", ->
+          h4 tag.name
+          ul ->
+            for document in tag.documents
+              li -> a href: "#{document.url}", "#{document.title}"
 
