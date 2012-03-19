@@ -3,7 +3,7 @@ layout: 'article'
 title: 'Bash: 자동완성'
 author: 'Changwoo Park'
 date: '2012-3-18'
-tags: ['bash', 'completion', 'Completion']
+tags: ['bash', 'Completion']
 ---
 
 _이 글은 'An introduction to bash completion'([part 1][], [part 2][])을 정리한 것이다. DocPad에 Completion이 있으면 좀 편할 것 같아서 시작했다._
