@@ -55,7 +55,7 @@ Completion 덕에 명령어와 인자를 좀 더 쉽게 사용할 수 있다. �
 
 이 호스트들은 나한테만 이렇게 보인다.
 
-_known_hosts 함수는 /etc/bash_completion에 정의돼 있다. 이런 함수가 있다는 걸 내가 어떻게 알았을까? "compete -p" 명령을 실행하면 현재 사용하고 있는 것을 모두 보여준다:
+_known_hosts 함수는 /etc/bash_completion에 정의돼 있다. 이런 함수가 있다는 걸 내가 어떻게 알았을까? "complete -p" 명령을 실행하면 현재 사용하고 있는 것을 모두 보여준다:
 
     skx@lappy:~$ complete -p
     ....
@@ -281,8 +281,6 @@ Completion할 때 이전 토큰을 알아야 해서 명령어마다 다르게 �
 
 이 예제를 활용하면 직접 Completion 함수를 만들 수 있다. 사실 Completion 함수를 만드는데 시간이 많이 들고 나머지는 매우 간단하다.
 
-[Steve]가 작성한 [xm Completion 코드][xm completion]를 읽어 볼 수 있다.
-
 @pismute가 만든 [docpad-completion.bash][]도 읽어 볼 수 있다.
 
 [docpad-completion.bash]: https://github.com/dogfeet/docpad/blob/dogfeet/contrib/docpad-completion.bash
@@ -292,4 +290,3 @@ Completion할 때 이전 토큰을 알아야 해서 명령어마다 다르게 �
 [Remotely administering machines graphically, with VNC]: http://www.debian-administration.org/articles/135
 [part 1]: http://www.debian-administration.org/articles/316
 [part 2]: http://www.debian-administration.org/articles/317
-[steve]: http://www.debian-administration.org/users/Steve
