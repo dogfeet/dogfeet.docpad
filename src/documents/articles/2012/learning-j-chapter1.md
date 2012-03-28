@@ -7,9 +7,9 @@ tags: ['J', 'jsoftware', 'language']
 ---
 Roger Stokes이 쓴 [Learning J][]의 chapter 1:Basics를 번역/정리한 것이다.
 
-요즘 J를 배워보려 하는데 관련된 한국어 자료가 거의 없었다. 그래서 공부하는 겸 Learning J를 읽고 간단히 정리했다. 원문을 그대로 옮기진 않았고, 필요하면 표현을 바꿨다. 
+요즘 J를 배워보려 하는데 관련된 한국어 자료가 거의 없었다. 그래서 공부하는 겸 Learning J를 읽고 간단히 정리했다. 원문을 그대로 옮기진 않았고, 필요하면 표현을 바꿨다.
 
-이 책은 J701을 기준으로 쓰였다. 따라서 [www.jsoftware.com](www.jsoftware.com) 에서 J701을 다운받아서 설치해 하나하나 실습해보면 좋을 것이다. J에 대한 소개는 [여기](http://www.jsoftware.com/docs/help701/primer/contents.htm) 에서 위의 글 몇 개를 읽으면 될 것이다.
+이 책은 J701을 기준으로 쓰였다. 따라서 [www.jsoftware.com](www.jsoftware.com) 에서 J701을 다운받아서 설치해 하나하나 실습해보면 좋을 것이다. J는 APL, K와 비슷한 언어로 리스트, 행렬등을 연산하기에 좋은 기호 중심의 언어이다. 코드가 일반 알파벳이 아닌 특수문자가 많아 읽기가 난해하고 기존의 제어 흐름과는 다른 프로그래밍 스타일 때문에 배우기 어려워하는 사람이 많다. J에 대한 자세한 소개는 [여기](http://www.jsoftware.com/docs/help701/primer/contents.htm) 에서 위의 글 몇 개를 읽으면 될 것이다.
 
 ![j-code](/articles/2012/learning-j-chapter1/j-code.png)
 
