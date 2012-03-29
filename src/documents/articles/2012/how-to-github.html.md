@@ -8,15 +8,16 @@ tags: ['Git', 'Github', 'Fork', 'Branch', 'Pull Request', '깃헙', '기여', '�
 
 [GitHub][]를 사용하여 오픈소스 프로젝트에 어떻게 참여할 수 있는 방법을 정리한다. GitHub에 계정이 있어야 하고 [Git][]을 어느정도 써 본 사람이어야 한다. 
 
-_원문은 [How to GitHub: Fork, Branch, Track, Squash and Pull Request][source] 이다._
+_원문은 [Rich Jones][rich]의 [How to GitHub: Fork, Branch, Track, Squash and Pull Request][source] 이다._
 
 [Git]: http://git-scm.org/
 [GitHub]: http://github.com/
 [source]: http://gun.io/blog/how-to-github-fork-branch-and-pull-request/
+[rich]: http://gun.io/
 
 ## 저자 공지사항
 
-[GitHub][]에서 활동하는 개발자 중 저자의 구인구직 사이트에 등록하면 구직하는 사람과 연결해준다고 한다. 관심있는 사람은 둘러보시길!
+[GitHub][]에서 활동하는 개발자 중 저자의 [구인구직 사이트](http://gun.io/contracts/new/)에 등록하면 구직하는 사람과 연결해준다고 한다. 관심있는 사람은 둘러보시길!
 
 ## 자 시작!
 
