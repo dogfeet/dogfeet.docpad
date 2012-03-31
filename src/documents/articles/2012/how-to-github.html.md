@@ -1,6 +1,6 @@
 --- yaml
 layout: 'article'
-title: 'GitHub로 남의 프로젝트에 감놔라 배놔라: Fork, Branch, Track, Squash, Pull Request'
+title: 'GitHub로 남의 프로젝트에 감놔라 배놔라 참여'
 author: 'Sean Lee'
 date: '2012-4-1'
 tags: ['Git', 'Github', 'Fork', 'Branch', 'Pull Request', '깃헙', '기여', '프로젝트', '오픈소스', 'OpenSource']
@@ -81,14 +81,84 @@ Fork가 이거냥!
 
 ## 개발용 브랜치
 
+(그림)
+
+그 옛날의 인터넷이 생각나지 않나요들?
+
+자 이제 고쳐야 할 부분에 집중하기 위해 `master` 브랜치에서 새로운 브랜치로 `checkout`할 때가 왔다. Pull Request는 Branch 단위로 하기 때문에 브랜치를 잘 만들어두는게 중요하다. 고쳐야 할 이슈가 여럿이라면 브랜치도 여러개 이어야 겠다. 아래처럼 해서 브랜치를 만들자:
+
+	git branch newfeature
+
+해당 브랜치로 바꾸려면 즉 `checkout` 하려면:
+
+	git checkout newfeature
+
+새로 만든 브랜치로 변경했다. 현재 위치한 브랜치를 확인하려면 `git branch`를 실행해보라.
+
 ## Hack!
+
+이제 실제 고치는 작업을 하자. 계획했던 고칠점이 맘에 들 때 까지 될대로 코드를 고쳐보고 테스트해보고 행복의 경지에 이르러보자. 음하하하~
 
 ## 커밋 하나로 합치기
 
+(그림)
+
+이게 '스쿼시'냥!
+
+여러분도 나처럼 엄청나게 커밋을 해댄다면 커밋 메시지는 안봐도 거지같을게('동작함!', '안돌아감', '열여덟', '후아~', 등등) 뻔하다. 사실 이런 습관은 좋지 않지만 고치고 싶은 생각도 없고 이런 습관을 가진 사람도 많이 봤다.
+
+Pull Request를 보내기 전에 여러 커밋을 하나 혹은 몇 개의 커밋으로 모아서 정리하고 싶을 수도 있다. 하여 `git rebase` 명령을 써 볼 것이다. 우선 `git log`로 커밋 메시지를 확인해보고 어떻게 정리할 지 생각해둔다. 마지막 3개의 커밋을 하나로 합치려면 아래와 같은 명령을 실행한다:
+
+	git rebase -i HEAD~3
+
+명령을 실행하면 Git은 기본 편집기를 불러내서 아래같은 내용을 보여준다.
+
+	pick df94881 Allow install to SD 
+	pick a7323e5 README Junkyism 
+	pick 3ead26f rm classpath from git 
+
+각 줄이 각 커밋에 해당하는데 하나로 합치려면 아래와 같이 내용을 수정한다.
+
+	pick df94881 Allow install to SD 
+	squash a7323e5 README Junkyism 
+	squash 3ead26f rm classpath from git 
+
+내용을 저장하고 편집기를 종료하면, 새로운 내용으로 편집기가 다시 뜰텐데 그때는 새로 하나로 만들어진 커밋 메시지를 입력하는 것이다. 거지같은 커밋이 깔끔하게 정리된 새 커밋으로 재탄생했다. 만쉐이~ 이제 Pull Request를 해도 부끄럽지 않겠다.
+
 ## Pull Request 보내기
+
+단장하고 커밋해놓은 브랜치를 서버 저장소로 아래와 같은 명령으로 보낸다:
+
+	git push origin newfeature
+
+그리고 GitHub 사이트로 가서 새로 만든 브랜치로 이동한다. 보통 기본으로 master 브랜치로 되어있을 것이다.
+
+(그림)
+
+Pull Request를 보내자
+
+브랜치로 이동한 것을 확인하고 'Pull Request' 버튼을 누르자. 다음과 같은 화면이 나오는데 브랜치에서 변경한 내용에 대한 설명을 적어주고 'Submit Pull Request' 버튼을 눌러준다.
+
+(그림)
+
+Pull Request 설명 달기
+
+룰루랄라~ 끝났다. 사실 완전히 다 끝난건 아니다. 'Pull Request' 보낸 커밋에 고칠점이 있다면 메인테이너는 'Pull Request'를 바로 받아주지 않고 해당사항을 고쳐달라고 할 것이다. 메인테이너가 'Pull Request'를 닫지(Clone) 않는 한 해당 브랜치로 커밋을 Push하면 다행히도 'Pull Request' 속으로 들어간다.
 
 ## Pull Request 받아서 Merge하기
 
+보너스! Pull Request를 받았을 때에는 어떻게 Merge하면 되는가! 그냥 버튼 하나만 누르면 된다. 쉽네. GitHub이 버튼 한 번만 누르면 모든게 자동으로 되도록 잘 만들어놨다. 간혹, 자동으로 되지 않을때가 있는데 그때는 직접 명령어를 써서 Merge해야 한다.
+
+	git checkout master
+	git remote add contributor git://github.com/contributor/project
+	git fetch contributor
+	git merge contributor/newfeature
+	git push origin master
+
+이렇게 하면 다른사람이 수정한 내용을 메인 master 브랜치로 merge하게 된다.
+
 ## Pull Request를 받아주지 않는 이유
 
-## 정리
+(code)
+
+이 부분은 [원본 페이지][source]를 확인하시라!
