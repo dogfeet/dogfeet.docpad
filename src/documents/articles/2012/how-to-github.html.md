@@ -1,14 +1,16 @@
 --- yaml
 layout: 'article'
-title: 'GitHub로 남의 프로젝트에 감놔라 배놔라 참여'
+title: 'GitHub로 남의 프로젝트에 감놓고 배놓기'
 author: 'Sean Lee'
 date: '2012-4-1'
-tags: ['Git', 'Github', 'Fork', 'Branch', 'Pull Request', '깃헙', '기여', '프로젝트', '오픈소스', 'OpenSource']
+tags: ['Git', 'Github', 'Pull Request', '깃헙', '오픈소스', 'OpenSource']
 ---
 
 [GitHub][]를 사용하여 오픈소스 프로젝트에 어떻게 참여할 수 있는 방법을 정리한다. GitHub에 계정이 있어야 하고 [Git][]을 어느정도 써 본 사람이어야 한다. 
 
 _원문은 [Rich Jones][rich]의 [How to GitHub: Fork, Branch, Track, Squash and Pull Request][source] 이다._
+
+![gun.io](/articles/2012/how-to-github/banner_ul2.png)
 
 [Git]: http://git-scm.org/
 [GitHub]: http://github.com/
@@ -23,7 +25,7 @@ _원문은 [Rich Jones][rich]의 [How to GitHub: Fork, Branch, Track, Squash and
 
 [GitHub][]에서 저장소를 새로 하나 만들면 아래와 같은 설명을 보여준다.
 
-(그림)
+![GitHub](/articles/2012/how-to-github/LiEI3.png)
 
 GitHub은 새로운 프로젝트와 새로운 저장소를 만들었을 경우에 대한 설명은 친절하게 해주고 있다. 하지만 다른 프로젝트를 개선하고 참여하는 방법에 대해서는 그다지 좋은 설명을 해주고 있지 않다. 이 글은 그러한 점에서 도움이 될 것이다.
 
@@ -31,7 +33,7 @@ GitHub은 새로운 프로젝트와 새로운 저장소를 만들었을 경우�
 
 ## 네트워크
 
-(그림)
+![GitHub Network](/articles/2012/how-to-github/naZ6I.png)
 
 네트워크 그림이다. 'mobile' 이라는 브랜치에서 누군가 열심히 작업을 하고 있기 때문에 'mobile'에 대한 일을 하는 수고는 하지 않는것이 좋을듯 하다.
 
@@ -39,15 +41,12 @@ GitHub은 새로운 프로젝트와 새로운 저장소를 만들었을 경우�
 
 ## 이슈 등록
 
-(그림)
-
-이슈가 있네!
+![GitHub Issue](/articles/2012/how-to-github/oksQI.png)
+_이슈가 왔어요!_
 
 프로젝트 화면에서 이슈메뉴로 가 봅시다. 얼마나 많은 이슈가 있는지 그리고 내가 고쳐보고픈 부분이 이미 이슈로 등록이 되어있는지 알 수 있다.
 
-This is an important step that many people forget about, and they just submit major pull requests to maintainers without considering that the maintainers might not have the same intentions with the software as they do. This is especially true if a new feature requires user interface/design changes, as often, that's the aspect of programs that people are the most protective of.
-
-TODO: (다시 읽고 개선) 많은 사람들이 잊기 쉬운 이 과정이 왜 중요하냐면 고친점을 보내는 사람들은 보통 프로젝트의 관리자 즉 메인테이너가 같은 문제로 고민중이라는 점을 전혀 고려하지 않기 때문이다.
+많은 사람들이 잊기 쉬운 이 과정이 왜 중요하냐면 고친점을 보내는 사람들은 보통 프로젝트의 관리자 즉 메인테이너가 같은 문제로 고민중이라는 점을 전혀 고려하지 않기 때문이다.
 
 고쳐볼 부분이 아직 이슈로 등록이 안되어있다면 새로 하나 등록하자. 이슈를 등록할때는 메인테이너에게 공손히 프로젝트에 감사하다는 마음을 갖고 고쳐보고자 하는 버그나 개선사항을 적는거다.
 
@@ -55,15 +54,16 @@ TODO: (다시 읽고 개선) 많은 사람들이 잊기 쉬운 이 과정이 왜
 
 ## Fork로 저장소 분리
 
+![Hardcore Fork](/articles/2012/how-to-github/VWFCB.png)
+
 'Fork' 버튼을 누르는 희열!! 복제된 저장소가 내 가슴속으로 들어왔다. 나의 복제된 저장소 페이지로 가보라! Clone해서 내려받을 수 있는 주소가 적혀있을 것이다. 바로 그냥 내려받는거다.
 
 	git clone **your ssh/git url**
 
 ## Fork로 만든 저장소와 원본 저장소 연결
 
-(그림)
-
-Fork가 이거냥!
+![Fork](/articles/2012/how-to-github/bbNRs.png)
+_Fork가 이거냥!_
 
 이 과정이 꼭 필요한건 아니다. 하지만 단 한번만 이 프로젝트에 참여할 것이 아니라면 이 과정을 해두면 정말 쓸모있다. 아래 명령을 실행하여 원래 프로젝트 저장소를 'upstream'으로 등록해두면 원래 프로젝트의 변경사항을 계속 받아볼 수 있다. 'upstreamname'과 'projectname' 부분을 실제 프로젝트에 맞게 적당히 바꿔서 명령을 실행한다.
 
@@ -81,9 +81,8 @@ Fork가 이거냥!
 
 ## 개발용 브랜치
 
-(그림)
-
-그 옛날의 인터넷이 생각나지 않나요들?
+![Old Internet](/articles/2012/how-to-github/fI9qT.gif)
+_그 옛날의 인터넷이 생각나지 않나요들?_
 
 자 이제 고쳐야 할 부분에 집중하기 위해 `master` 브랜치에서 새로운 브랜치로 `checkout`할 때가 왔다. Pull Request는 Branch 단위로 하기 때문에 브랜치를 잘 만들어두는게 중요하다. 고쳐야 할 이슈가 여럿이라면 브랜치도 여러개 이어야 겠다. 아래처럼 해서 브랜치를 만들자:
 
@@ -101,9 +100,8 @@ Fork가 이거냥!
 
 ## 커밋 하나로 합치기
 
-(그림)
-
-이게 '스쿼시'냥!
+![Squash](/articles/2012/how-to-github/FgOPu.png)
+_이게 '스쿼시'냥!_
 
 여러분도 나처럼 엄청나게 커밋을 해댄다면 커밋 메시지는 안봐도 거지같을게('동작함!', '안돌아감', '열여덟', '후아~', 등등) 뻔하다. 사실 이런 습관은 좋지 않지만 고치고 싶은 생각도 없고 이런 습관을 가진 사람도 많이 봤다.
 
@@ -133,15 +131,13 @@ Pull Request를 보내기 전에 여러 커밋을 하나 혹은 몇 개의 커�
 
 그리고 GitHub 사이트로 가서 새로 만든 브랜치로 이동한다. 보통 기본으로 master 브랜치로 되어있을 것이다.
 
-(그림)
-
-Pull Request를 보내자
+![Pull Request](/articles/2012/how-to-github/aAd2v.png)
+_Pull Request를 보내자_
 
 브랜치로 이동한 것을 확인하고 'Pull Request' 버튼을 누르자. 다음과 같은 화면이 나오는데 브랜치에서 변경한 내용에 대한 설명을 적어주고 'Submit Pull Request' 버튼을 눌러준다.
 
-(그림)
-
-Pull Request 설명 달기
+![Pull Request](/articles/2012/how-to-github/5Euiy.png)
+_Pull Request 설명 달기_
 
 룰루랄라~ 끝났다. 사실 완전히 다 끝난건 아니다. 'Pull Request' 보낸 커밋에 고칠점이 있다면 메인테이너는 'Pull Request'를 바로 받아주지 않고 해당사항을 고쳐달라고 할 것이다. 메인테이너가 'Pull Request'를 닫지(Clone) 않는 한 해당 브랜치로 커밋을 Push하면 다행히도 'Pull Request' 속으로 들어간다.
 
@@ -158,7 +154,5 @@ Pull Request 설명 달기
 이렇게 하면 다른사람이 수정한 내용을 메인 master 브랜치로 merge하게 된다.
 
 ## Pull Request를 받아주지 않는 이유
-
-(code)
 
 이 부분은 [원본 페이지][source]를 확인하시라!
