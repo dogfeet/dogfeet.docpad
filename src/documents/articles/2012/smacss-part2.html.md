@@ -53,7 +53,7 @@ _Back-End 출신이라 CSS를 사용할 때마다 '이 많은 스타일은 어�
 
 **Pseudo 클래스**
 
-Pseudo 클래스를 사용하면 JavaScript를 사용하지 않고도 상태 변경을 보여줄 수 있다. 하자만 보통 인접한 엘레먼트만 변경할 수 있는 제한이 있다.
+Pseudo 클래스를 사용하면 JavaScript를 사용하지 않고도 상태 변경을 보여줄 수 있다. 하자만 보통 인접한 엘리먼트만 변경할 수 있는 제한이 있다.
 
 **미디어 쿼리**
 
@@ -67,9 +67,9 @@ Pseudo 클래스를 사용하면 JavaScript를 사용하지 않고도 상태 변
 
 이어지는 아래의 여러 내용은 SMACSS를 적용했을 때 기대할 수 있는 부분을 설명하고 있다.
 
-## Depth of Applicability
+## 적용도(Depth of Applicability)
 
-Depth는 쉽게 말해서 CSS 셀렉터의 길이를 의미한다. CSS Depth 문제는 이미 만들어진 HTML 구조에 의존적이라는 것이고 HTML 구조를 그대로 CSS 셀렉터에 표현하면 너무 길어진다. 예를 들어 다음과 같은 CSS Rule이 있으면:
+깊이는 쉽게 말해 CSS 셀렉터의 길이를 의미한다. CSS 깊이 문제는 이미 만들어놓은 HTML 구조에 관련있는 것이고 HTML 구조를 그대로 CSS 셀렉터에 표현하면 너무 길어진다. 예를 들어 다음과 같은 CSS Rule이 있으면:
 
 	#sidebar div, #footer div {
 		border: 1px solid #333;
@@ -83,7 +83,7 @@ Depth는 쉽게 말해서 CSS 셀렉터의 길이를 의미한다. CSS Depth 문
 		margin-bottom: 5px;
 	}
 
-이런걸 다음과 같이 바꿀 수 있다.
+div 엘레멘트를 기본으로 하여 다음과 같이 바꿀 수 있다.
 
 	.pod {
 		border: 1px solid #333;
@@ -97,9 +97,9 @@ Depth는 쉽게 말해서 CSS 셀렉터의 길이를 의미한다. CSS Depth 문
 		margin-bottom: 5px;
 	}
 
-element마다 class 셀렉터를 만들지 않고 `.pod` 하나만 만들었다. 여전히 문서 구조는 남아 있지만 만든 class 셀렉터는 하나다. 이런 점이 "tradeoff"다. 한쪽으로 치우치면 다른 한쪽이 아쉽다.
+엘리먼트 마다 Class 셀렉터를 만들지 않고 `.pod` 하나만 만들었다. 깊이도 간단해졌고 문서 구조에 따라 의도하지 않은 CSS 적용도 피할 수 있다. 문서 구조는 변하지 않았지만 대신 적용해야 하는 부분마다 `.pod` 클래스를 지정해줘야 한다 이런 점이 고민할 부분이다. 한 쪽으로 치우치면 다른 한 쪽이 아쉬워진다.
 
-이렇게 낮은(Shallow) Depth의 CSS은 템플릿 엔진을 사용할 때 효과적이다. 이 CSS를 따르는 [Mushache][]의 템플릿 코드를 살펴보자:
+이렇게 얕은 깊이의 CSS은 템플릿 엔진을 사용할 때 효과적이다. 이 CSS를 따르는 [Mushache][]의 템플릿 코드를 살펴보자:
 
 	<div class="pod">
 		<h3>{{heading}}</h3>
@@ -110,7 +110,7 @@ element마다 class 셀렉터를 만들지 않고 `.pod` 하나만 만들었다.
 		</ul>
 	</div>
 
-요는 관리성, 성능, 가독성을 잘 조화시켜야 한다. CSS 셀렉터 길이가 너무 길면 "classitis"는 낮출 수 있지만 관리성과 가독성을 포기해야 한다. 반대로 모든 element에 class 셀렉터를 새로 만들어 줄 수도 있다. 이 예제에서 h3, h1에 까지 class 셀렉터를 부여하는 것은 조금 불필요하다.
+중요한 점은 관리성, 성능, 가독성을 잘 조화시켜야 한다. CSS 셀렉터 길이가 너무 길면 HTML 여기저기 클래스 속성이 남발하는 것을 낮출 수 있지만 관리성과 가독성을 포기해야 한다. 반대로 모든 엘리먼트에 Class 셀렉터를 새로 만들어 줄 수도 있다. 이 예제에서 h3, h1에 까지 class 셀렉터를 부여하는 것은 불필요하다.
 
 Container는 보통 Header, Body, Footer 영역으로 나눈다. 이 것은 일종의 디자인 패턴이라고 할 수 있다. 그래서 `.pod > ul`을 다음과 같은 CSS Rule을 만들고 HTML에 적용시면:
 
@@ -118,7 +118,7 @@ Container는 보통 Header, Body, Footer 영역으로 나눈다. 이 것은 일�
 		margin-bottom: 5px;
 	}
 
-ul대신 ol이나 div같은 element도 사용할 수 있다.
+Container 안에서 ul, ol, div에서 클래스 지정만으로 같은 효과를 사용할 수 있다.
 
 이렇게 단일 셀렉터를 사용하면 결국 '어떤 CSS 셀렉터를 사용해야 할지?' 더는 고민하지 않아도 된다. 특별한 이유가 없으면 이렇게 단일 셀렉터를 사용하는게 장땡이다.
 
@@ -126,9 +126,9 @@ ul대신 ol이나 div같은 element도 사용할 수 있다.
 
 ## 셀렉터 성능 고려
 
-Perfomance를 위해 CSS Selector를 어떻게 적용할 지 몇가지 팁을 제시하고 있다. Perfomance를 위해 몇가지 도구를 사용한다고 언급했는데 [Google Page Speed][]같은 프로그램으로 한번 측정해보는 것이 적당할 것이다.
+성능을 위해 CSS 셀렉터를 어떻게 적용할 지 몇가지 팁을 제시하고 있다. 성능 측정을 위해 몇 가지 도구를 사용한다고 말하는데 [Google Page Speed][]같은 프로그램으로 한번 측정해보는 것이 적당할 것이다.
 
-우선 스타일은 HTML의 element가 생성되는 시점에 적용이 된다. 브라우저는 HTML문서를 일종의 Stream으로 다룬다. 그러니까 먼저 들어온 element를 먼저 생성한다. 다음 예제를 보면:
+우선 스타일은 HTML의 엘리먼트가가 생성되는 시점에 적용이 된다. 브라우저는 HTML문서를 일종의 Stream으로 다룬다. 그러니까 먼저 들어온 엘리먼트를 먼저 생성한다. 다음 예제를 보면:
 
 	<body>
 		<div id="content">
@@ -143,22 +143,22 @@ Perfomance를 위해 CSS Selector를 어떻게 적용할 지 몇가지 팁을 �
 		</div>
 	</body>
 
-`body, div#content, div.module.intro ...` 순으로 element를 생성하고 스타일을 evaluate한다는 말이다. 각 element를 evaluate할 때 Font는 뭐고, 컬러는 뭐고, 높이나 넓으는 얼마인지 브라우저는 정리한 스타일대로 적용하고 그린다. 그리고 하위 element의 크기가 바뀌면 브라우저는 body를 다시 그려야(Repaint)한다고 생각한다(저자는 다른 변수가 있는 사례가 있다고 의심하지만 확실한 것은 보통 width와 height값이 바뀌면 다시 그린다는 것이다).
+`body, div#content, div.module.intro ...` 순으로 엘리먼트를 생성하고 스타일을 evaluate한다는 말이다. 각 엘리먼트를 Evaluate할 때 Font는 뭐고, 컬러는 뭐고, 높이나 넓으는 얼마인지 브라우저는 정리한 스타일대로 적용하고 그린다. 그리고 하위 엘리먼트의 크기가 바뀌면 브라우저는 Body를 다시 그려야(Repaint)한다고 생각한다(저자는 다른 변수가 있는 사례가 있다고 의심하지만 확실한 것은 보통 width와 height값이 바뀌면 다시 그린다는 것이다).
 
 HTML이 실제로 Render되는 영상을 소개하고 있다. http://youtu.be/ZTnIxIA5KGw 는 Firefox의 reflow/repaint 영상이다.
 
 ### Right to Left
 
-CSS는 오른쪽 부터 evaluate한다. `#content > div > p` 같은 Selector가 있다면 p element가 그려질 때 마다 상위 div를 찾고 상위 #content를 찾는다. 스타일이 적용되기 위해 Selector가 찾아봐야 하는 Element의 갯수가 얼마나 될지 생각해봐야 한다.
+CSS는 오른쪽 부터 Evaluate한다. `#content > div > p` 같은 셀렉터가 있다면 `p` 엘리먼트가 그려질 때 마다 상위 `div`를 찾고 상위 `#content`를 찾는다. 스타일이 적용되기 위해 셀렉터가 찾아봐야 하는 엘리먼트의 갯수가 얼마나 될지 생각해봐야 한다.
 
 ### 그외 다른 규칙은?
 
-Google Page Speed는 다음 네 가지 Selector Rule은 비효율적이라고 말한다.
+Google Page Speed는 다음 네 가지 셀렉터 Rule은 비효율적이라고 말한다.
 
  * `#content h3`와 같은 Descendant Selector
  * `#content > h3`와 같은 Child Selector
- * `div#content > h3`와 같이 불필요한 element까지 정의하는 Selector
- * `div#content:hover`와 같이 link element가 아닌 element에 :hover를 정의하는 Selector
+ * `div#content > h3`와 같이 불필요한 엘리먼트까지 정의하는 Selector
+ * `div#content:hover`와 같이 link 엘리먼트가 아닌 엘리먼트에 :hover를 정의하는 Selector
 
 자세한 내용은 [Google Page Speed의 조언][]을 참고하는 것이 좋다.
 
@@ -169,6 +169,100 @@ Google Page Speed는 다음 네 가지 Selector Rule은 비효율적이라고 �
 
 ## HTML5와 SMACSS
 
+[SMACSS][]는 당근 HTML5에 잘 들어맞는다. 사실 HTML4에도 잘 들어맞는다. [SMACSS][]는 다음 두 가지 목표를 위해 노력하기 때문이다.
+
+1. 증가: HTML과 Content에서 Section의 의미
+2. 감소: 특정 구조로 HTML을 만들거라는 기대
+
+특히 HTML5에서 새로 추가된 의미 태그는 1번 항목을 도와준다. 하지만 HTML5라고 해서 충분히 모든 의미를 포함할수는 없다. 클래스 속성을 통해서 아주 구체적인 의미를 밝힐 수 있다. 아래의 두 `<nav>` 엘리먼트는 클래스로 그 의미를 밝혀두고 있다. 클래스 속성에 따라 `nav-primary` 클래스는 가로 메뉴로, `nav-secondary` 세로메뉴로 만들수도 있다.
+
+	<nav class="nav-primary">
+	    <h1>Primary Navigation</h1>
+	    <ul>…</ul>
+	</nav>
+
+	<nav class="nav-secondary">
+	    <h1>External Links</h1>
+	    <ul>…</ul>
+	</nav>
+
+### 2단계 메뉴 목록
+
+SMACSS의 목표는 최대한 얕은 깊이의 셀렉터를 사용하는 것이다. 만약 아래와 같은 마크업이 있을 때 2단계를 어떻게 다르게 처리할 수 있을까.
+
+	<nav class="nav-primary">
+	    <h1>Primary Navigation</h1>
+	    <ul>
+	        <li>About Us
+	            <ul>
+	                <li>Team</li>
+	                <li>Location</li>
+	            </ul>
+	        </li>
+	    </ul>
+	</nav>
+
+CSS 셀렉터를 중첩해서 쓰면 아래와 같다:
+
+	nav.nav-primary li { 
+	    display: inline-block; 
+	}
+
+	nav.nav-secondary li,
+	nav.nav-primary li li {
+	    display: block;
+	}
+
+자 여기서 엘리먼트를 제한하는 `nav`를 제거하고 셀렉터의 깊이도 더 얕게 만들어보면:
+
+	.l-inline > * { 
+	    display: inline-block;
+	}
+
+	.l-stacked > * {
+	    display: block;
+	}
+
+요렇게 만들어볼 수 있다. 마크업은 아래와 같이 수정되어야 한다.
+
+	<nav class="l-inline">
+	    <h1>Primary Navigation</h1>
+	    <ul>
+	        <li>About Us
+	            <ul class="l-stacked">
+	                <li>Team</li>
+	                <li>Location</li>
+	            </ul>
+	        </li>
+	    </ul>
+	</nav>
+
 ## 프로토타입
 
-## 마무리
+좋은 프로그래머는 패턴을 좋아해~ 좋은 디자이너도 패턴을 좋아해~
+
+패턴으로서 재사용성을 높일 수 있다. SMACSS는 코드에서도 디자인에서도 패턴을 찾아내려 애쓴다. 프로토타입을 써서 전체적인 혹은 빌딩 블록 각 부분의 코드와 디자인이 제대로 되었는가를 확인할 수 있다. 잘 만든 디자인과 코드는 재사용하기가 매우매우 좋다. [Bootstrap](http://twitter.github.com/bootstrap/) 과 [960.gs](http://960.gs/)를 보라.
+
+### 프로토타입
+
+프로토타입을 통해 다음 사항을 확인해볼 수 있다.
+
+**상태**
+
+프로토타입에서는 정의해 둔 모든 상태에 대해서 테스트해 볼 수 있어야 한다. 데이터를 필요로 한다면 JSON이든 실제 서버든 간에 만들어서 테스트해보아야 한다.
+
+**지역화**
+
+사이트가 여러 언어를 지원하면 프로토타입을 통해 지역화를 지원하는지, 지역화를 통해 레이아웃이 손상되지 않는지 테스트 해볼 수 있다.
+
+**의존관계**
+
+프로토타입을 통해 각 모듈이 잘 보여지기 위한 최소의 필요조건을 테스트해볼 수 있다. 사이트가 커질수록 불필요한 부분을 줄이는것이 중요하다.
+
+### 퍼즐 맞추기
+
+야후처럼 아주 큰 사이트의 경우 프로토타입을 만들기 위한 시스템을 구축하여 부분적인 또한 전체적인 스타일을 테스트 해볼 수 있다. 운영하는 사이트가 규모가 작다면 이런 시스템은 오히려 배보다 배꼽이 더 클수도 있다. 사이트에 적당한 프로토타입을 정하는것이 중요하다.
+
+좋은 모듈을 만들고 패턴을 재사용하기 좋게 만드는 것이 추구해야할 목적이다. [MailChimp의 디자인 패턴 깜지](http://www.flickr.com/photos/aarronwalter/5579386649/)처럼 한눈에 보기쉽게 정리해두면 좋을 것이다.
+
+패턴은 락(樂)이다. 패턴을 코드로 만듦도 락(樂)이다. 패턴을 리뷰하고 테스트 하는 프로세스를 만듦은 극락(極樂)이다.
