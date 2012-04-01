@@ -1,28 +1,32 @@
 --- yaml
 layout: 'article'
-title: 'Learning J - Chapter 3: Defining Functions'
+title: 'J언어 배우기 - 제 3장: 함수 정의하기'
 author: 'Yongjae Choi'
-date: '2012-3-31'
-tags: ['J', 'jsoftware', 'language']
+date: '2012-5-1'
+tags: ['J', 'jsoftware', 'language', 'J언어']
 ---
 
-J comes with a collection of functions built-in; we have seen a few, such as * and +. In this section we take a first look at how to put together these built-in functions, in various ways, for the purpose of defining our own functions.
+Roger Stokes이 쓴 [Learning J][learning-j] 의 chapter 3:Defining Functions를 번역/정리했다. 이전 챕터들은 본 사이트에서 [J언어 태그](/site/tagmap.html#j언어)로 검색해 볼 수 있다.
 
-## 3.1 Renaming
+![j code](/articles/2012/learning_j_chapter3/jcode.png)
 
-The simplest way of defining a function is to give a name of our own choice to a built-in function. The definition is an assignment. For example, to define square to mean the same as the built-in *: function:
+J에는 많은 내장 함수가 있다. 우리는 그 중 몇 가지를 살펴보았다.(`*`나 `+`같은 것들) 이번 섹션에서는 이 내장함수를 조합해 원하는 함수를 정의하는 여러 방법을 배운다.
+
+## 3.1 이름짓기
+
+함수를 정의하는 가장 간단한 방법은 그냥 원하는 내장 함수에 이름을 부여하는 것이다. 정의는 할당 함수를 이용해서 한다. 예를 들어서 아래의 `square`함수는 내장 함수인 `*:`를 이용하는 것과 똑같다.
 
 	   square =: *:
 	   
 	   square 1 2 3 4
 	1 4 9 16
 
-We might choose to do this if we prefer our own name as more memorable. We can give two different names to the same built-in function, intending to use one for the monadic case and the other for the dyadic.
+우리가 지은 이름이 더 기억하기 쉽거나 해서 그게 좋다면 새로운 이름을 사용한다. 같은 내장 함수에 다른 두 개의 이름을 부여할 수도 있다. 하나는 모나딕용으로, 다른 하나는 다이아딕 용으로.
 
 	   Ceiling =: >.
 	   Max     =: >.
 
-<table cellpadding="10" border="1">
+<table style="margin:20px 0px" cellpadding="10" border="1">
 <tbody><tr valign="TOP">
 <td><tt>Ceiling 1.7</tt></td>
 <td><tt>3 Max 4</tt></td>
@@ -31,34 +35,32 @@ We might choose to do this if we prefer our own name as more memorable. We can g
 <td><tt>4</tt></td>
 </tr></tbody></table>
 
-## 3.2 Inserting
+## 3.2 삽입하기
 
-Recall that (+/ 2 3 4) means 2+3+4, and similarly (*/ 2 3 4) means 2*3*4. We can define a function and give it a name, say sum, with an assignment:
+표현식 `+/ 2 3 4`는 의미가 `2 + 3 + 4`와 같고 비슷하게 `*/ 2 3 4`는 `2 * 3 * 4`와 같다. 이제 이 함수에 `sum`이라는 이름을 붙여보자.
 
 	   sum =: + /
 	   
 	   sum 2 3 4
 	9
 
-Here, sum =: +/ shows us that +/ is by itself an expression which denotes a function.
-This expression +/ can be understood as: "Insert" (/) applied to the function + to produce a list-summing function.
+`sum =: +/`라는 코드를 보면 `+/`가 이 자체로 함수를 표현하는 표현식임을 알 수 있다.
+`+/`는 "Insert"(`/`)가 함수 `+`에 적용되어 리스트를 합치는 함수가 되었다 라고 말한다.
 
-That is, / is itself a kind of function. It takes one argument, on its left. Both its argument and its result are functions.
+즉, `/`은 그 자체로 함수의 한 종류이다. 이 함수는 왼쪽에 인자 하나를 받는다. 그 인자도 함수고 계산 결과도 함수다.
 
-## 3.3 Terminology: Verbs, Operators and Adverbs
+## 3.3 용어: 동사, 연산자, 부사
 
-We have seen functions of two kinds. Firstly, there are "ordinary" functions, such as + and *, which compute numbers from numbers. In J these are called "verbs".
-Secondly, we have functions, such as /, which compute functions from functions. Functions of this kind will be called "operators", to distinguish them from verbs.
+우리는 두 종류의 함수를 봤다. 첫째로 "일반적인" 함수다. 숫자를 계산해서 숫자를 내뱉는 `+`나 `*`같은 함수. J에서는 이런 것들을 "동사"라고 한다. 둘째로 함수를 계산해서 함수를 내뱉는 `/`같은 함수이다. 이런 종류의 함수를 다른 종류의 함수와는 구별하여 "연산자"라고 한다. 
 
-Operators which take one argument are called "adverbs". An adverb always takes its argument on the left. Thus we say that in the expression (+ /) the adverb / is applied to the verb + to produce a list-summing verb.
+하나의 인자를 받는 연산자는 "부사"라고 한다. 부사는 항상 왼쪽에 하나의 인자를 받는다. 그래서 표현식 `+ /`에서 부사 `/`는 동사 `+`에 적용되어서 리스트를 더하는 동사가 만들어진다.
 
-The terminology comes from the grammar of English sentences: verbs act upon things and adverbs modify verbs.
+용어는 영어구문에서 따왔다. 동사는 물건의 행동을 묘사하고 부사는 동사의 의미를 변한다.
 
-## 3.4 Commuting
+## 3.4 교환하기(Commuting)
 
-Having seen one adverb, (/), let us look at another. The adverb ~ has the effect of exchanging left and right arguments.
-
-<table cellpadding="10" border="1">
+부사 `/`말고 다른것도 보자. 부사 `~`는 왼쪽과 오른쪽의 인자를 서로 바꾸는 기능이 있다.
+<table style="margin:20px 0px" cellpadding="10" border="1">
 <tbody><tr valign="TOP">
 <td><tt>'a' , 'b'</tt></td>
 <td><tt>'a' ,~ 'b'</tt></td>
@@ -67,15 +69,15 @@ Having seen one adverb, (/), let us look at another. The adverb ~ has the effect
 <td><tt>ba</tt></td>
 </tr></tbody></table>
 
-The scheme is that for a dyad f with arguments x and y
+다이아드 함수 `f`와 그 인자 `x`, `y`에 대해서 `~`의 구조는 다음과 같다.
 
-		     x f~ y      means    y f x
+		     x f~ y      는   y f x   이다
 
-For another example, recall the residue verb | where 2 | 7 means, in conventional notation, "7 mod 2". We can define a mod verb:
+또 다른 예로 동사 `|`를 기억하는가? `2|7`은 "7 mod 2"와 같다. 이제 mod함수를 정의 할 차례이다.
 
 	   mod =: | ~
    
-<table cellpadding="10" border="1">
+<table style="margin:20px 0px" cellpadding="10" border="1">
 <tbody><tr valign="TOP">
 <td><tt>7 mod 2</tt></td>
 <td><tt>2 | 7</tt></td>
@@ -84,88 +86,88 @@ For another example, recall the residue verb | where 2 | 7 means, in conventiona
 <td><tt>1</tt></td>
 </tr></tbody></table>
 
-Let me draw some pictures. Firstly, here is a diagram of function f applied to an argument y to produce a result (f y). In the diagram the function f is drawn as a rectangle and the arrows are arguments flowing into, or results flowing out of, the function. Each arrow is labelled with an expression.
+그림을 한번 그려보자. 우선 함수 f에 인자 y를 적용해 `f y`의 결과를 반환하는 다이어그램이 있다. 이 다이어그램에서 함수 f는 사각형으로 그리고 인자가 어떻게 흘러서 결과가 나타나는지 화살표로 나타낸다. 각각의 화살표에는 표현식이 쓰여있다.
 
 ![monadic](/articles/2012/learning_j_chapter3/diag01.gif)
 
-Here is a similar diagram for a dyadic f applied to arguments x and y to produce (x f y).
+아래에 다이아딕 함수 f에 인자 x, y를 적용해 `x f y`가 만들어지는 다이어그램이 있다.
 
 ![dyadic](/articles/2012/learning_j_chapter3/diag02.gif)
 
-Here now is a diagram for the function (f~), which can be pictured as containing inside itself the function f, together with a crossed arrangement of arrows.
+이것이 함수 `f~`에 대한 다이어그램이다. 상자 안에 함수 f가 있고 인자가 서로 엇갈려서 들어가는 그림으로 나타냈다.
 
 ![~](/articles/2012/learning_j_chapter3/diag03.gif)
 
-## 3.5 Bonding
+## 3.5 묶기(Bonding)
 
-Suppose we wish to define a verb double such that double x means x * 2 . That is, double is to mean "multiply by 2". We define it like this:
+double이라는 동사를 정의해야한다고 가정해보자. `double x`는 `x * 2`를 뜻한다. 즉 double은 "곱하기 2"이다. 아래와 같이 정의할 수 있다.
 
 	   double =: * & 2
 	   
 	   double 3
 	6
 
-Here we take a dyad, *, and produce from it a monad by fixing one of the two arguments at a chosen value (in this case, 2). The & operator is said to form a bond between a function and a value for one argument. The scheme is: if f is a dyadic function, and k is a value for the right argument of f, then
+우리는 `*`를 두 인자중 한 인자를 미리 정해놓고(이 경우엔 2) 그걸 마치 모나드 처럼 써서 `*`를 다이아드로 사용했다. `&` 연산자는 함수와 값을 묶어놓는 역할을 한다. f가 다이아딕 함수이고 k가 f의 오른쪽 인자라면 다음과 같은 구조를 가진다.
 
-		    (f & k) y    means    y f k  
+		    (f & k) y    은    y f k   이다.
 
-Instead of fixing the right argument we could fix the left, so we also have the scheme
+오른쪽 인자말고 왼쪽 인자를 고정하고 싶다면 아래와 같이 쓸 수 있다.
 
-		    (k & f)  y   means    k f y
-
-For example, suppose that the rate of sales tax is 10%, then a function to compute the tax, from the purchase-price is:
+		    (k & f)  y   은    k f y   이다
+ 
+예를 들어서 물건 값의 10% 세금은 계산해야 한다고 하자. 그러면 세액을 계산하는 함수는 다음과 같다.
 
 	   tax =: 0.10 & *
 	   
 	   tax 50
 	5
 
-Here is a diagram illustrating function k&f.
+아래에 `k&f`함수의 다이어그램이 있다.
 
 ![bond](/articles/2012/learning_j_chapter3/diag04.gif)
 
-## 3.6 Terminology: Conjunctions and Nouns
+## 3.6 용어: 접속사와 동사
 
-The expression (*&2) can be described by saying that the & operator is a function which is applied to two arguments (the verb * and the number 2), and the result is the "doubling" verb.
-A two-argument operator such as & is called in J a "conjunction", because it conjoins its two arguments. By contrast, recall that adverbs are operators with only one argument.
+표현식 `*&2`는 `&` 연산자는 두 인자(동사 `*`와 숫자 2)를 받는 함수이며 그 결과로 "doubling"이라는 동사를 만들어낸다.
+`&`와 같은 두 인자를 취하는 "연산자"를 J에서는 "접속사"라고 한다. 이는 두 인자를 묶어주기 때문이다. 반면에 부사는 하나의 인자만을 가지는 연산자이다.
 
-Every function in J, whether built-in or user-defined, belongs to exactly one of the four classes: monadic verbs, dyadic verbs, adverbs or conjunctions. Here we regard an ambivalent symbol such as - as denoting two different verbs: monadic negation or dyadic subtraction.
+J의 모든 함수는 내장 함수이건 사용자 정의 함수이건 반드시 4종류 중 하나이다. 모나딕 동사, 다이아딕 동사, 부사, 접속사가 그것이다. 같은 심볼이지만 다른 의미를 가지는 동사는 두 개의 다른 동사로 간주한다. 예를 들면 `-`는 모나딕으로는 "negation"이고 다이아딕으로는 "subtraction"이다.
 
-Every expression in J has a value of some type. All values which are not functions are data (in fact, arrays, as we saw in the previous section).
+J의 모든 표현식은 어떤 타입을 가진 값이다. 그리고 함수가 아닌 모든 값은 데이터이다.(정확히는 이전 섹션에서 본 배열이다)
 
-In J, data values, that is, arrays, are called "nouns", in accordance with the English-grammar analogy. We can call something a noun to emphasize that it's not a verb, or an array to emphasize that it may have several dimensions.
+J에서 데이터 값, 즉 배열은 "명사"라고 부른다. 이는 영어의 구문과 비슷하다. 이젠 어떤 것이 동사가 아닌 것을 강조하기 위해서 그것을 명사라 부르고, 어떤 차원을 가지고 있다는걸 강조하기 위해서 그것을 배열이라 부른다.
 
-## 3.7 Composition of Functions
+## 3.7 함수의 합성(composition)
 
-Consider the English language expression: the sum of the squares of the numbers 1 2 3, that is, (1+4+9), or 14. Since we defined above verbs for sum and square, we are in a position to write the J expression as:
+이런 영어 표현을 생각해보자. "the sum of the squares of the numbers 1 2 3" 이건 `1+4+9` 또는 `14`이다. 우리가 앞에서 sum과 square동사를 정의 했으니 J로는 다음과 같이 쓸 수 있다.
 
 	   sum square 1 2 3
 	14
 
-A single sum-of-the-squares function can be written as a composite of sum and square:
+sum과 square를 합성하여 하나의 "sum-of-the-squares"함수를 만들 수도 있다.
 
 	   sumsq =: sum @: square
 	   
 	   sumsq 1 2 3
 	14
 
-The symbol @: (at colon) is called a "composition" operator. The scheme is that if f and g are verbs, then for any argument y
+심볼 `@:`(at colon)은 "composition(합성)" 연산자다. f와 g가 동사이고 y라는 인자가 있을때 이 연산자의 구조는 다음과 같다.
 
-		   (f @: g) y    means  f (g y)
+		   (f @: g) y    는  f (g y)  이다.
 
-Here is a diagram for the scheme:
+아래에는 이 구조에 대한 다이어그램이다.
 
 ![composition](/articles/2012/learning_j_chapter3/diag05.gif)
 
-At this point, the reader may be wondering why we write (f @: g) and not simply (f g) to denote composition. The short answer is that (f g) means something else, which we will come to.
+이 시점에서 독자분들은 동사를 합성할 때 왜 간단하게 `f g`라고 쓰지 않고 `f @: g`라고 쓰는지 궁금할 것이다. 간단히 말하자면 `f g`은 또 다른 의미이다. 이건 곧 나온다.
 
-For another example of composition, a temperature in degrees Fahrenheit can be converted to Celsius by composing together functions s to subtract 32 and m tomultiply by 5%9.
+합성에 대한 다른 예는 화씨를 섭씨로 바꾸는 것이다. 32를 빼는 함수 s와 5%9를 곱하는 함수 m을 합성해보자.
 
 	   s       =: - & 32
 	   m       =: * & (5%9)
 	   convert =: m @: s
 
-<table cellpadding="10" border="1">
+<table style="margin:20px 0px" cellpadding="10" border="1">
 <tbody><tr valign="TOP">
 <td><tt>s 212</tt></td>
 <td><tt>m s 212</tt></td>
@@ -176,28 +178,29 @@ For another example of composition, a temperature in degrees Fahrenheit can be c
 <td><tt>100</tt></td>
 </tr></tbody></table>
 
-For clarity, these examples showed composition of named functions. We can of course compose expressions denoting functions:
+이 예제는 이름있는 함수의 합성을 잘 보여준다. 다음과 같이 함수의 표현식 자체를 합성 할 수도 있다.
 
 	   conv =: (* & (5%9)) @: (- & 32) 
 	   conv 212
 	100
 
-We can apply an expression denoting a function, without giving it a name:
+합성한 함수에 이름을 주지 않고서도 인자를 적용시켜 사용할 수 있다.
 
 	   (* & (5%9)) @: (- & 32)  212
 	100
 
-The examples above showed composing a monad with a monad. The next example shows we can compose a monad with a dyad. The general scheme is:
+위 예제들로 모나드와 모나드를 합성한 것을 보였다. 다음 예제는 다이아드를 합성한 것이다. 일반적인 구조는 다음과 같다.
 
-			   x (f @: g) y   means    f (x g y)
-For example, the total cost of an order for several items is given by multiplying quantities by corresponding unit prices, and then summing the results. To illustrate:
+			   x (f @: g) y   은    f (x g y)   이다.
 
-	   P =:  2 3        NB. prices
-	   Q =:  1 100      NB. quantities 
+예를 들어서 아이템 몇 개를 구매한 총 금액은 각 아이템의 가격에 개 수를 곱하고 곱한 값을 더하면 알 수 있다. 아래를 보자.
+
+	   P =:  2 3        NB. 가격
+	   Q =:  1 100      NB. 개 수
 	   
 	   total =: sum @: *
 
-<table cellpadding="10" border="1">
+<table style="margin:20px 0px" cellpadding="10" border="1">
 <tbody><tr valign="TOP">
 <td><tt>P</tt></td>
 <td><tt>Q</tt></td>
@@ -212,25 +215,25 @@ For example, the total cost of an order for several items is given by multiplyin
 <td><tt>302</tt></td>
 </tr></tbody></table>
 
-For more about composition, see Chapter 08.
+합성에 대해서 더 알고 싶으면 8장을 보라.
 
-## 3.8 Trains of Verbs
+## 3.8 동사의 연결(Trains of Verbs)
 
-Consider the expression "no pain, no gain". This is a compressed idiomatic form, quite comprehensible even if not grammatical in construction - it is not a sentence, having no main verb. J has a similar notion: a compressed idiomatic form, based on a scheme for giving meaning to short lists of functions. We look at this next.
+"no pain, no gain"이라는 문구를 아는가. 이것은 압축되고 요약된 관용적 표현이다. 이런 말은 문법적 구조에는 맞지 않지만 제법 알아들을 수 있다. (메인 동사가 없으므로 문장이 아니다) J에는 이와 비슷하게 함수를 몇 개 연결해서 특정한 의미가 되도록 하는 표기법이 있다. 아래에 그 방법이 나온다.
 
-### 3.8.1 Hooks
+### 3.8.1 훅(Hooks)
 
-Recall the verb tax we defined above to compute the amount of tax on a purchase, at a rate of 10%. The definition is repeated here:
+위에서 정의했던 세금을 계산하는 동사를 다시 가져오자. 이 동사에서 세율은 10%였다. 
 
 	   tax =: 0.10 & *
 
-The amount payable on a purchase is the purchase-price plus the computed tax. A verb to compute the amount payable can be written:
+지불해야 하는 금액은 물건 가격 더하기 세금이다. 지불해야 하는 금액을 계산하는 동사는 다음과 같이 작성 할 수 있다.
 
 	   payable =: + tax
 
-If the purchase price is, say, $50, we see:
+만약 물건 가격이 50달러 라면, 아래와 같이 계산할 수 있다.
 
-<table cellpadding="10" border="1">
+<table style="margin:20px 0px" cellpadding="10" border="1">
 <tbody><tr valign="TOP">
 <td><tt>tax 50</tt></td>
 <td><tt>50 + tax 50</tt></td>
@@ -241,26 +244,26 @@ If the purchase price is, say, $50, we see:
 <td><tt>55</tt></td>
 </tr></tbody></table>
 
-In the definition (payable =: + tax) we have a sequence of two verbs + followed by tax. This sequence is isolated, by being on the right-hand side of the assignment. Such an isolated sequence of verbs is called a "train", and a train of 2 verbs is called a "hook".
+`payable =: + tax`라는 정의를 보면 `+`동사 다음에 곧바로 `tax`가 온다. 이 시퀀스는 할당 연산자 오른쪽에 위치함으로써 분리되어있다.(isolated) 이렇게 분리된 동사의 시퀀스를 "train"이라고 부르고 동사 2개의 train을 "hook"(훅)이라고 부른다.
 
-We can also form a hook just by isolating the two verbs inside parentheses:
+두 개의 동사를 괄호 안에 넣어 분리시켜 훅의 형태로 사용할 수 있다.
 
 	   (+ tax) 50
 	55
 
-The general scheme for a hook is that if f is a dyad and g is a monad, then for any argument y:
+f가 다이아드, g가 모나드이고 y라는 어떤 인자가 있을때 훅의 일반적인 구조는 다음과 같다. 
 
-		    (f g) y       means   y f (g y)
+		    (f g) y       는   y f (g y)   이다.
 
-Here is a diagram for the scheme:
+이 구조를 다이어그램으로 나타내면 다음과 같다.
 
 ![hook](/articles/2012/learning_j_chapter3/diag06.gif)
 
-For another example, recall that the "floor" verb <. computes the whole-number part of its argument. Then to test whether a number is a whole number or not, we can ask whether it is equal to its floor. A verb meaning "equal-to-its-floor" is the hook (= <.) :
+또다른 예로 인자로 들어온 수의 정수 부분을 계산하는 동사인 `<.`("floor")를 이용해보자. 숫자가 정수인지 아닌지 검사를 하려면 그 숫자가 정수부와 같은지 검사한다. "equal-to-its-floor"라는 의미를 가진 이 동사는 `= <.`라는 훅으로 정의할 수 있다.
 
 	   wholenumber  =:  = <.
    
-<table cellpadding="10" border="1">
+<table style="margin:20px 0px" cellpadding="10" border="1">
 <tbody><tr valign="TOP">
 <td><tt>y =: 3 2.7</tt></td>
 <td><tt>&lt;. y</tt></td>
@@ -273,11 +276,11 @@ For another example, recall that the "floor" verb <. computes the whole-number p
 <td><tt>1 0</tt></td>
 </tr></tbody></table>
 
-### 3.8.2 Forks
+### 3.8.2 포크(Forks)
 
-The arithmetic mean of a list of numbers L is given by the sum of L divided by the number of items in L. (Recall that number-of-items is given by the monadic verb #.)
+숫자 리스트 L의 산술 평균은 L의 합을 L의 아이템 개 수로 나눈 것이다.(아이템 개 수를 세는 모나딕 동사인 `#`는 기억하고 있겠지?)
 
-<table cellpadding="10" border="1">
+<table style="margin:20px 0px" cellpadding="10" border="1">
 <tbody><tr valign="TOP">
 <td><tt>L =: 3 5 7 9</tt></td>
 <td><tt>sum L</tt></td>
@@ -290,28 +293,28 @@ The arithmetic mean of a list of numbers L is given by the sum of L divided by t
 <td><tt>6</tt></td>
 </tr></tbody></table>
 
-A verb to compute the mean as the sum divided by the number of items can be written as a sequence of three verbs: sum followed by % followed by # .
+합을 아이템 개 수로 나누기 계산을 하는 동사는 세가지 동사의 시퀀스로 나타낼 수 있다. `sum` 다음에 `%`다음에 `#`가 오면 된다.
 
 	   mean =: sum % #
 	   
 	   mean L
 	6
 
-An isolated sequence of three verbs is called a fork. The general scheme is that if f is a monad, g is a dyad and h is a monad then for any argument y,
+세 동사의 분리된 시퀀스는 "fork(포크)"라고 한다. 임의의 인자 y에 대해서 f가 모나드이고 g가 다이아드이고 h가 모나드일 때 다음과 같은 일반적인 구조를 지닌다.
 
-		    (f g h) y     means   (f y) g (h y)
+		    (f g h) y     는   (f y) g (h y)   이다.
 
-Here is a diagram of this scheme:
+이 구조를 다이어그램으로 나타내면 아래와 같다.
 
 ![hook](/articles/2012/learning_j_chapter3/diag06.gif)
 
-For another example of a fork, what is called the range of numbers in a list is given by the fork smallest , largest where the middle verb is the comma.
+포크에 대한 다른 예로는 숫자 리스트의 범위를 구하는 것이 있다. 숫자 리스트의 범위는 리스트에서 가장 작은 수와 가장 큰 수를 구하는 것이다. 이는 최소, 최대를 구하는 동사 중간에 콤마 동사를 넣어 포크하면 된다.
 
-Recall from Chapter 01 that the largest number in a list is given by the verb >./ and so the smallest will be given by <./
+리스트에서 가장 큰 수를 구하는 함수 `>./`와 가장 작은 수를 구하는 함수 `<./`는 1장에서 배웠다.
 
 	   range =: <./  ,  >./
 
-<table cellpadding="10" border="1">
+<table style="margin:20px 0px" cellpadding="10" border="1">
 <tbody><tr valign="TOP">
 <td><tt>L</tt></td>
 <td><tt>range L</tt></td>
@@ -320,14 +323,14 @@ Recall from Chapter 01 that the largest number in a list is given by the verb >.
 <td><tt>3 9</tt></td>
 </tr></tbody></table>
 
-Hooks and forks are sequences of verbs, also called "trains" of verbs. For more about trains, see Chapter 09.
+훅과 포크는 동사의 시퀀스이다. 이는 동사의 "trains" 라고도 말한다. trains에 대해 더 많은 정보를 알려면 제 9장을 참고하라.
 
-## 3.9 Putting Things Together
+## 3.9 다 집어넣고 보자(Putting Things Together)
 
-Let us now try a longer example which puts together several of the ideas we saw above.
-The idea is to define a verb to produce a simple display of a given list of numbers, showing for each number what it is as a percentage of the total.
+이제까지 배운 것들 중 몇가지를 섞어서 좀 더 커다란 예제를 만들어보자
+어떤걸 만들꺼냐면, 숫자 리스트를 보여주고 각 숫자가 전체에서 몇 퍼센트를 차지하는지 보여주는 간단한 표를 만들 예정이다.
 
-Let me begin by showing you a complete program for this example, so you can see clearly where we are going. I don't expect you to study this in detail now, because explanation will be given below. Just note that we are looking at a program of 6 lines, defining a verb called display and its supporting functions.
+어떤걸 만들어야 하는지 명확히 하기 위해 우선 완성된 예제를 먼저 보자. 아래에 설명 할 것이기 때문에 당장에 이 모든걸 알 필요는 없다. 그냥 아래 6라인의 코드를 보고 어떤 동사가 정의되어 있는지 살펴보자.
 
 	   percent  =: (100 & *) @: (% +/)
 	   round    =: <. @: (+&0.5)
@@ -336,11 +339,11 @@ Let me begin by showing you a complete program for this example, so you can see 
 	   tr       =: ('Data';'Percentages') & ,
 	   display  =: (2 2 & $) @: tr @: br
 
-If we start with some very simple data:
+간단한 데이터로 시작해보자.
 
-   data =: 3 5
+	   data =: 3 5
 
-then we see that the display verb shows each number as given and as a percentage (in round figures) of the total: 3 is 38% of 8.
+이 데이터를 이용하면 `display`동사는 각 숫자와 그 숫자의 퍼센트를 표현할 것이다. 아래 표를 보자면, 3은 8에서 38%를 차지한다.
 
 	   display data
 	+----+-----------+
@@ -350,13 +353,13 @@ then we see that the display verb shows each number as given and as a percentage
 	|5   |63         |
 	+----+-----------+
 
-The verb percent computes the percentages, dividing each number by the total, with the hook (% +/) and then multiplying by 100. To save you looking backwards and forwards, the definition of percent is repeated here:
+`percent`동사는 훅 `% +/`으로 전체 수에서 각각의 수를 나누고 각각에 100을 곱해서 퍼센트를 계산해낸다. 아래에 `percent`의 정의를 다시 쓸테니 위로 스크롤 하지 않아도 된다.
 
 	   percent  =: (100 & *) @: (% +/)
 
-To illustrate:
+이를 사용해보자.
 
-<table cellpadding="10" border="1">
+<table style="margin:20px 0px" cellpadding="10" border="1">
 <tbody><tr valign="TOP">
 <td><tt>data</tt></td>
 <td><tt>+/ data</tt></td>
@@ -371,15 +374,15 @@ To illustrate:
 <td><tt>37.5 62.5</tt></td>
 </tr></tbody></table>
 
-Let us round the percentages to the nearest whole number, by adding 0.5 to each and then taking the floor (the integer part) with the verb <. The verb round is:
+퍼센트 값을 반올림하자. 반올림은 각 값에 0.5를 더하고 "floor"(`<.`)를 이용해 정수 부분만을 취한다. 이런 일을 하는 동사 `round`는 아래와 같이 정의한다.
 
 	   round    =: <. @: (+&0.5)
 
-Then the verb to compute the displayed values from the data is:
+그러면 화면에 표시할 값을 계산하는 동사는 다음과 같다.
 
-   comp     =: round @: percent
+	   comp     =: round @: percent
 
-<table cellpadding="10" border="1">
+<table style="margin:20px 0px" cellpadding="10" border="1">
 <tbody><tr valign="TOP">
 <td><tt>data</tt></td>
 <td><tt>comp data</tt></td>
@@ -388,9 +391,9 @@ Then the verb to compute the displayed values from the data is:
 <td><tt>38 63</tt></td>
 </tr></tbody></table>
 
-Now we want to show the data and computed values in columns. To make a 1-column table out of a list, we can use the built-in verb ,. (comma dot, called "Ravel Items").
+이제 테이블에 데이터와 퍼센트로 계산된 값을 표현해야 한다. 리스트를 하나의 열(column)을 만들기 위해선 동사 `,.`를 사용할 수 있다.("Ravel Items"라고 부른다)
 
-<table cellpadding="10" border="1">
+<table style="margin:20px 0px" cellpadding="10" border="1">
 <tbody><tr valign="TOP">
 <td><tt>data</tt></td>
 <td><tt>,. data</tt></td>
@@ -403,11 +406,11 @@ Now we want to show the data and computed values in columns. To make a 1-column 
 63</tt></td>
 </tr></tbody></table>
 
-To make the bottom row of the display, we define verb br as a fork which links together the data and the computed values, both as columns:
+테이블의 아래쪽 행을 만들기 위해 `br` 이라는 동사를 정의한다. 이 동사는 데이타와 계산된 값을 열(column)로 링크하는 포크이다.(포크는 위에서 정의했듯이 세 동사의 시퀀스이다.)
 
 	   br  =: ,.  ;  (,. @: comp)
 
-<table cellpadding="10" border="1">
+<table style="margin:20px 0px" cellpadding="10" border="1">
 <tbody><tr valign="TOP">
 <td><tt>data</tt></td>
 <td><tt>br data</tt></td>
@@ -418,12 +421,12 @@ To make the bottom row of the display, we define verb br as a fork which links t
 |5|63|<br>
 +-+--+</tt></td>
 </tr></tbody></table>
-   
-To make the top row of the display (the column headings), here is one possible way. The bottom row will be a list of two boxes. On the front of this list we stick two more boxes for the top row, giving a list of 4 boxes. To do this we define a verb tr:
+
+테이블의 위쪽 행(컬럼 헤딩)은 간단하게 만들 수 있다. 아래쪽 행은 두 박스의 리스트이다. 우리가 그 앞에 두 개의 박스를 더 붙이면 박스가 4개인 리스트가 된다. 동사 `tr`이 그 작업을 한다.
 
 	   tr  =: ('Data';'Percentages') & ,
 
-<table cellpadding="10" border="1">
+<table style="margin:20px 0px" cellpadding="10" border="1">
 <tbody><tr valign="TOP">
 <td><tt>data</tt></td>
 <td><tt>br data</tt></td>
@@ -440,7 +443,7 @@ To make the top row of the display (the column headings), here is one possible w
 +----+-----------+-+--+</tt></td>
 </tr></tbody></table>
    
-All that remains is to reshape this list of 4 boxes into a 2 by 2 table,
+남은건 박스 4개의 리스트를 2행 2열의 테이블로 만드는 것이다.
 
 	   (2 2 & $)  tr br data
 	+----+-----------+
@@ -450,7 +453,7 @@ All that remains is to reshape this list of 4 boxes into a 2 by 2 table,
 	|5   |63         |
 	+----+-----------+
 
-and so we put everything together:
+이걸 다 합하면,
 
 	   display =: (2 2 & $) @: tr @: br
 	   
@@ -462,11 +465,13 @@ and so we put everything together:
 	|5   |63         |
 	+----+-----------+
 
-This display verb has two aspects: the function comp which computes the values (the rounded percentages), and the remainder which is concerned to present the results. By changing the definition of comp, we can display a tabulation of the values of other functions. Suppose we define comp to be the built-in square-root verb (%:) .
+이렇게 된다.
+
+`display`동사는 두 부분으로 나눈다. 반올림된 퍼센트 값을 계산하는 `comp`함수와 화면에 결과를 표시하는 나머지 부분이 그것이다. `comp`함수를 바꾸어 다른 함수를 사용하면 그 함수의 계산 결과를 표 형태로 표시한다. `comp`를 제곱근을 계산하는 `%:`함수로 바꿔보자.
 
 	   comp =: %:
 
-We would also want to change the column-headings in the top row, specified by the tr verb:
+동사 `tr`에 있는 표의 컬럼 헤딩도 알맞게 수정해야한다.
 
 	   tr   =: ('Numbers';'Square Roots') & ,
 	   
@@ -480,7 +485,9 @@ We would also want to change the column-headings in the top row, specified by th
 	|16     |4           |
 	+-------+------------+
 
-In review, we have seen a small J program with some characteristic features of J: bonding, composition, a hook and a fork. As with all J programs, this is only one of the many possible ways to write it.
-In this chapter we have taken a first look at defining functions. There are two kinds of functions: verbs and operators. So far we have looked only at defining verbs. In the next chapter we look at another way of defining verbs, and in Chapter 13 onwards we will look at defining operators.
+J의 몇몇 특징적인 기능(묶기, 합성, 훅, 포크)을 이용해서 조그마한 J프로그램을 작성해보았다. 모든 J 프로그램과 마찬가지로 이 프로그램은 이걸 작성하는 많은 방법중에 하나일 뿐이다.
+이 장에서 우리는 함수를 정의하는 방법을 배웠다. 함수는 두 종류가 있다. 동사와 연산자. 지금까지 우리는 동사의 정의하는 것을 보았다. 다음 장에서는 동사를 정의하는 다른 방법을 알아 볼 것이다. 그리고 제 13장에서는 연산자를 정의하는 방법을 배운다.
 
-This is the end of Chapter 3.
+이렇게 제 3장이 끝났다.
+
+[learning-j]: http://www.jsoftware.com/docs/help701/learning/contents.htm
