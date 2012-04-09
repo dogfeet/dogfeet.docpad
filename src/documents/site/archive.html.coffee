@@ -3,6 +3,9 @@ layout: 'default'
 title: 'Archive'
 ---
 
+moment=@tool.moment
+layout=@layout
+
 style rel: 'stylesheet', media: 'screen, projection', scoped: 'scoped', ->
   """
   .article_footer {
@@ -13,11 +16,11 @@ style rel: 'stylesheet', media: 'screen, projection', scoped: 'scoped', ->
 h1 "Archive"
 
 section ".archive", ->
-  for document in @documents
+  @documents.forEach (document) ->
     if 0 is document.url.indexOf '/article'
-      dateWrapper = @tool.moment document.date
-      tagLinks = @layout 'tag-links', document.tags
-      authorLinks = @layout 'author-links', document.author
+      dateWrapper = moment document.date
+      tagLinks = layout 'tag-links', document.tags
+      authorLinks = layout 'author-links', document.author
       
       div '.row-fluid', ->
         div '.span2', dateWrapper.format('YYYY MMM DD')

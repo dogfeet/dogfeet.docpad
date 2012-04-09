@@ -42,8 +42,9 @@ module.exports = (BasePlugin) ->
 						else
 							@data
 
-				for document in documents
-					tags = @getTags document[ 'tags' ]
+				getTags=@getTags
+				documents.forEach (document)->
+					tags = getTags document[ 'tags' ]
 					for tag in tags
 						tagsObject.store tag, document
 

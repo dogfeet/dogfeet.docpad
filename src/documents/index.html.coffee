@@ -4,7 +4,7 @@ date: '2000-1-1'
 ---
 
 i = 0
-for document in @documents
+@documents.forEach (document) ->
   if 0 is document.url.indexOf '/articles'
     i++
     if i < 10
@@ -16,7 +16,8 @@ for document in @documents
         footer '.modern-font .small-font', ->
           text @layout 'article-footer', document
 
-        text @tool.summary document.contentRenderedWithoutLayouts
+        if document.contentRenderedWithoutLayouts
+          text @tool.summary document.contentRenderedWithoutLayouts
 
         p -> a '.btn', href: document.url, 'Read more &raquo;'
 

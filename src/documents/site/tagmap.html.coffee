@@ -39,6 +39,6 @@ section ".tagmap", ->
         div "##{cell}.span4", ->
           h4 tag.name
           ul ->
-            for document in tag.documents
+            tag.documents.forEach (document)->
               li -> a href: "#{document.url}", "#{document.title}"
 

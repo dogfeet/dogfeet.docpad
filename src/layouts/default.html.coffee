@@ -19,7 +19,7 @@ html lang: 'en', ->
       meta name: 'description', content: @site.description or ''
       meta name: 'keywords', content: @site.keywords or ''
       authorNames=[]
-      for document in @documents
+      @documents.forEach (document)->
         if 0 is document.url.indexOf '/authors'
           authorNames.push document.name
 

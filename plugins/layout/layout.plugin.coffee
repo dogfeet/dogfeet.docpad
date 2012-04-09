@@ -11,6 +11,7 @@ module.exports = (BasePlugin) ->
 		# Ammend our Template Data
 		renderBefore: ({documents, templateData, logger}, next) =>
 
+			logger = @logger
 			_coffeeConfig = @config.docpad.config.plugins.coffee or {}
 
 			templateData[ 'layout' ] = layout = (name, args...) ->

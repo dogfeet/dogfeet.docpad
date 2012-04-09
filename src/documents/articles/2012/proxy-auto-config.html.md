@@ -3,7 +3,7 @@ layout: 'article'
 title: 'PAC: proxy auto-config'
 author: 'Changwoo Park'
 date: '2012-4-8'
-tags: ['PAC', 'proxy', 'auto-config', 'freegate]
+tags: ['PAC', 'proxy', 'auto-config', 'freegate']
 ---
 
 Proxy을 통해 우회하고 싶을 때가 왕왕 있다.

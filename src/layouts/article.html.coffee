@@ -66,7 +66,7 @@ if @document.relatedDocuments.length > 0
 		h3 'Related Posts'
 		div '.alert alert-info', ->
 			ul ->
-				for document in @document.relatedDocuments
+				@document.relatedDocuments.forEach (document)->
 					li ->
 						span "#{document.date.toShortDateString()}"
 						text '&raquo;'

@@ -1,15 +1,17 @@
 # Export Plugin
 module.exports = (BasePlugin) ->
+	_ = require('underscore');
+
 	# Define Plugin
 	class AuthorsPlugin extends BasePlugin
 		# Plugin name
 		name: 'authurs'
 
-		renderBefore: ({documents, templateData, logger},next) =>
+		renderBefore: ({documents, templateData},next) =>
 			try
 				templateData[ 'authors' ]  = authors = {}
 
-				for document in documents
+				documents.forEach (document) ->
 					if 0 is document.url.indexOf '/authors'
 						authors[ document.name ] = document
 
@@ -20,7 +22,8 @@ module.exports = (BasePlugin) ->
 					for name in names
 						name = name.trim()
 
-						ret.push '@' + authors[ name ].twitter
+						if authors.hasOwnProperty name
+							ret.push '@' + authors[ name ].twitter
 
 					ret.join ' '
 
