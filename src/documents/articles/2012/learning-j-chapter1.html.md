@@ -2,7 +2,7 @@
 layout: 'article'
 title: 'Learning J - Chapter 1. Basic'
 author: 'Yongjae Choi'
-date: '2012-03-27'
+date: '2012-04-06'
 tags: ['J', 'jsoftware', 'language']
 ---
 
