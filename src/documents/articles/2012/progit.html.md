@@ -33,6 +33,10 @@ mobi 파일은 Android Kindle App에서 띄어쓰기가 안되는 문제가 있�
 
 ![힘내](/articles/2011/progit/git-.png)
 
+## 링크
+
+ * [Raymundo님의 글](http://gypark.pe.kr/wiki/Git) - 특히 msysgit에 대한 내용이 일품입니다. msysgit을 사용할 생각이라면, 필독!
+
 [Calibre]: http://calibre-ebook.com/download
 [GitHub]: http://github.com
 [schacon]: http://github.com/schacon
