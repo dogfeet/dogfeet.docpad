@@ -1,10 +1,10 @@
 {
-	"name": "tool",
+	"name": "docpad-plugin-tool",
 	"version": "0.1.0",
 	"description": "for @tool namespace",
 	"homepage": "https://github.com/balupton/docpad",
 	"keywords": [
-		"docpad"
+		"docpad-plugin"
 	],
 	"author": {
 		"name": "Benjamin Lupton",

@@ -12,19 +12,19 @@ if !@document.description
   if len > 0
     desc = desc.substring 0, len
 
-  @document.description = desc
+  @documentModel.set('description', desc)
 
 #generate for meta[name=keywords]
 if !@document.keywords and @document.tags
-  @document.keywords = @document.tags.join ','
+  @documentModel.set('keywords', @document.tags.join ',')
 
 #not defined title
 if @document.filename.indexOf @document.title == 0
-  @document.title = @document.name
+  @documentModel.set('title', @document.name)
 
 #generate for meta[name=author]
 if !@document.author
-  @document.author = @document.name
+  @documentModel.set('author', @document.name)
 
 article "#post.#{@document.class}", typeof: 'sioc:post', about: "#{@document.url}", lang: 'ko-kr', ->
   header '.row', ->

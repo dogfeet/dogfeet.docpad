@@ -5,7 +5,7 @@ module.exports = (BasePlugin) ->
 	# Define Plugin
 	class TagsPlugin extends BasePlugin
 		# Plugin name
-		name: 'tagstore'
+		name: 'tags'
 
 		getTags: (obj) ->
 			tags = [obj] if _.isString obj
@@ -44,7 +44,7 @@ module.exports = (BasePlugin) ->
 
 				getTags=@getTags
 				documents.forEach (document)->
-					tags = getTags document[ 'tags' ]
+					tags = getTags document.get( 'tags' )
 					for tag in tags
 						tagsObject.store tag, document
 

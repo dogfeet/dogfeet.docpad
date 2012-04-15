@@ -26,9 +26,10 @@ module.exports = (BasePlugin) ->
 
 			_templates={}
 
-			for own name, layout of @docpad.layouts
-				logger.log 'debug', "compiling '#{name}' layout for @layout"
-				_templates[ name ] = ck.compile layout.content
+			@docpad.layouts.forEach (layout) ->
+				layoutId=layout.get('id')
+				logger.log 'debug', "compiling '#{layoutId}' layout for @layout"
+				_templates[ layoutId ] = ck.compile layout.get('content')
 
 			# Continue onto the next plugin
 			next()

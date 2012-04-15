@@ -5,15 +5,15 @@ module.exports = (BasePlugin) ->
 	# Define Plugin
 	class AuthorsPlugin extends BasePlugin
 		# Plugin name
-		name: 'authurs'
+		name: 'authors'
 
 		renderBefore: ({documents, templateData},next) =>
 			try
 				templateData[ 'authors' ]  = authors = {}
 
 				documents.forEach (document) ->
-					if 0 is document.url.indexOf '/authors'
-						authors[ document.name ] = document
+					if 0 is document.get('url').indexOf '/authors'
+						authors[ document.get('name') ] = document
 
 				authors.toTwitter = (names) ->
 					ret = []

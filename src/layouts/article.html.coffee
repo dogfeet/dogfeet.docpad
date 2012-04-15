@@ -8,11 +8,11 @@ if !@document.description
   desc = desc.substring 0, desc.indexOf '\n'
   #strip html tag
   desc = desc.replace(/(<([^>]+)>)/ig,'')
-  @document.description = desc
+  @documentModel.set({description:desc})
 
 #generate for meta[name=keywords]
 if !@document.keywords and @document.tags
-  @document.keywords = @document.tags.join ','
+  @documentModel.set({keywords: @document.tags.join ','})
 
 script src: 'http://platform.twitter.com/widgets.js'
 script ->

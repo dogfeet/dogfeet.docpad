@@ -39,7 +39,6 @@ html lang: 'en', ->
     comment 'Styles'
     link rel: 'stylesheet', href: '/css/bootstrap.min.css', media: 'screen, projection'
     link rel: 'stylesheet', href: '/css/bootstrap-responsive.min.css', media: 'screen, projection'
-    link rel: 'stylesheet', href: '/vendor/prettify.css', media: 'screen, projection'
     link rel: 'stylesheet', href: '/styles/style.css', media: 'screen, projection'
     link rel: 'stylesheet', href: '/styles/markdown.css', media: 'screen, projection'
     #link rel: 'stylesheet', href: '/styles/print.css', media: 'print'
@@ -52,8 +51,6 @@ html lang: 'en', ->
     script src: 'http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js'
     script src: "http://connect.facebook.net/en_US/all.js#xfbml=1"
     script src: '/js/bootstrap.min.js'
-    script src: '/vendor/prettify.js'
-    script src: '/vendor/lang.min.js'
     script src: '/scripts/script.js'
 
     #text @blocks.scripts.join('')

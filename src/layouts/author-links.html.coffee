@@ -10,7 +10,7 @@ if author? and typeof author is 'string'
 
     author = @authors[ name ]
     if author?
-      rendered.push """<a href="#{author.url}">#{author.name}</a>"""
+      rendered.push """<a href="#{author.get('url')}">#{author.get('name')}</a>"""
     else
       rendered.push name
 

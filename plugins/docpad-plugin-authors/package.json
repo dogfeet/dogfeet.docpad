@@ -1,10 +1,10 @@
 {
-	"name": "tags",
+	"name": "docpad-plugin-authors",
 	"version": "0.1.0",
-	"description": "for tags",
+	"description": "for authors",
 	"homepage": "https://github.com/balupton/docpad",
 	"keywords": [
-		"docpad"
+		"docpad-plugin"
 	],
 	"author": {
 		"name": "Benjamin Lupton",
@@ -49,5 +49,5 @@
 	"directories": {
 		"lib": "."
 	},
-	"main": "./tags.plugin.coffee"
+	"main": "./authors.plugin.coffee"
 }
