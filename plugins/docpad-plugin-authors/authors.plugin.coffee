@@ -23,7 +23,7 @@ module.exports = (BasePlugin) ->
 						name = name.trim()
 
 						if authors.hasOwnProperty name
-							ret.push '@' + authors[ name ].twitter
+							ret.push '@' + authors[ name ].get('twitter')
 
 					ret.join ' '
 
