@@ -2,7 +2,7 @@
 layout: 'article'
 title: 'J언어 배우기 - 제 2장: 리스트와 테이블'
 author: 'Yongjae Choi'
-date: '2012-04-14'
+date: '2012-04-17'
 tags: ['J', 'jsoftware', 'language', 'J언어']
 ---
 
