@@ -54,7 +54,7 @@ Fetch시 --prune 옵션을 주기 때문에 리모트에서 삭제된 브랜치�
 
 Fast-Forward Merge도 하지만 해당 저장소랑 Delta가 얼마나 되는지 한눈에 알 수 있다.
 
-[git-ff]: https://github.com/pismute/git-tles/blob/master/git-ff
+[git-ff]: https://github.com/dogfeet/git-tles/blob/master/git-ff
 [tracking-branch]: http://dogfeet.github.com/articles/2012/git-tracking-vs-remote-tracking.html
 
 

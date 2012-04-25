@@ -62,14 +62,14 @@ Tag는 흰색으로 보여준다:
 [git-todo 저장소][git-todo.repo]를 적당한데다 클론하고 git-todo 파일을 실행 경로에 넣는다:
 
 	cd ~
-	git clone https://github.com/pismute/git-tles
+	git clone https://github.com/dogfeet/git-tles
 	echo "export PATH=~/bin:$PATH" >> ~/.bash_profile
 	mkdir ~/bin
 	cd ~/bin
 	ln -s ~/git-tles/git-todo git-todo
 
 [git-branch-a-v]: /articles/2012/git-branch-a-v.html
-[git-todo.repo]: https://github.com/pismute/git-tles
+[git-todo.repo]: https://github.com/dogfeet/git-tles
 
 [git-todo]: /articles/2012/git-todo/git-todo.png
 [git-todo-r]: /articles/2012/git-todo/git-todo-r.png
