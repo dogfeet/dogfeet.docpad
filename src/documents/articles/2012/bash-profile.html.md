@@ -3,7 +3,7 @@ layout: 'article'
 title: 'Bash: .profile, .bash_profile, .bashrc'
 author: 'Changwoo Park'
 date: '2012-4-22'
-tags: ['Bash', '.profile', '.bash_profile', .bashrc']
+tags: ['Bash', '.profile', '.bash_profile', '.bashrc']
 ---
 
 필요할 때마다 Google님께 물어보는 것이 '.profile, .bash_profile, .bashrc'의 차이다. 신기하게도 잘 기억나지 않아서 글로 적어본다.
