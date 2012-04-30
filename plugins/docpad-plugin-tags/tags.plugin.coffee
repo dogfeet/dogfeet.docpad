@@ -45,6 +45,9 @@ module.exports = (BasePlugin) ->
 				getTags=@getTags
 				documents.forEach (document)->
 					tags = getTags document.get( 'tags' )
+
+					return if !tags
+
 					for tag in tags
 						tagsObject.store tag, document
 
