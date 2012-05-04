@@ -5,7 +5,7 @@ date: '2000-1-1'
 
 i = 0
 @documents.forEach (document) ->
-  if 0 is document.url.indexOf '/articles'
+  if document.encoding != 'binary' and 0 is document.url.indexOf '/articles'
     i++
     if i < 10
       article '.post', ->

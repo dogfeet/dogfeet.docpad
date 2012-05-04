@@ -50,6 +50,7 @@ section ".atelier", ->
         , 'http://whygitisbetterthanx.com/'
         , 'http://pismute.github.com/whygitisbetter/'
         , 'Changwoo Park'
+        , 'Ko-trans.'
       translateIt '2011', "Felix's Node.js Guide"
         , 'http://nodeguide.com/'
         , 'http://pismute.github.com/nodeguide.com/'

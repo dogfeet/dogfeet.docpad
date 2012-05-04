@@ -34,7 +34,7 @@ tag 'feed', xmlns: 'http://www.w3.org/2005/Atom', ->
 
   i=0
   @documents.forEach (document) ->
-    if 0 is document.url.indexOf '/articles'
+    if document.encoding != 'binary' and 0 is document.url.indexOf '/articles'
       i++
       if i < 10 and document.contentRenderedWithoutLayouts
         anEntry document

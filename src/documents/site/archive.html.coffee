@@ -17,7 +17,7 @@ h1 "Archive"
 
 section ".archive", ->
   @documents.forEach (document) ->
-    if 0 is document.url.indexOf '/article'
+    if document.encoding != 'binary' and 0 is document.url.indexOf '/article'
       dateWrapper = moment document.date
       tagLinks = layout 'tag-links', document.tags
       authorLinks = layout 'author-links', document.author

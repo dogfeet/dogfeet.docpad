@@ -9,7 +9,7 @@ tag 'urlset', xmlns: 'http://www.sitemaps.org/schemas/sitemap/0.9', 'xmlns:xsi':
   anEntry '', @site.date.toIsoDateString(), 'weekly'
   siteDate = @site.date
   @documents.forEach (document)->
-    if 0 is document.url.indexOf '/articles'
+    if document.encoding != 'binary' and 0 is document.url.indexOf '/articles'
       anEntry document.url, document.date.toIsoDateString(), 'never'
     else
       anEntry document.url, siteDate.toIsoDateString(), 'weekly' 
