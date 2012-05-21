@@ -1,9 +1,9 @@
 --- yaml
 layout: 'article'
-title: 'node: npm-tricks'
+title: 'nodejs: npm-tricks'
 author: 'Changwoo Park'
 date: '2012-2-25'
-tags: ['node', 'npm', 'Guillermo Rauch']
+tags: ['nodejs', 'npm', 'Guillermo Rauch']
 ---
 
 *이 글은 Guillermo Rauch의 [NPM tricks](http://www.devthought.com/2012/02/17/npm-tricks/)을 번역한 것이다.*
