@@ -2,7 +2,7 @@
 layout: 'article'
 title: 'dogfeet-flavored-markdown'
 author: 'Changwoo Park'
-date: '2012-12-8'
+date: '2012-5-20'
 tags: ['Nodejs', 'Markdown', 'Docpad', 'Github', 'Dogfeet']
 ---
 
