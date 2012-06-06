@@ -20,7 +20,11 @@ Ladybucks는 원래 [@lethee][]가 Safari 버전으로 만들었고 [@lnyarl][]�
 
 패키지 파일을 Chrome에서 열면 설치할 수 있다.
 
-### 사용하기
+### 20120606 업데이트
+
+@lnyarl군이 웹 스토어에 등록함. [클릭](https://chrome.google.com/webstore/detail/fnpekdnicnempagdlmphknomnopaognh?hl=ko&gl=001)
+
+## 사용하기
 
 'tools/extensions' 메뉴를 클릭해서 extensions 페이지(`chrome://settings/extensions`)를 열고 Ladybucks Extension의 options을 클릭해서 option 페이지를 연다.
 
