@@ -25,12 +25,11 @@ section ".atelier", ->
           a href: trans, state
           text ") by #{authorAnchor}"
 
-      ###
-      translateIt '', ''
-        , ''
-        , ''
-        , ''
-      ###
+      translateIt '2012', 'Learning J'
+        , 'http://www.jsoftware.com/help/learning/contents.htm'
+        , 'https://github.com/lnyarl/learning-j-ko'
+        , 'Yongjae Choi'
+        , 'Ko-trans.'
       translateIt '2011', 'Progit'
         , 'http://progit.org/'
         , 'http://dogfeet.github.com/articles/2012/progit.html'
