@@ -18,6 +18,8 @@ tags: ['nodejs', 'doc', 'module', 'uniquenoun']
 
 [modules]: http://nodejs.org/api/modules.html
 
+@outsideris 님이 node 번역 프로젝트를 시작하셨습니다. 그래서 그 저장소로 옮겼습니다. 이 글의 최신 버전은 [그쪽](https://github.com/outsideris/node)에서 확인하세요.
+
 ## Modules
 <!--
     Stability: 5 - Locked
