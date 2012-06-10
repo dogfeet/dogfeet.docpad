@@ -12,7 +12,32 @@ JavaScript는 [Coroutine][]을 지원하지 않기 때문에 외부 모듈이 �
 
 (from http://www.fiberbaya.blogspot.kr/)
 
-## 멍키 패칭하고 싶다.
+## node-fibers
+
+nodejs에 포함돼지도 않았고 안정성도 검증돼지 않았지만 [node-fibers][]를 사용하면 Coroutine 뿐만아니라 JavaScript에는 없는 sleep()이라든지 Generator라든지를 만들어 쓸 수 있다.
+
+공식 페이지에 소개된 sleep()을 구현하는 코드를 보자.
+
+    var Fiber = require('fibers');
+
+    function sleep(ms) {
+        var fiber = Fiber.current;
+        setTimeout(function() {
+            fiber.run(); //ms후에 다시 깨운다.
+        }, ms);
+        Fiber.yield(); //여기서 멈추고
+    }
+
+    Fiber(function() {
+        console.log('wait... ' + new Date);
+        sleep(1000);
+        console.log('ok... ' + new Date);
+    }).run();
+    console.log('back in main');
+
+[node-fibers][]는 강력한 도구지만 실제 힘을 발휘하려면 gevent같은 게 필요하다. 기존 API를 [node-fibers][]을 적용해서 다시 구현할 수는 없다.
+
+### 멍키 패칭하고 싶다.
 
 Python에서는 gevent를 사용하면 IO api와 thread api를 모두 멍키 패칭해주므로 투명하게 Coroutine으로 코드의 가독성을 높일 수 있었다. 하지만, node에서는 쉽지 않다. JavaScript는 플랫폼 전반에 CPS 스타일이 뼛속까지 녹아 있어서 멍키 패칭할 동기 API가 부족하다. 예를 들어, 파일 IO에는(fs 모듈) `xxxSync` 메소드가 갖춰져 있지만, 소켓 IO에는(net 모듈) 없다.
 
@@ -21,11 +46,11 @@ Python에서는 gevent를 사용하면 IO api와 thread api를 모두 멍키 패
 1) 멍키 패칭할 `xxxSync` 메소드가 필요하고
 2) 멍키 패칭을 구현한 모듈도 필요하고
 3) 그러려면 node-fiber가 정식으로 node에 포함되든 JavaScript 표준에 Coroutine이 도입되든 안정성과 지원도 필요하고
-4) 주렁주렁...
+4) 주렁주렁...궁시렁궁시렁...
+
+gevent의 아이디어를 그대로 node에서 사용할 수는 없다.
 
 멍키 패칭이든 뭐든 기존 API를 Coroutine에서 사용할 수 있도록 해주는 도우미가 필요한데, [node-fibers][]에는 Future라는 게 있다. Future는 Node의 비동기 API를 감싸서(wrap) Cotoutine을 사용할 수 있게 해준다.
-
-이 글은 바로 future를 이해하고자 정리했다.
 
 ### ls.js
 
@@ -74,9 +99,9 @@ Python에서는 gevent를 사용하면 IO api와 thread api를 모두 멍키 패
         });
     });
 
-이 예제에서 알 수 있듯이 node에서는 CPS 스타일을 사용하는 게 더 낫다. 언어에서 [Coroutine][]을 정식 지원하는 것도 아니고 API도 준비돼 있지 않다. 환경이 준비됐다고 가정하면 스케쥴링을 목적으로 하는 것이라면 Coroutine이 더 쉽다.
+이 예제에서 알 수 있듯이 node에서는 CPS 스타일을 사용하는 게 더 낫다. 언어에서 [Coroutine][]을 정식 지원하는 것도 아니고 API도 준비돼 있지 않다. 환경이 준비됐다고 가정하고 스케쥴링을 목적으로 하는 것이라면 Coroutine이 더 낫다고 볼 수 있지만 적어도 아직은 node에서 CPS가 더 나을지도...
 
-`for`문을 `forEach`로 바꿀 수밖에 없다. 예를 들어 다음과 같은 코드는 ii 값이 변하기 때문에 동작하지 않는다:
+아무튼 `for`문을 `forEach`로 바꿀 수밖에 없다. 예를 들어 다음과 같은 코드는 ii 값이 변하기 때문에 동작하지 않는다:
 
         for (var ii = 0; ii < fileNames.length; ++ii) {
             fs.stat( fileName[ii], function(err, stat){
@@ -93,11 +118,13 @@ Future는 Node API 컨벤션이 일정한 것을 이용한다. node API는 `api(
 이 내용은 다음과 같이 생각하면 된다. 다음과 같은 코드를 추상화시킨 것이 future라고 생각하면 된다:
 
     function future_wrap(){
+        fiber = fiber.current;
+
         api(..., callback(err, data){
-            //yield()한 지점으로 점프한다.
+            fiber.run();
         });
 
-        yield()
+        Fiber.yield();
     }
 
 그러니까 (직접 구현해보지 않았지만) 자체제작 api를 만든다면 표준 컨벤션을 지켜서 구현해야 Future를 사용할 수 있고 [node-fibers][]도 사용하기 쉽다. 아예 api를 [node-fibers][]에 의존하게 하여도 되지만 권하고 싶지 않다.
@@ -132,7 +159,8 @@ resolver()가 api 콜백인데 다음과 같이 생겼다:
 
 [node-fibers][]의 future.js 코드는 흥미롭다. 분석해보면 재밌을 거로 생각하지만 공부했던 것을 잊어버려서(게을러서) 나중으로 미뤄야겠다.
 
-`Secrets of the JavaScript Ninja`가 출간되는 기적이 이뤄지면 그때나 다시 공부하고 분석해봐야겠다.
+지구가 멸망하기 전에 `Secrets of the JavaScript Ninja`가 출간되는 날이 오면 그때나 다시 공부하고 분석해봐야겠다.
 
 [node-fibers]: https://github.com/laverdet/node-fibers
 [Coroutine]: /articles/2012/coroutine.html
+
