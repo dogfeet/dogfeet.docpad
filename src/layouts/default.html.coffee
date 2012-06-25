@@ -19,9 +19,9 @@ html lang: 'en', ->
       meta name: 'description', content: @site.description or ''
       meta name: 'keywords', content: @site.keywords or ''
       authorNames=[]
-      @documents.forEach (document)->
-        if 0 is document.url.indexOf '/authors'
-          authorNames.push document.name
+      @getCollection('documents').forEach (document)->
+        if 0 is document.get('url').indexOf '/authors'
+          authorNames.push document.get('name')
 
       authors = if authorNames.length > 0 then authorNames.join(', ') else ''
       meta name: 'author', content: authors
@@ -74,7 +74,7 @@ html lang: 'en', ->
               li -> a href: 'http://feeds.feedburner.com/github/dogfeet', ->
                 img src: 'http://forum.tattersite.com/ko/style/Textcube/feed-icon.png'
 
-            form '.pull-right navbar-search', action: 'http://google.com/search', method: 'get', ->
+            form '#search-form.pull-right navbar-search', action: 'http://google.com/search', method: 'get', ->
               input type: 'hidden', name: 'q', value: 'site:dogfeet.github.com'
               input 'search-query', type: 'text', name: 'q', results: '0', placeholder: 'Search'
 

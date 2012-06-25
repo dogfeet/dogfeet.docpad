@@ -37,7 +37,6 @@
     }
     , "engines": {
           "node": ">=0.4.0"
-        , "docpad": "5.x"
     }
     , "dependencies": {
         "dogfeet-flavored-markdown": "git://github.com/dogfeet/dogfeet-flavored-markdown.git#master"

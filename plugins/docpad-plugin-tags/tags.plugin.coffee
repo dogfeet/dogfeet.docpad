@@ -14,7 +14,7 @@ module.exports = (BasePlugin) ->
 
 			tags
 
-		renderBefore: ({documents, templateData, logger},next) ->
+		renderBefore: ({collection, templateData, logger},next) ->
 			try
 				templateData[ 'tags' ] = tagsObject =
 					data: {}
@@ -43,7 +43,7 @@ module.exports = (BasePlugin) ->
 							@data
 
 				getTags=@getTags
-				documents.forEach (document)->
+				collection.forEach (document)->
 					tags = getTags document.get( 'tags' )
 
 					return if !tags

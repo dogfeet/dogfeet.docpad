@@ -3,7 +3,7 @@ date: '2000-1-1'
 ---
 
 renderContent = (doc, siteUrl) ->
-  rendered = doc.contentRenderedWithoutLayouts
+  rendered = doc.get('contentRenderedWithoutLayouts')
 
   rendered = rendered.replace('src="/articles', "src=\"#{siteUrl}/articles")
 
@@ -14,9 +14,9 @@ renderContent = (doc, siteUrl) ->
 anEntry = (document) ->
   tag 'entry', ->
     title '<![CDATA[ ' + document.title + ' ]]>'
-    tag 'link', href: "#{@site.url}#{document.url}"
-    tag 'updated', document.date.toIsoDateString()
-    tag 'id', "#{@site.url}#{document.url}"
+    tag 'link', href: "#{@site.url}#{document.get('url')}"
+    tag 'updated', document.get('date').toISODateString()
+    tag 'id', "#{@site.url}#{document.get('url')}"
     tag 'content', type: 'html', -> renderContent document, @site.url
 
 text '<?xml version="1.0" encoding="utf-8"?>\n'
@@ -24,18 +24,18 @@ tag 'feed', xmlns: 'http://www.w3.org/2005/Atom', ->
   title '<![CDATA[ ' + @site.title + ' ]]>'
   tag 'link', href: "#{@site.url}/atom.xml", rel: 'self'
   tag 'link', href: @site.url
-  tag 'updated', @site.date.toIsoDateString()
+  tag 'updated', @site.date.toISODateString()
   tag 'id', @site.url
-  @documents.forEach (document) ->
-    if 0 is document.url.indexOf '/authors'
+  @getCollection('documents').forEach (document) ->
+    if 0 is document.get('url').indexOf '/authors'
       tag 'author', ->
-        tag 'name', document.name
-        tag 'email', document.email
+        tag 'name', document.get('name')
+        tag 'email', document.get('email')
 
   i=0
-  @documents.forEach (document) ->
-    if document.encoding != 'binary' and 0 is document.url.indexOf '/articles'
+  @getCollection('documents').forEach (document) ->
+    if document.get('encoding') != 'binary' and 0 is document.get('url').indexOf '/articles'
       i++
-      if i < 10 and document.contentRenderedWithoutLayouts
+      if i < 10 and document.get('contentRenderedWithoutLayouts')
         anEntry document
 

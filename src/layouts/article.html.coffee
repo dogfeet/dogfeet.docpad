@@ -39,7 +39,7 @@ article "#post .post .#{@document.class}", typeof: 'sioc:post', about: "#{@docum
     h1 property: 'dcterms:title', "#{@document.title}"
 
   footer '.modern-font .small-font', ->
-    text @layout 'article-footer', @document
+    text @layout 'article-footer', @documentModel
 
     style rel: 'stylesheet', media: 'screen, projection', scoped: 'scoped', ->
       """

@@ -16,17 +16,17 @@ style rel: 'stylesheet', media: 'screen, projection', scoped: 'scoped', ->
 h1 "Archive"
 
 section ".archive", ->
-  @documents.forEach (document) ->
-    if document.encoding != 'binary' and 0 is document.url.indexOf '/article'
-      dateWrapper = moment document.date
-      tagLinks = layout 'tag-links', document.tags
-      authorLinks = layout 'author-links', document.author
+  @getCollection('documents').forEach (document) ->
+    if document.get('encoding') != 'binary' and 0 is document.get('url').indexOf '/article'
+      dateWrapper = moment document.get('date')
+      tagLinks = layout 'tag-links', document.get('tags')
+      authorLinks = layout 'author-links', document.get('author')
       
       div '.row-fluid', ->
         div '.span2', dateWrapper.format('YYYY MMM DD')
         div '.span10.archive-item', ->
-          a href: document.url, property: 'dc:title', ->
-            strong "#{document.title}"
+          a href: document.get('url'), property: 'dc:title', ->
+            strong "#{document.get('title')}"
           div '.article_footer .modern-font .small-font', -> 
             text " posted in #{tagLinks} by #{authorLinks}"
 

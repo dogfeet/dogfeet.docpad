@@ -7,11 +7,11 @@ module.exports = (BasePlugin) ->
 		# Plugin name
 		name: 'authors'
 
-		renderBefore: ({documents, templateData},next) =>
+		renderBefore: ({collection, templateData},next) =>
 			try
 				templateData[ 'authors' ]  = authors = {}
 
-				documents.forEach (document) ->
+				collection.forEach (document) ->
 					if 0 is document.get('url').indexOf '/authors'
 						authors[ document.get('name') ] = document
 

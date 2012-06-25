@@ -9,9 +9,9 @@ module.exports = (BasePlugin) ->
 		name: 'layout'
 
 		# Ammend our Template Data
-		renderBefore: ({documents, templateData, logger}, next) =>
+		renderBefore: ({collection, templateData}, next) =>
 
-			logger = @logger
+			logger = @docpad.getLogger()
 			_coffeeConfig = @config.docpad.config.plugins.coffee or {}
 
 			templateData[ 'layout' ] = layout = (name, args...) ->
@@ -26,8 +26,8 @@ module.exports = (BasePlugin) ->
 
 			_templates={}
 
-			@docpad.layouts.forEach (layout) ->
-				layoutId=layout.get('id')
+			@docpad.getCollection('layouts').forEach (layout) ->
+				layoutId=layout.get('id').replace('.html.coffee','')
 				logger.log 'debug', "compiling '#{layoutId}' layout for @layout"
 				_templates[ layoutId ] = ck.compile layout.get('content')
 
