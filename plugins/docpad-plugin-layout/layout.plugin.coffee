@@ -1,5 +1,5 @@
 _ = require 'underscore'
-ck = require 'coffeekup'
+ck = require 'coffeecup'
 
 # Export Plugin
 module.exports = (BasePlugin) ->

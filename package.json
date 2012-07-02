@@ -42,7 +42,7 @@
 		"moment" : "1.x.x",
 		"underscore" : "1.x.x",
 		"coffee-script" : "1.x.x",
-		"coffeekup" : "0.x.x",
+		"coffeecup" : "0.x.x",
 		"docpad-plugin-coffee": "latest",
 		"docpad-plugin-hogan": "latest",
 		"docpad-plugin-related": "latest",
