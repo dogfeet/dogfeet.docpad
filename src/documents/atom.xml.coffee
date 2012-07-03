@@ -13,7 +13,7 @@ renderContent = (doc, siteUrl) ->
 
 anEntry = (document) ->
   tag 'entry', ->
-    title '<![CDATA[ ' + document.title + ' ]]>'
+    title '<![CDATA[ ' + document.get('title') + ' ]]>'
     tag 'link', href: "#{@site.url}#{document.get('url')}"
     tag 'updated', document.get('date').toISODateString()
     tag 'id', "#{@site.url}#{document.get('url')}"

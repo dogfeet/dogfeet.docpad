@@ -53,7 +53,7 @@ sbt 없으면 레파지토리에서 정보를 업데이트한다:
 
 ## Gentoo
 
-공식 소스 안에는 sbt용 ebuild 스크립트가 없다. 하지만 https://github.com/whiter4bbit/overlays/tree/master/dev-java/sbt-bin에 sbt를 머지하는 ebuild 스크립트가 있다. 다음과 같이 ebuild 스크립트로 sbt를 머지한다:
+공식 소스 안에는 sbt용 ebuild 스크립트가 없다. 하지만 https://github.com/whiter4bbit/overlays/tree/master/dev-java/sbt-bin 에 sbt를 머지하는 ebuild 스크립트가 있다. 다음과 같이 ebuild 스크립트로 sbt를 머지한다:
 
     mkdir -p /usr/local/portage && cd /usr/local/portage
     git clone git://github.com/whiter4bbit/overlays.git
@@ -87,7 +87,7 @@ sbt-launch.jar를 직접 다운로드할 필요 없다:
 
 ## Unix
 
-[sbt-launch.jar]를 다운로드해서 `~/bin` 디렉토리에 넣는다.
+[sbt-launch.jar](http://typesafe.artifactoryonline.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/0.11.3-2/sbt-launch.jar)를 다운로드해서 `~/bin` 디렉토리에 넣는다.
 
 이 jar 파일을 실행하는 스크립트를 'sbt'라는 이름으로 만들고 `~/bin` 디렉토리에 넣는다:
 
