@@ -6,9 +6,11 @@ date: '2012-7-3'
 tags: ['sbt']
 ---
 
-이 글은 [orig-getting-started][]을 번역한 것이다. 
+이 글은 [Getting Started sbt][orig-getting-started]을 번역한 것이다. 
 
 ![sbt](/articles/2012/sbt/sbt.png)
+
+[Getting Started sbt(한글)][getting-started]
 
 ## Overview
 
@@ -101,7 +103,7 @@ sbt-launch.jar를 직접 다운로드할 필요 없다:
 
 문제가 생겨서 `sbt`가 실행이 안되면 [설치 노트][setup-note]를 확인하라. 터미널 엔코딩, HTTP 프록시, JVM 옵션 등에 대해 나와 있다.
 
-꼼꼼하게 만들어진 쉘 스크립트있어서 이 스크립트로 sbt를 설치할 수 있다: https://github.com/paulp/sbt-extras(루트 디렉토리에 있는 sbt 파일). 이 스크립트로 설치하면 패키지로 설치하는 것처럼 원하는 버전의 sbt를 설치할 수 있다. 설치할 sbt의 버전을 선택한다든지 하는 유용한 커맨드 라인이 있다.
+꼼꼼하게 만들어진 쉘 스크립트있어서 이 스크립트로 sbt를 설치할 수 있다: https://github.com/paulp/sbt-extras (루트 디렉토리에 있는 sbt 파일). 이 스크립트로 설치하면 패키지로 설치하는 것처럼 원하는 버전의 sbt를 설치할 수 있다. 설치할 sbt의 버전을 선택한다든지 하는 유용한 커맨드 라인이 있다.
 
 [setup-note]: https://github.com/harrah/xsbt/wiki/Setup-Notes
 
