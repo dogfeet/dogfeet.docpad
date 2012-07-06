@@ -123,17 +123,17 @@ sbt-launch.jar를 직접 다운로드할 필요 없다:
 [orig-summary]: https://github.com/harrah/xsbt/wiki/Getting-Started-Summary
 
 [getting-started]: /articles/2012/sbt-getting-started.html
-[setup]: /articles/2012/sbt-setup.html
-[hello-world]: /articles/2012/sbt-hello-world.html
-[directory-layout]: /articles/2012/sbt-directory-layout.html
-[running]: /articles/2012/sbt-running.html
-[.sbt-build-definition]: /articles/2012/sbt-sbt-build-definition.html
-[scopes]: /articles/2012/sbt-scopes.html
-[more-about-settings]: /articles/2012/sbt-more-about-settings.html
-[library-dependencies]: /articles/2012/sbt-library-dependencies.html
-[.scala-build-definition]: /articles/2012/sbt-scala-build-definition.html
-[using-plugins]: /articles/2012/sbt-using-plugins.html
-[multi-project-builds]: /articles/2012/sbt-multi-project-builds.html
-[custom-settings-and-tasks]: /articles/2012/sbt-custom-settings-and-tasks.html
-[summary]: /articles/2012/sbt-summary.html
+[setup]: /articles/2012/sbt-getting-started-setup.html
+[hello-world]: /articles/2012/sbt-getting-started-hello.html
+[directory-layout]: /articles/2012/sbt-getting-started-directory-layout.html
+[running]: /articles/2012/sbt-getting-started-running.html
+[.sbt-build-definition]: /articles/2012/sbt-getting-started-sbt-build-definition.html
+[scopes]: /articles/2012/sbt-getting-started-scopes.html
+[more-about-settings]: /articles/2012/sbt-getting-started-more-about-settings.html
+[library-dependencies]: /articles/2012/sbt-getting-started-library-dependencies.html
+[.scala-build-definition]: /articles/2012/sbt-getting-started-scala-build-definition.html
+[using-plugins]: /articles/2012/sbt-getting-started-using-plugins.html
+[multi-project-builds]: /articles/2012/sbt-getting-started-multi-project-builds.html
+[custom-settings-and-tasks]: /articles/2012/sbt-getting-started-custom-settings-and-tasks.html
+[summary]: /articles/2012/sbt-getting-started-summary.html
 

@@ -33,7 +33,7 @@ tags: ['sbt']
 
 sbt는 관례에 따라 동작하는 것인데 다음과 같은 것을 찾는다.
 
- - 기본 디렉토리에 있는 소스
+ - Base 디렉토리에 있는 소스
  - `src/main/scala` 또는 `src/main/java`에 있는 소스
  - `src/test/scala` 또는 `src/test/java`에 있는 테스트
  - `src/main/resources` 또는 src/test/resources`에 있는 데이터 파일
@@ -45,9 +45,9 @@ sbt는 sbt를 실행하는데 사용한 Scala 버전으로 프로젝트를 빌�
 
 ## 빌드 정의하기
 
-프로젝트들은 보통 손으로 설정줘야 한다. 프로젝트 디렉토리에 `build.sbt` 파일을 만들고 기본 설정을 한다.
+프로젝트들은 보통 손으로 설정줘야 한다. 프로젝트 Base 디렉토리에 `build.sbt` 파일을 만들고 기본 설정을 한다.
 
-예를 들어, 프로젝트 디렉토리가 `hello`라면 `hello/build.sbt` 파일에 다음과 같이 만든다:
+예를 들어, 프로젝트 Base 디렉토리가 `hello`라면 `hello/build.sbt` 파일에 다음과 같이 만든다:
 
     name := "hello"
 
@@ -68,17 +68,17 @@ sbt는 sbt를 실행하는데 사용한 Scala 버전으로 프로젝트를 빌�
 0.10 버전 부터는 버전이 올라가도 99% 이상 잘 호환된다. 하지만 `project/build.properties`에 sbt 버전을 명시하면 혹시 모를 문제를 예방할 수 있다.
 
 [getting-started]: /articles/2012/sbt-getting-started.html
-[setup]: /articles/2012/sbt-setup.html
-[hello-world]: /articles/2012/sbt-hello-world.html
-[directory-layout]: /articles/2012/sbt-directory-layout.html
-[running]: /articles/2012/sbt-running.html
-[.sbt-build-definition]: /articles/2012/sbt-sbt-build-definition.html
-[scopes]: /articles/2012/sbt-scopes.html
-[more-about-settings]: /articles/2012/sbt-more-about-settings.html
-[library-dependencies]: /articles/2012/sbt-library-dependencies.html
-[.scala-build-definition]: /articles/2012/sbt-scala-build-definition.html
-[using-plugins]: /articles/2012/sbt-using-plugins.html
-[multi-project-builds]: /articles/2012/sbt-multi-project-builds.html
-[custom-settings-and-tasks]: /articles/2012/sbt-custom-settings-and-tasks.html
-[summary]: /articles/2012/sbt-summary.html
+[setup]: /articles/2012/sbt-getting-started-setup.html
+[hello-world]: /articles/2012/sbt-getting-started-hello.html
+[directory-layout]: /articles/2012/sbt-getting-started-directory-layout.html
+[running]: /articles/2012/sbt-getting-started-running.html
+[.sbt-build-definition]: /articles/2012/sbt-getting-started-sbt-build-definition.html
+[scopes]: /articles/2012/sbt-getting-started-scopes.html
+[more-about-settings]: /articles/2012/sbt-getting-started-more-about-settings.html
+[library-dependencies]: /articles/2012/sbt-getting-started-library-dependencies.html
+[.scala-build-definition]: /articles/2012/sbt-getting-started-scala-build-definition.html
+[using-plugins]: /articles/2012/sbt-getting-started-using-plugins.html
+[multi-project-builds]: /articles/2012/sbt-getting-started-multi-project-builds.html
+[custom-settings-and-tasks]: /articles/2012/sbt-getting-started-custom-settings-and-tasks.html
+[summary]: /articles/2012/sbt-getting-started-summary.html
 
