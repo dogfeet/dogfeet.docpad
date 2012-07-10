@@ -1,6 +1,6 @@
 --- yaml
 layout: 'article'
-title: 'sbt: Getting Started Guide: Hellow, World'
+title: 'sbt: Getting Started Guide: Hello, World'
 author: 'Changwoo Park'
 date: '2012-7-8'
 tags: ['sbt']
