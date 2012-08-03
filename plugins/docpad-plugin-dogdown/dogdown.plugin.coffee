@@ -10,7 +10,7 @@ module.exports = (BasePlugin) ->
 
 		templates:
 			'@': ( key ) ->
-				['<a href="https://twitter.com/#!/', key, '">@', key, '</a>'].join('')
+				['<a href="https://twitter.com/', key, '">@', key, '</a>'].join('')
 				#['<a href="https://github.com/', key, '">@', key, '</a>'].join('')
 			'#': ( key ) ->
 				['<a href="/site/tagmap.html#', key, '">#', key, '</a>'].join('')
