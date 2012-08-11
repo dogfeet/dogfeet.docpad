@@ -13,7 +13,7 @@ module.exports = (BasePlugin) ->
 
 				collection.forEach (document) ->
 					if 0 is document.get('url').indexOf '/authors'
-						authors[ document.get('name') ] = document
+						authors[ document.meta.get('name') ] = document
 
 				authors.toTwitter = (names) ->
 					ret = []
@@ -23,7 +23,7 @@ module.exports = (BasePlugin) ->
 						name = name.trim()
 
 						if authors.hasOwnProperty name
-							ret.push '@' + authors[ name ].get('twitter')
+							ret.push '@' + authors[ name ].meta.get('twitter')
 
 					ret.join ' '
 

@@ -7,12 +7,12 @@ html lang: 'en', ->
     meta 'http-equiv': 'content-type', content: 'text/html; charset=utf-8'
     meta name: 'viewport', content: 'width=device-width, initial-scale=1'
 
-    if @document.layout is 'article' or @document.layout is 'author'
+    if @document.meta.layout is 'article' or @document.meta.layout is 'author'
       #document has own title, articles or authors
-      title "dogfeet - #{@document.title}"
-      meta name: 'description', content: @document.description or ''
-      meta name: 'keywords', content: @document.keywords or ''
-      meta name: 'author', content: @document.author or ''
+      title "dogfeet - #{@document.meta.title}"
+      meta name: 'description', content: @document.meta.description or ''
+      meta name: 'keywords', content: @document.meta.keywords or ''
+      meta name: 'author', content: @document.meta.author or ''
     else
       #document has not own title, not articles or authors
       title "dogfeet - #{@site.title}"

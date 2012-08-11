@@ -44,9 +44,7 @@
 		"coffee-script" : "1.x.x",
 		"coffeecup" : "0.x.x",
 		"docpad-plugin-coffee": "latest",
-		"docpad-plugin-hogan": "latest",
-		"docpad-plugin-related": "latest",
-		"docpad-plugin-partials": "latest"
+		"docpad-plugin-related": "latest"
 	},
 	"devDependencies": {
 	},
@@ -55,13 +53,6 @@
 	},
 	"docpad": {
 		"enabledPlugins": {
-		},
-		"plugins": {
-			"coffee": {
-				"coffeekup": {
-					"format": true
-				}
-			}
 		},
 		"templateData": {
 			"site": {
