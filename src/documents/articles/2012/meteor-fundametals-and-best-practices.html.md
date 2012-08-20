@@ -136,7 +136,7 @@ Reactive 컨텍스트와 데이터 소스가 궁금하면 Meteor의 [Reactivity 
 
 ## Publish/Subscribe
 
-***Note:*** 프로젝트 루트 디렉토리에서 `$ meteor remove autopublish`를 꼭 실행해야 한다. Meteor는 기본적으로 모든 데이터를 Publish하는데 이 것른사파의 사술이다(poor practice).
+***Note:*** 프로젝트 루트 디렉토리에서 `$ meteor remove autopublish`를 꼭 실행해야 한다. Meteor는 기본적으로 모든 데이터를 Publish하는데 이 것은 사파의 사술이다(poor practice).
 
 서버는 클라이언트가 사용할 데이터를 Publish하고 클라이언트는 그 데이터를 Subscribe한다. 처음부터 서버가 데이터를 Publish하고 클라이언트가 Subscribe하는 관계를 이해하긴 어렵다. 
 
