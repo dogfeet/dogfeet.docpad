@@ -9,13 +9,13 @@ html lang: 'en', ->
 
     if @document.meta.layout is 'article' or @document.meta.layout is 'author'
       #document has own title, articles or authors
-      title "dogfeet - #{@document.meta.title}"
+      title "#dogfeet - #{@document.meta.title}"
       meta name: 'description', content: @document.meta.description or ''
       meta name: 'keywords', content: @document.meta.keywords or ''
       meta name: 'author', content: @document.meta.author or ''
     else
       #document has not own title, not articles or authors
-      title "dogfeet - #{@site.title}"
+      title "#dogfeet - #{@site.title}"
       meta name: 'description', content: @site.description or ''
       meta name: 'keywords', content: @site.keywords or ''
       authorNames=[]
