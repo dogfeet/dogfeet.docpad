@@ -10,6 +10,10 @@ Rod Johnson에 Meteor에 합류했다기에 자료를 좀 찾아봤다.
 
 ![](/articles/2012/meteor/meteor.jpg)
 
+**UPDATE**:
+
+Window용 Meteor를 배포하는 페이지가 나타났어요. [http://win.meteor.com/](http://win.meteor.com/)
+
 ## Meteor
 
 Meteor가 무엇인지는 @rkjun님의 '[자바스크립트기반 웹플랫폼 Meteor.js 란 무엇인가](http://rkjun.wordpress.com/2012/06/04/meteor-js-preview-0-3-6-intro/)'읽어보면 좋다.
@@ -44,6 +48,6 @@ meteor/docs 앱을 실행하면 다음과 같이 실행된다:
 
 출력메시지는 최신 버전이 아니니 update하라는 얘기인데 `meteor update`할 수 없다. 그 외에는 잘 동작하는 것 같다. 아마 msi 파일을 다시 배포할 것이라고 생각한다. 
 
-[meteor.msi]: https://dl.dropbox.com/s/8g6o0edqhqmzly1/Meteor.msi?dl=1
+[meteor.msi]: http://win.meteor.com/
 [Continuation-passing style]: http://dogfeet.github.com/articles/2012/by-example-continuation-passing-style-in-javascript.html
 
