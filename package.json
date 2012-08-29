@@ -44,8 +44,8 @@
 		"coffee-script" : "1.x.x",
 		"coffeecup" : "0.x.x",
 		"docpad-plugin-coffee": "latest",
-		"docpad-plugin-related": "latest",
-		"dogfeet-flavored-markdown": "git://github.com/dogfeet/dogfeet-flavored-markdown.git#master"
+		"docpad-plugin-markdown": "latest",
+		"docpad-plugin-related": "latest"
 	},
 	"devDependencies": {
 	},
