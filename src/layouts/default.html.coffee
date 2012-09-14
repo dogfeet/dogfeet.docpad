@@ -39,6 +39,7 @@ html lang: 'en', ->
     comment 'Styles'
     link rel: 'stylesheet', href: '/css/bootstrap.min.css', media: 'screen, projection'
     link rel: 'stylesheet', href: '/css/bootstrap-responsive.min.css', media: 'screen, projection'
+    link rel: 'stylesheet', href: '/css/highlight/github.css', media: 'screen, projection'
     link rel: 'stylesheet', href: '/styles/style.css', media: 'screen, projection'
     link rel: 'stylesheet', href: '/styles/markdown.css', media: 'screen, projection'
     #link rel: 'stylesheet', href: '/styles/print.css', media: 'print'

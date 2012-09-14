@@ -39,34 +39,18 @@
 		"url" : "http://github.com/dogfeet/dogfeet.github.com.git"
 	},
 	"dependencies": {
-		"moment" : "1.x.x",
-		"underscore" : "1.x.x",
-		"coffee-script" : "1.x.x",
-		"coffeecup" : "0.x.x",
+		"moment" : "latest",
+		"underscore" : "latest",
+		"coffee-script" : "latest",
+		"coffeecup" : "latest",
+		"highlight.js": "latest",
 		"docpad-plugin-coffee": "latest",
-		"docpad-plugin-related": "latest",
-		"dogfeet-flavored-markdown": "git://github.com/dogfeet/dogfeet-flavored-markdown.git#master"
+		"docpad-plugin-marked": "latest",
+		"docpad-plugin-related": "latest"
 	},
 	"devDependencies": {
 	},
 	"engines" : {
 		"node": ">=0.4.0"
-	},
-	"docpad": {
-		"enabledPlugins": {
-		},
-		"templateData": {
-			"site": {
-				"url": "http://dogfeet.github.com",
-				"title": "개발새발",
-				"description": "정통 개발 주간 블로그입니다. 주 관심사는 학습과 WEB입니다.",
-				"keywords": "학습,Learning,HTML5,Mobile,Web,iPhone,Android,Git,JavaScript,Scala,개발새발,dogfeet",
-				"disqusShortName": "dogfeet-github",
-				"analytics": {
-					"reinvigorate": "702o7-66905bt9t0",
-					"google": "UA-4446117-1"
-				}
-			}
-		}
 	}
 }
