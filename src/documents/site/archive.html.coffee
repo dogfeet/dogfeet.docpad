@@ -3,8 +3,8 @@ layout: 'default'
 title: 'Archive'
 ---
 
-moment=@tool.moment
-layout=@layout
+helper=@helper
+authors=@authors
 
 style rel: 'stylesheet', media: 'screen, projection', scoped: 'scoped', ->
   """
@@ -18,12 +18,11 @@ h1 "Archive"
 section ".archive", ->
   @getCollection('documents').forEach (document) ->
     if document.get('encoding') != 'binary' and 0 is document.get('url').indexOf '/article'
-      dateWrapper = moment document.get('date')
-      tagLinks = layout 'tag-links', document.get('tags')
-      authorLinks = layout 'author-links', document.get('author')
+      tagLinks = helper.genTags document.get('tags')
+      authorLinks = helper.genAuthors authors, document.get('author')
       
       div '.row-fluid', ->
-        div '.span2', dateWrapper.format('YYYY MMM DD')
+        div '.span2', helper.formatDate( document.get('date') )
         div '.span10.archive-item', ->
           a href: document.get('url'), property: 'dc:title', ->
             strong "#{document.get('title')}"

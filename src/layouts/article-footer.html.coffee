@@ -1,9 +1,8 @@
 document = @args[0]
 
-dateWrapper = @tool.moment document.get('date')
-dateStr = dateWrapper.format('YYYY MMM DD')
-authorLinks = @layout 'author-links', document.get('author')
-tagLinks = @layout 'tag-links', document.get('tags')
+dateStr = @helper.formatDate( document.get('date') )
+authorLinks = @helper.genAuthors @authors, document.get('author')
+tagLinks = @helper.genTags document.get('tags')
 
 span "by #{authorLinks}"
 text ' | '

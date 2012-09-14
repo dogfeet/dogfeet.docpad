@@ -17,7 +17,7 @@ section ".atelier", ->
 
       translateIt = (year, title, orig, trans, authors, state)->
         p ->
-          authorAnchor = @layout 'author-links', authors
+          authorAnchor = @helper.genAuthors @authors, authors
 
           text "#{year}. "
           a href: orig, title

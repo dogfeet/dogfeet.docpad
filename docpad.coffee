@@ -30,9 +30,34 @@ module.exports =
         """
       disqusShortName: "dogfeet-github"
 
+    # helpers
+    helper:
+      formatDate: (date)->
+        moment( date ).format('YYYY MMM DD')
+      genTags: (tag)->
+        return '' if !tag
+
+        tags = tag
+        tags = tag.split ',' if _.isString tag
+
+        _.map(tags, (name)->
+          name = name.trim()
+          """<a href="/site/tagmap.html##{name.toLowerCase()}" class="tag">#{name}</a>"""
+        ).join ' '
+      genAuthors: (authors, name)->
+        return '' if !name
+
+        names = name
+        names = name.split ',' if _.isString name
+
+        _.map(names, (name)->
+          name = name.trim()
+          author = authors[ name ]
+          """<a href="#{author.get('url')}">#{author.meta.get('name')}</a>"""
+        ).join ' '
+
     # tools
     tool:
-      moment: moment
       '_': _
       summary: (contentRendered) ->
         splited = contentRendered.split(/<h[123456]>/)

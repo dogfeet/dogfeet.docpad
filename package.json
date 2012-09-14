@@ -45,7 +45,6 @@
 		"coffeecup" : "latest",
 		"highlight.js": "latest",
 		"docpad-plugin-coffee": "latest",
-		"docpad-plugin-marked": "latest",
 		"docpad-plugin-related": "latest"
 	},
 	"devDependencies": {
