@@ -72,6 +72,7 @@ module.exports =
           has = lang && hl.LANGUAGES.hasOwnProperty(lang.trim())
           return hl.highlight(lang, code).value if has
           return hl.highlightAuto(code).value
+        sanitize: false,
         inline: (src, hash, escape)->
           out = src
 
