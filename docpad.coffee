@@ -54,7 +54,7 @@ module.exports =
           name = name.trim()
           author = authors[ name ]
           """<a href="#{author.get('url')}">#{author.meta.get('name')}</a>"""
-        ).join ' '
+        ).join ', '
 
     # tools
     tool:
