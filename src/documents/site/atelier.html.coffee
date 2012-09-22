@@ -25,6 +25,11 @@ section ".atelier", ->
           a href: trans, state
           text ") by #{authorAnchor}"
 
+      translateIt '2012', 'Meteor'
+        , 'http://docs.meteor.com/'
+        , 'http://docs-ko.meteor.com/'
+        , 'Changwoo Park, Sean Lee, Yongjae Choi'
+        , 'Ko-trans.'
       translateIt '2012', 'Learning J'
         , 'http://www.jsoftware.com/help/learning/contents.htm'
         , 'https://github.com/lnyarl/learning-j-ko'
