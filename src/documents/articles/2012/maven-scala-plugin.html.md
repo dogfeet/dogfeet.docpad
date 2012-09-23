@@ -59,7 +59,7 @@ groovy 스크립트를 실행할 수 있기 때문에 Maven 모델에 접근해�
             <goal>execute</goal>
         </goals>
         <configuration>
-            <source><![CDATA[
+            <source>
             def concat(s1, s2, t) {
                 def java.io.File f1 = new java.io.File(s1)
                 def java.io.File f2 = new java.io.File(s2)
@@ -102,7 +102,7 @@ groovy 스크립트를 실행할 수 있기 때문에 Maven 모델에 접근해�
             concat("target/classes/com/softwareag/de/s/framework/demo/db/derby/initZero.sql",
                 "src/main/db/init0.sql",
                 "target/classes/com/softwareag/de/s/framework/demo/db/hsqldb/init0.sql")
-            ]]></source>
+            </source>
         </configuration>
         </execution>
     </executions>
@@ -133,7 +133,7 @@ scala를 java처럼 사용해도 충분하다. scala의 현란한 문법은 몰�
         </execution>
     </executions>
     <configuration>
-        <script> <![CDATA[
+        <script>
             import java.io.File
 
             //필요한 환경 변수가 있는지 검사.
@@ -155,7 +155,7 @@ scala를 java처럼 사용해도 충분하다. scala의 현란한 문법은 몰�
                     throw new RuntimeException( "[" + dir + "] dir not found ")
                 }
             })
-        ]]> </script>
+        </script>
     </configuration>
 </plugin>
 ```
