@@ -6,7 +6,7 @@ date: '2012-10-10'
 tags: ['github', 'git', 'pages', 'blog']
 ---
 
-GitHub의 Pages 기능을 이용하는 방법에 대해 정리해보고자 한다. [창우](http://dogfeet.github.com/authors/changwoo-park.html)님의 '한 때 버전 컨트롤, 위키, 블로그를 다 따로 사용했었는데, GitHub를 알고 나서 전부 하나로 사용하고 있다'는 말을 듣고 블로깅을 GitHub로 해보면 어떨까 하는 생각이 들었다. GitHub의 Page 기능을 이용하면 이 블로그처럼 글을 써서 남길 수 있다.
+GitHub의 Pages 기능을 이용하는 방법에 대해 정리해보고자 한다. @pismute님의 '한 때 버전 컨트롤, 위키, 블로그를 다 따로 사용했었는데, GitHub를 알고 나서 Git, GitHub으로만 사용하고 있다'는 말을 듣고 블로깅을 GitHub로 해보면 어떨까 하는 생각이 들었다. GitHub의 Page 기능을 이용하면 이 블로그처럼 글을 써서 남길 수 있다.
 GitHub의 [help 페이지에 있는 Pages의 글](https://help.github.com/categories/20/articles) 들중 몇 가지만 빼고 한국어로 옮겨봤다.
 
 ![help](/articles/2012/github-pages/github-help.jpg)
