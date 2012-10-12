@@ -107,25 +107,28 @@ module.exports =
   # =================================
   # DocPad Plugin Config
   plugins:
-    marked:
-      markedOptions:
-        highlight: (code, lang)->
-          has = lang && hl.LANGUAGES.hasOwnProperty(lang.trim())
-          return hl.highlight(lang, code).value if has
-          return hl.highlightAuto(code).value
-        sanitize: false,
-        inline: (src, hash, escape)->
-          out = src
+    robotskirt:
+      highlight: (code,lang) ->
+        has = lang && hl.LANGUAGES.hasOwnProperty(lang.trim())
 
-          #for people
-          out = out.replace /(^|[ \t]+)@([a-zA-Z0-9]+)/g, (whole, m1, m2) ->
-            hash m1 + '<a href="https://twitter.com/' + m2 + '">@' + m2 + '</a>'
+        open = if has then '<pre><code class="lang-'+lang.trim()+'">' else '<pre><code>'
+        body = if has then hl.highlight(lang, code).value else hl.highlightAuto(code).value
+        close = '</code></pre>'
 
-          #for hash tag·
-          out = out.replace /(^|[ \t]+)#([ㄱ-ㅎ가-힣a-zA-Z0-9]+)/g, (whole, m1, m2) ->
-            hash m1 + '<a href="/site/tagmap.html#' + m2 + '">#' + m2 + '</a>'
+        open + body + close
 
-          out
+      inline: (src, hash, houdini)->
+        out = src
+
+        #for people
+        out = out.replace /(^|[ \t]+)@([a-zA-Z0-9]+)/g, (whole, m1, m2) ->
+          hash m1 + '<a href="https://twitter.com/' + m2 + '">@' + m2 + '</a>'
+
+        #for hash tag·
+        out = out.replace /(^|[ \t]+)#([ㄱ-ㅎ가-힣a-zA-Z0-9]+)/g, (whole, m1, m2) ->
+          hash m1 + '<a href="/site/tagmap.html#' + m2 + '">#' + m2 + '</a>'
+
+        out
 
   # =================================
   # DocPad Events
