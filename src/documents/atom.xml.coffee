@@ -26,11 +26,11 @@ tag 'feed', xmlns: 'http://www.w3.org/2005/Atom', ->
   tag 'link', href: @site.url
   tag 'updated', @site.date.toISODateString()
   tag 'id', @site.url
-  @getCollection('documents').forEach (document) ->
-    if 0 is document.get('url').indexOf '/authors'
-      tag 'author', ->
-        tag 'name', document.get('name')
-        tag 'email', document.get('email')
+  for name of @authors
+    author = @authors[ name ]
+    tag 'author', ->
+      tag 'name', author.name
+      tag 'email', author.email
 
   i=0
   @getCollection('documents').forEach (document) ->

@@ -2,6 +2,34 @@ hl = require 'highlight.js'
 moment = require 'moment'
 _ = require 'underscore'
 
+to =
+  value: (it) ->
+    return it() if _.isFunction( it )
+    it
+
+## for locally access
+    
+authors =
+  'Changwoo Park':
+    name: 'Changwoo Park'
+    email: 'pismute@gmail.com'
+    github: 'pismute'
+    twitter: 'pismute'
+    gravata: '2694a5501ec37eab0c6d4bf98c30303a'
+  'Sean Lee':
+    name: 'Sean Lee'
+    email: 'sean@weaveus.com'
+    github: 'lethee'
+    twitter: 'lethee'
+    page: """<a href="https://github.com/lethee/">Sean Lee</a>"""
+    gravata: '2699699e90ed281807fc0631ec89bbe2'
+  'Yongjae Choi':
+    name: 'Yongjae Choi'
+    email: 'mage@weaveus.com'
+    github: 'lnyarl'
+    twitter: 'lnyarl'
+    gravata: '8232d82f449689642bb4c1f6bbc929bd'
+
 # The DocPad Configuration File
 # It is simply a CoffeeScript Object which is parsed by CSON
 module.exports = 
@@ -11,6 +39,7 @@ module.exports =
   # To access one of these within our templates, refer to the FAQ: https://github.com/bevry/docpad/wiki/FAQ
 
   templateData:
+    authors: authors
 
     # Specify some site properties
     site:
@@ -44,7 +73,7 @@ module.exports =
           name = name.trim()
           """<a href="/site/tagmap.html##{name.toLowerCase()}" class="tag">#{name}</a>"""
         ).join ' '
-      genAuthors: (authors, name)->
+      genAuthors: (name)->
         return '' if !name
 
         names = name
@@ -53,8 +82,20 @@ module.exports =
         _.map(names, (name)->
           name = name.trim()
           author = authors[ name ]
-          """<a href="#{author.get('url')}">#{author.meta.get('name')}</a>"""
+          return to.value(author.page) if author.hasOwnProperty( 'page' )
+          """<a href="https://twitter.com/#{author.twitter}/">#{author.name}</a>"""
         ).join ', '
+      genTwitter: (names) ->
+        ret = []
+        names = names.split ','
+
+        for name in names
+          name = name.trim()
+
+          if authors.hasOwnProperty name
+            ret.push '@' + authors[ name ].twitter
+
+        ret.join ' '
 
     # tools
     tool:

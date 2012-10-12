@@ -50,7 +50,7 @@ article "#post .post .#{@document.class}", typeof: 'sioc:post', about: "#{@docum
     div '#social-buttons.pull-right', ->
       ul '.unstyled', ->
         articleUrl = "#{@site.url}#{@document.url}"
-        twitters = @authors.toTwitter @document.author
+        twitters = @helper.genTwitter @document.author
         twitters = twitters.substr(1)
 
         li -> 

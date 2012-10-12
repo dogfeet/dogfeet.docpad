@@ -1,7 +1,7 @@
 document = @args[0]
 
 dateStr = @helper.formatDate( document.get('date') )
-authorLinks = @helper.genAuthors @authors, document.get('author')
+authorLinks = @helper.genAuthors document.get('author')
 tagLinks = @helper.genTags document.get('tags')
 
 span "by #{authorLinks}"

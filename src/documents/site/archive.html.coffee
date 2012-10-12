@@ -4,7 +4,6 @@ title: 'Archive'
 ---
 
 helper=@helper
-authors=@authors
 
 style rel: 'stylesheet', media: 'screen, projection', scoped: 'scoped', ->
   """
@@ -19,7 +18,7 @@ section ".archive", ->
   @getCollection('documents').forEach (document) ->
     if document.get('encoding') != 'binary' and 0 is document.get('url').indexOf '/article'
       tagLinks = helper.genTags document.get('tags')
-      authorLinks = helper.genAuthors authors, document.get('author')
+      authorLinks = helper.genAuthors document.get('author')
       
       div '.row-fluid', ->
         div '.span2', helper.formatDate( document.get('date') )
