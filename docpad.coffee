@@ -21,7 +21,7 @@ authors =
     email: 'sean@weaveus.com'
     github: 'lethee'
     twitter: 'lethee'
-    page: """<a href="https://github.com/lethee/">Sean Lee</a>"""
+    page: """<a href="http://kr.linkedin.com/in/seanseonghwanlee">Sean Lee</a>"""
     gravata: '2699699e90ed281807fc0631ec89bbe2'
   'Yongjae Choi':
     name: 'Yongjae Choi'
