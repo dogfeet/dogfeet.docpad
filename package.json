@@ -46,6 +46,7 @@
 		"highlight.js": "latest",
 		"docpad-plugin-coffee": "latest",
 		"docpad-plugin-related": "latest",
+		"docpad-plugin-uglify": "latest",
 		"docpad-plugin-robotskirt": "latest"
 	},
 	"devDependencies": {
