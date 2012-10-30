@@ -37,8 +37,7 @@ html lang: 'en', ->
     comment 'Shims: IE6-8 support of HTML5 elements'
     comment '[if lt IE 9]>\n        <script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>\n    <![endif]'
     comment 'Styles'
-    link rel: 'stylesheet', href: '/css/bootstrap.min.css', media: 'screen, projection'
-    link rel: 'stylesheet', href: '/css/bootstrap-responsive.min.css', media: 'screen, projection'
+    link rel: 'stylesheet', href: '//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.0/css/bootstrap-combined.min.css', media: 'screen, projection'
     link rel: 'stylesheet', href: '/css/highlight/github.css', media: 'screen, projection'
     link rel: 'stylesheet', href: '/styles/style.css', media: 'screen, projection'
     link rel: 'stylesheet', href: '/styles/markdown.css', media: 'screen, projection'
@@ -51,43 +50,36 @@ html lang: 'en', ->
     script src: 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js'
     script src: 'http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js'
     script src: "http://connect.facebook.net/en_US/all.js#xfbml=1"
-    script src: '/js/bootstrap.min.js'
+    script src: '//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.0/css/bootstrap-combined.min.css'
     script src: '/scripts/script.js'
 
     #text @blocks.scripts.join('')
 
   body ->
     comment 'Topbar'
-    div '.navbar navbar-fixed-top', ->
+    div '.navbar.navbar-static-top', ->
       div '.navbar-inner', ->
-        div '.container-fluid', ->
-          a '.btn.btn-navbar', 'data-toggle':'collapse', 'data-target':'.nav-collapse', ->
-            span '.icon-bar', ''
-            span '.icon-bar', ''
-            span '.icon-bar', ''
+        div '.container', ->
+          a '.btn.btn-navbar.pull-right', 'data-toggle':'collapse', 'data-target':'.nav-collapse', ->
+              span '.icon-bar', ''
+              span '.icon-bar', ''
+              span '.icon-bar', ''
+
           a '.brand', href: '/', 'dogfeet'
-
-          div '.nav-collapse', ->
-            ul '.nav', ->
-              li -> a href: '/site/tagmap.html', 'Tagmap'
-              li -> a href: '/site/archive.html', 'Archive'
-              li -> a href: '/site/atelier.html', 'Atelier'
-              li -> a href: 'http://feeds.feedburner.com/github/dogfeet', ->
-                img src: 'http://forum.tattersite.com/ko/style/Textcube/feed-icon.png'
-
-            form '#search-form.pull-right navbar-search', action: 'http://google.com/search', method: 'get', ->
-              input type: 'hidden', name: 'q', value: 'site:dogfeet.github.com'
-              input 'search-query', type: 'text', name: 'q', results: '0', placeholder: 'Search'
+          ul '.nav.nav-collapse', ->
+            li -> a href: '/site/tagmap.html', 'Tagmap'
+            li -> a href: '/site/archive.html', 'Archive'
+            li -> a href: '/site/atelier.html', 'Atelier'
+            li -> a href: 'http://feeds.feedburner.com/github/dogfeet', ->
+              img src: 'http://forum.tattersite.com/ko/style/Textcube/feed-icon.png'
+          form '#search-form.pull-right.navbar-search.nav-collapse', action: 'http://google.com/search', method: 'get', ->
+            input type: 'hidden', name: 'q', value: 'site:dogfeet.github.com'
+            input 'search-query', type: 'text', name: 'q', results: '0', placeholder: 'Search'
 
     comment 'Markup'
-    div '.container-fluid', ->
-      div '.row-fluid', ->
-
-        section '.content span10', ->
-          @content
-
-        aside '.sidebar span2', ->
-          @layout 'aside'
+    div '.container', ->
+      div ->
+        @content
 
       footer '.footer', ->
         p 'Copyright &copy; 2008-2012 Dogfeet from coding to pixels, powered by <a href="https://github.com/balupton/docpad">Docpad</a>'
