@@ -18,7 +18,7 @@ section '.content.articles', ->
             span property: 'dc:created', ->
               @helper.formatDate( document.get('date') ) + ' &raquo;'
           div '.span10', ->
-            a href: document.get('url'), -> document.get('title')
+            a '.index-article-title', href: document.get('url'), -> document.get('title')
         # Author & Info
         div '.row', ->
           div '.offset2.span10.modern-font.small-font.muted', ->
