@@ -51,6 +51,7 @@ html lang: 'en', ->
     script src: 'http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js'
     script src: "http://connect.facebook.net/en_US/all.js#xfbml=1"
     script src: '//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.0/css/bootstrap-combined.min.css'
+    script src: 'http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js'
     script src: '/scripts/script.js'
 
     #text @blocks.scripts.join('')
@@ -66,15 +67,16 @@ html lang: 'en', ->
               span '.icon-bar', ''
 
           a '.brand', href: '/', 'dogfeet'
-          ul '.nav.nav-collapse', ->
-            li -> a href: '/site/tagmap.html', 'Tagmap'
-            li -> a href: '/site/archive.html', 'Archive'
-            li -> a href: '/site/atelier.html', 'Atelier'
-            li -> a href: 'http://feeds.feedburner.com/github/dogfeet', ->
-              img src: 'http://forum.tattersite.com/ko/style/Textcube/feed-icon.png'
-          form '#search-form.pull-right.navbar-search.nav-collapse', action: 'http://google.com/search', method: 'get', ->
-            input type: 'hidden', name: 'q', value: 'site:dogfeet.github.com'
-            input 'search-query', type: 'text', name: 'q', results: '0', placeholder: 'Search'
+          div '.nav-collapse.collapse', ->
+            ul '.nav', ->
+              li -> a href: '/site/tagmap.html', 'Tagmap'
+              li -> a href: '/site/archive.html', 'Archive'
+              li -> a href: '/site/atelier.html', 'Atelier'
+              li -> a href: 'http://feeds.feedburner.com/github/dogfeet', ->
+                img src: 'http://forum.tattersite.com/ko/style/Textcube/feed-icon.png'
+            form '#search-form.pull-right.navbar-search', action: 'http://google.com/search', method: 'get', ->
+              input type: 'hidden', name: 'q', value: 'site:dogfeet.github.com'
+              input 'search-query', type: 'text', name: 'q', results: '0', placeholder: 'Search'
 
     comment 'Markup'
     div '.container', ->
