@@ -66,10 +66,15 @@ section.content article p {
 
 section.content { padding-top: 50px; }
 
+article.post { padding-top: 60px; }
+
 section.content article.post footer {
 	padding-left: 1em;
 }
 
+section a.index-article-title { font-weight: bold; }
+
+article.post h1 { font-size: 1em; padding: 0; margin: 0; height: auto; line-height: normal; font-weight: bold;}
 section.content article.post h2 { margin-top: 30px; }
 section.content article.post h3 { margin-top: 20px; }
 section.content article.post h4 { margin-top: 10px; }
