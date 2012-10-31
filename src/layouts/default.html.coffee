@@ -50,7 +50,7 @@ html lang: 'en', ->
     script src: 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js'
     script src: 'http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js'
     script src: "http://connect.facebook.net/en_US/all.js#xfbml=1"
-    script src: '//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.0/css/bootstrap-combined.min.css'
+    script src: '//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.0/js/bootstrap.min.js'
     script src: 'http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js'
     script src: '/scripts/script.js'
 
