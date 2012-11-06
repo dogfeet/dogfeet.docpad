@@ -163,7 +163,7 @@ reflog가 특이한점은 SHA 값을 인식하는 것이 아니라는 것이다.
 
 `git log` 명령이 인식하는 것도 결국 SHA 값이라는 것을 기억해야 한다. master, HEAD, tag등의 포인터를 인자로 넘겨도 결국 git이 인식하는 것은 그 포인터가 가리키는 SHA 값이다. 그래서 SHA값을 직접 사용해도 된다.
 
-![예제](http://progit.org/figures/ch6/18333fig0601-tn.png)
+![예제](https://raw.github.com/progit/progit/master/figures/18333fig0601-tn.png)
 
 progit의 예제
 
