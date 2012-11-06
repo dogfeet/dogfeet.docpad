@@ -6,7 +6,7 @@ date: '2012-12-19'
 tags: ['Git', 'holman', 'Zach Holman', 'RedDotRubyConf']
 ---
 
-이글은 @holman님이 싱가폴에서 열린 [RedDotRubyConf](http://reddotrubyconf.com/)에서 발표한 [Git and GitHub Secrets](http://zachholman.com/talk/git-github-secrets)에 해설을 달았다. 내용이 길어서 둘로 나눴는데 이 글은 `Git Secetets`부분을 정리한 글이다. `GitHub Secrets`은 곧 정리할 생각이다.
+이글은 @holman님이 싱가폴에서 열린 [RedDotRubyConf](http://reddotrubyconf.com/)에서 발표한 [Git and GitHub Secrets](http://zachholman.com/talk/git-github-secrets)에 설명을 달았다. 내용이 길어서 둘로 나눴는데 이 글은 `Git Secetets`부분을 정리한 글이다. [GitHub Secrets](/articles/2012/git-github-secrets.html)은 다른 글에 정리한다.
 
 Git은 명령과 옵션이 굉장히 많은데, 그 중에서 @holman님이 추천하는 쓸만한 것이라고 생각하면 되겠다.
 
