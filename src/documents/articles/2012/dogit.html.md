@@ -14,4 +14,4 @@ tags: ['git', 'dogit']
 
 풍성하고 즐거운 추석 보내세요.
 
-[dogit]: https://github.com/dogfeet/dogit
+[dogit]: http://dogfeet.github.com/dogit
