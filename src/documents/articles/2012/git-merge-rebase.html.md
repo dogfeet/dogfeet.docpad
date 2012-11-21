@@ -124,3 +124,8 @@ Rebase를 하고 나서 Merge한 것이 훨씬 보기 좋다. 아무리 복잡�
 ## 마치며
 
 Git처럼 히스토리를 다중으로 관리하는 시스템에서 Rebase는 필수다. Mercurial도 Git의 영향을 받아 Rebase를 지원한다. 이글에서는 Rebase가 왜 필요하고 언제 어떻게 해야 하는지 알아봤다.
+
+## UPDATE: 20121122
+
+Merge Commit은 Commit을 묶음으로 관리하는데도 유용하지만 Release Note에 넣을 만한 것을 미리 Merge Commit으로 만들어 놓으면 편리할 것 같다. 배포할 때 Merge Commit만 추려볼 수 있으니 Release Note를 따로 작성하지 않아도 된다.
+
