@@ -23,6 +23,10 @@ mobi 파일은 Android Kindle App에서 띄어쓰기가 안되는 문제가 있�
 
 **UPDATE:** Kindle Touch에서는 띄어쓰기가 된다고 합니다(ryan003님 제보).
 
+**UPDATE:** [@dongshin2](https://github.com/dongshin2)님이 mobi 파일을 변환해 줘서 이제 Android Kindle App에서도 띄어쓰기가 됩니다.
+
+**UPDATE:** @mytory님이 code의 [word-wrap 버전](http://mytory.net/archives/8707)을 배포하고 계십니다.
+
 번역은 [progit 한글 버전 저장소][]에서 진행하고 있습니다. 오역이나 오탈자는 패치를 보내주시거나 [이슈 트래커][]에 신고해주세요.
 
 다시 한번 동료의 힘을 몸소 체험한 프로젝트 였습니다. [@lethee](https://twitter.com/#!/lethee)와 함께 하지 않고 혼자했다면 결코 완주하지 못했을 겁니다.
