@@ -178,7 +178,7 @@ Pull Request는 브랜치 단위로 하는 거라는 얘기. 그래서 원 저�
 
 ### emoji!
 
-GitHub에서 emoji 이모티콘을 사용할 수 있다. 사용할 수 있는 이모티콘은 http://www.emoji-cheat-sheet.com/에서 참고.
+GitHub에서 emoji 이모티콘을 사용할 수 있다. 사용할 수 있는 이모티콘은 http://www.emoji-cheat-sheet.com/ 에서 참고.
 
 ### Link Linking
 
