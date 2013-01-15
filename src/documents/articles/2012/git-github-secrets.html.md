@@ -86,7 +86,7 @@ https://github.com/settings/security
 
 ### Octocat
 
-@defunkt님이 에러페이지에 사용할 이미지를 찾다가 [Istockphoto]에서 싸게 산 이미지였는데 사람들이 좋아해서 지금은 GitHub의 마스코드가 됐다. 처음에는 아니였지만 지금은 GitHub이 저작권을 가지고 있다.
+@defunkt님이 에러페이지에 사용할 이미지를 찾다가 [Istockphoto](http://www.istockphoto.com/)에서 싸게 산 이미지였는데 사람들이 좋아해서 지금은 GitHub의 마스코드가 됐다. 처음에는 아니였지만 지금은 GitHub이 저작권을 가지고 있다.
 
 [Octocat 스토리](http://www.quora.com/GitHub/What-is-the-story-behind-GitHub%E2%80%99s-octocat-mascot)는 Quora에서 참고.
 
