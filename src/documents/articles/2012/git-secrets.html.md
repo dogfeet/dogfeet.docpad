@@ -37,7 +37,7 @@ Date:   Tue Nov 12 20:32:25 2012 +0900
 
 ### Staging Hunk
 
-파일에서 한 부분? 덩어리?를 Hunk라고 부른다. `git add -p` 명령으로 파일을 통째로 Staging Area에 넣는게 아니라 일정 골라서 부분만(hunk만) 넣는다.
+파일에서 한 부분? 덩어리?를 Hunk라고 부른다. `git add -p` 명령으로 파일을 통째로 Staging Area에 넣는게 아니라 일정 부분만(hunk만) 골라서 넣는다.
 
 자세한 설명은 @semtlnori님의 [깔끔하게 커밋하기](http://npcode.com/blog/archives/449)를 보자.
 
