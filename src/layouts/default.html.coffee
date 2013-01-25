@@ -18,12 +18,7 @@ html lang: 'en', ->
       title "#dogfeet - #{@site.title}"
       meta name: 'description', content: @site.description or ''
       meta name: 'keywords', content: @site.keywords or ''
-      authorNames=[]
-      @getCollection('documents').forEach (document)->
-        if 0 is document.get('url').indexOf '/authors'
-          authorNames.push document.get('name')
-
-      authors = if authorNames.length > 0 then authorNames.join(', ') else ''
+      authors = @tool._.keys(@authors).join(', ')
       meta name: 'author', content: authors
 
     comment 'Icons'

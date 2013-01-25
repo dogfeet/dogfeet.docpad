@@ -33,9 +33,8 @@ tag 'feed', xmlns: 'http://www.w3.org/2005/Atom', ->
       tag 'email', author.email
 
   i=0
-  @getCollection('documents').forEach (document) ->
-    if document.get('encoding') != 'binary' and 0 is document.get('url').indexOf '/articles'
-      i++
-      if i < 10 and document.get('contentRenderedWithoutLayouts')
-        anEntry document
+  @getCollection('articles').forEach (document) ->
+    i++
+    if i < 10 and document.get('contentRenderedWithoutLayouts')
+      anEntry document
 

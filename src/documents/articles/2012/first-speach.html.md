@@ -3,8 +3,7 @@ layout: 'article'
 title: 'KTH 발표'
 author: 'Changwoo Park'
 date: '2012-3-30'
-tags: ['Git', 'KTH', '발표', '회고']
-articleType: 'seminar'
+tags: ['Git', 'KTH', '발표', '회고', 'speach']
 ---
 
 지난 3월 15일에 @kth에서 'Git이 왜 좋은가?'라는 주제로 발표했다.

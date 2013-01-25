@@ -135,15 +135,36 @@ module.exports =
 
   # Here we can define handlers for events that DocPad fires
   # You can find a full listing of events on the DocPad Wiki
+  ###
   events:
 
     # Ammend our Template Data
     renderBefore: ({collection, templateData}, next) ->
       #sorting documents 
       collection.comparator = (model) ->
-        -model.get('date').getTime()
+        try
+          -model.meta.get('date').getTime()
+        catch error
+          9007199254740992
       collection.sort()
 
-      # Continue onto the next plugin
       next()
+  ###
+
+  # =================================
+  # Collections
+  # These are special collections that our website makes available to us
+
+  collections:
+    # For instance, this one will fetch in all documents that have pageOrder set within their meta data
+    #pages: (database) ->
+    #  database.findAllLive({pageOrder: $exists: true}, {pageOrder: 1})
+
+    # This one, will fetch in all documents that have the tag "post" specified in their meta data
+    articles: (database) ->
+      config = @config
+      database.findAllLive({fullPath: $startsWith: config.documentsPaths + '/articles'}, [date:-1])
+    speach: (database) ->
+      database.findAllLive({tags: $has: 'speach'}, [date:-1])
+
 

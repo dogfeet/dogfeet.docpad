@@ -15,16 +15,15 @@ style rel: 'stylesheet', media: 'screen, projection', scoped: 'scoped', ->
 h1 "Archive"
 
 section ".archive", ->
-  @getCollection('documents').forEach (document) ->
-    if document.get('encoding') != 'binary' and 0 is document.get('url').indexOf '/article'
-      tagLinks = helper.genTags document.get('tags')
-      authorLinks = helper.genAuthors document.get('author')
-      
-      div '.row-fluid', ->
-        div '.span2', helper.formatDate( document.get('date') )
-        div '.span10.archive-item', ->
-          a href: document.get('url'), property: 'dc:title', ->
-            strong "#{document.get('title')}"
-          div '.article_footer .modern-font .small-font', -> 
-            text " posted in #{tagLinks} by #{authorLinks}"
+  @getCollection('articles').forEach (document) ->
+    tagLinks = helper.genTags document.get('tags')
+    authorLinks = helper.genAuthors document.get('author')
+    
+    div '.row-fluid', ->
+      div '.span2', helper.formatDate( document.get('date') )
+      div '.span10.archive-item', ->
+        a href: document.get('url'), property: 'dc:title', ->
+          strong "#{document.get('title')}"
+        div '.article_footer .modern-font .small-font', -> 
+          text " posted in #{tagLinks} by #{authorLinks}"
 
