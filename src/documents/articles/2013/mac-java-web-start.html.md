@@ -15,7 +15,7 @@ tags: ['mac', 'java', 'jnlp']
 윈도에서 처럼 매끄럽게 브라우저 안에서 Java App이 실행되지 않더라도 jnlp 파일을 다운로드 받아서 javaws 명령으로 실행시키면 실행해야 하는데 다음과 같은 에러를 내뱉는다:
 
 ```
-$ javaws my.jnlp
+% javaws my.jnlp
 Java Web Start splash screen process exiting ...
 Can not find message file: No such file or directory
 ```
@@ -27,7 +27,7 @@ Google님께 물어보면 Java7을 설치하라는 얘기가 많다. 그래서 �
 아래와 같이 파일을 열고:
 
 ```
-sudo vi /System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/XProtect.meta.plist
+% sudo vi /System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/XProtect.meta.plist
 ```
 
 주석처리를 좀 하고:
@@ -70,8 +70,28 @@ sudo vi /System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/XProtec
 리부팅한다. 그리고 아래와 같이 실행한다:
 
 ```
-javaws my.jnlp
+% javaws my.jnlp
 ```
 
 Apple이 Flash와 Java Applet을 BlackList로까지 분류하고 있는 줄은 몰랐다.
+
+그리고 Mac update를 하면 다시 Disable된다. Disable되면 jre가 설치돼 있는데도 불구하고 javaws를 실행했을 때 아래와 같은 에러를 뱉는다:
+
+```
+% javaws my.jnlp
+No Java runtime present, requesting install.
+Unable to locate a Java Runtime to invoke.
+```
+
+아래와 같이 실행하면 다시 javaws를 사용할 수 있다:
+
+```
+sudo ln -sf /System/Library/Frameworks/JavaVM.framework/Commands/javaws /usr/bin/javaws
+```
+
+수동으로 다시 disable하고 싶으면 아래와 같이 실행한다:
+
+```
+% sudo ln -sf /System/Library/Frameworks/JavaVM.framework/Versions/Current/Commands/javaws /usr/bin/javaws
+```
 
