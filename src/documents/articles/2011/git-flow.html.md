@@ -170,7 +170,7 @@ master 브랜치에 만들어둔 이전 버전의 tag를 base로 브랜치를 �
  * [Getting started git-flow][getting-started-git-flow]
  * [Setting up git flow remote][getting-started-git-flow]
 
-[git-flow-post]: http://dogfeet.github.com/articles/2011/a-successful-git-branching-model.html
+[git-flow-post]: http://dogfeet.github.io/articles/2011/a-successful-git-branching-model.html
 [git-flow]: https://github.com/nvie/gitflow
 [setting-up-git-flow-remote]: http://www.scottw.com/setting-up-git-flow-remote
 [getting-started-git-flow]: http://yakiloo.com/getting-started-git-flow/

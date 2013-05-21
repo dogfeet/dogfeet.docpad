@@ -49,5 +49,5 @@ meteor/docs 앱을 실행하면 다음과 같이 실행된다:
 출력메시지는 최신 버전이 아니니 update하라는 얘기인데 `meteor update`할 수 없다. 그 외에는 잘 동작하는 것 같다. 아마 msi 파일을 다시 배포할 것이라고 생각한다. 
 
 [meteor.msi]: http://win.meteor.com/
-[Continuation-passing style]: http://dogfeet.github.com/articles/2012/by-example-continuation-passing-style-in-javascript.html
+[Continuation-passing style]: http://dogfeet.github.io/articles/2012/by-example-continuation-passing-style-in-javascript.html
 

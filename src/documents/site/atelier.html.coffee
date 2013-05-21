@@ -37,7 +37,7 @@ section ".atelier", ->
         , 'Ko-trans.'
       translateIt '2011', 'Progit'
         , 'http://progit.org/'
-        , 'http://dogfeet.github.com/articles/2012/progit.html'
+        , 'http://dogfeet.github.io/articles/2012/progit.html'
         , 'Changwoo Park, Sean Lee'
         , 'Ko-trans.'
       translateIt '2011', 'JavaScript Garden'
@@ -62,7 +62,7 @@ section ".atelier", ->
         , 'Ko-trans.'
       translateIt '2008', 'Grails User Guide v1.0'
         , 'http://grails.org/doc/1.0/'
-        , 'http://dogfeet.github.com/grails-doc/guide/'
+        , 'http://dogfeet.github.io/grails-doc/guide/'
         , 'Changwoo Park, Sean Lee, Yongjae Choi'
         , 'Ko-trans.'
 

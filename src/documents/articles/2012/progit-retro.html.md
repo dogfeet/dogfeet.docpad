@@ -22,7 +22,7 @@ tags: ['회고', 'retrospection', 'progit', '번역']
 
 **Park** &raquo; Git은 정말 기능도 많고 설명도 많다. 일단 사다리를 그려줄 자료가 필요했다. 그래서 몇 가지를 검토하고 나서 progit을 읽었다. Chapter 순으로 읽으면 결국 이해되도록 잘 쓴 책이라 꼭 번역해야겠다고 생각했다.
 
-[Grails User Manual 번역]: http://dogfeet.github.com/grails-doc/guide/
+[Grails User Manual 번역]: http://dogfeet.github.io/grails-doc/guide/
 
 ## 뭘 가지고 어디에서 작업했나?
 

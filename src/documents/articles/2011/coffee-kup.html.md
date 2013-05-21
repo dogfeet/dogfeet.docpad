@@ -85,7 +85,7 @@ id와 class를 표현하는 방법은 두가지다 하나는 이미 설명대로
 
 html5을 templating 예제는 [CoffeeKup][]페이지에도 나온다 xml 예제를 보자 
 
-    homeUrl='http://dogfeet.github.com'
+    homeUrl='http://dogfeet.github.io'
 
     anEntry = (document) ->
       tag 'entry', ->
@@ -97,7 +97,7 @@ html5을 templating 예제는 [CoffeeKup][]페이지에도 나온다 xml 예제�
 
     text '<?xml version="1.0" encoding="utf-8"?>\n'
     tag 'feed', xmlns: 'http://www.w3.org/2005/Atom', ->
-      title 'dogfeet.github.com'
+      title 'dogfeet.github.io'
       tag 'link', href: "#{homeUrl}/atom.xml", rel: 'self'
       tag 'link', href: homeUrl
       tag 'updated', @site.date.toIsoDateString()

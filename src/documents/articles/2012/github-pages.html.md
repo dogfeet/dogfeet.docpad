@@ -18,7 +18,7 @@ GitHub의 Pages란(이하 페이지) GitHub에서 무료로 호스팅하는 공�
 우리는 두 가지 타입의 페이지를 만들 수 있다. 사용자 페이지와 프로젝트 페이지가 그것이다. 이 둘은 몇 가지 사항을 빼고는 거의 똑같다. (역자주 : 원문에는 User, Organization and Project Page라고 나와있다. 하지만 User와 Organization을 나누는 것은 계정을 혼자 사용하느냐 여럿이서 사용하느냐에 따른 차이일 뿐이다. 사용 방법에는 아무런 차이가 없으므로 이 글에서는 뭉쳐서 사용자라고만 표기한다.)
 
 ### 사용자 페이지
-사용자 페이지는 페이지만을 위한 특별한 저장소에 저장한다. 이 저장소의 이름은 계정 이름을 사용한다. 만약 계정이 dogfeet라면 이 조직을 위한 저장소의 이름은 [dogfeet/dogfeet.github.com](https://github.com/dogfeet/dogfeet.github.com) 이 된다.
+사용자 페이지는 페이지만을 위한 특별한 저장소에 저장한다. 이 저장소의 이름은 계정 이름을 사용한다. 만약 계정이 dogfeet라면 이 조직을 위한 저장소의 이름은 [dogfeet/dogfeet.github.io](https://github.com/dogfeet/dogfeet.github.io) 이 된다.
 
 * 저장소의 이름은 반드시 `username/username.github.com`의 구조를 가진다.
 * __master__ 브랜치의 내용이 곧 페이지에서 보이는 내용이다.

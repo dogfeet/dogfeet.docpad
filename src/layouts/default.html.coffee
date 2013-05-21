@@ -70,7 +70,7 @@ html lang: 'en', ->
               li -> a href: 'http://feeds.feedburner.com/github/dogfeet', ->
                 img src: 'http://forum.tattersite.com/ko/style/Textcube/feed-icon.png'
             form '#search-form.pull-right.navbar-search', action: 'http://google.com/search', method: 'get', ->
-              input type: 'hidden', name: 'q', value: 'site:dogfeet.github.com'
+              input type: 'hidden', name: 'q', value: 'site:dogfeet.github.io'
               input 'search-query', type: 'text', name: 'q', results: '0', placeholder: 'Search'
 
     comment 'Markup'

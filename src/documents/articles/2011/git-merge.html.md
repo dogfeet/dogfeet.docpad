@@ -255,8 +255,8 @@ Vincent Driessen는 [A successful Git branching model][git-flow-post]에서 --no
 
 실제로 Driessen이 저 글의 내용을 구현한 [git-flow][]에서도 feature 브랜치에 commit이 하나만 있으면 develop 브랜치에 fast-forward로 merge한다.
 
-[progit]: http://dogfeet.github.com/articles/2011/progit.html
-[git-flow-post]: http://dogfeet.github.com/articles/2011/a-successful-git-branching-model.html
+[progit]: http://dogfeet.github.io/articles/2011/progit.html
+[git-flow-post]: http://dogfeet.github.io/articles/2011/a-successful-git-branching-model.html
 [git-flow]: https://github.com/nvie/gitflow
 [Visual git guide]: http://marklodato.github.com/visual-git-guide/index-ko.html
 

@@ -157,7 +157,7 @@ CoffeeKup은 `with` 구문을 이용해서 scope variable을 확장할 수 있�
 
 docpad를 실행했는데 다음과 같은 에러가 발생하면:
 
-    Error: Command failed: npm ERR! error installing coffee-script@1.1.3 Error: ENOENT, no such file or directory '/Users/pismute/dogfeet/dogfeet.github.com/node_modules/coffee-script/package.json'
+    Error: Command failed: npm ERR! error installing coffee-script@1.1.3 Error: ENOENT, no such file or directory '/Users/pismute/dogfeet/dogfeet.github.io/node_modules/coffee-script/package.json'
 
 수동으로 패키지를 설치한다. 원래 docpad는 자동으로 설치하고 update해줄 수 있다고 하는데 뭔가 잘 안될 때가 있다:
 

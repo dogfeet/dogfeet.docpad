@@ -79,7 +79,7 @@ section '.content.articles', ->
     , '2011'
     , 'Changwoo Park'
   artifactsIt 'Grails User Guide v1.0 [번역]'
-    , 'http://dogfeet.github.com/grails-doc/guide/'
+    , 'http://dogfeet.github.io/grails-doc/guide/'
     , '2008'
     , 'Changwoo Park, Sean Lee, Yongjae Choi'
 

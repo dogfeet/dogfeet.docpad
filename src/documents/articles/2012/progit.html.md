@@ -14,9 +14,9 @@ GitHub의 CIO인 [schacon][]이 쓴 [progit][] 번역을 완료했습니다. 부
 
 다음 Format의 파일로 배포하고 있고 다운 받아서 읽으실 수 있습니다. `2012-04-02`에 빌드한 파일입니다:
 
- * [progit.ko.epub](http://dogfeet.github.com/progit/progit.ko.epub)
- * [progit.ko.mobi](http://dogfeet.github.com/progit/progit.ko.mobi)
- * [progit.ko.pdf](http://dogfeet.github.com/progit/progit.ko.pdf)
+ * [progit.ko.epub](http://dogfeet.github.io/progit/progit.ko.epub)
+ * [progit.ko.mobi](http://dogfeet.github.io/progit/progit.ko.mobi)
+ * [progit.ko.pdf](http://dogfeet.github.io/progit/progit.ko.pdf)
  * [progit.ko.html](http://git-scm.com/book/ko)
 
 mobi 파일은 Android Kindle App에서 띄어쓰기가 안되는 문제가 있습니다. [Calibre][]에서 열어보면 잘 되는데 Kindle App에서는 안되네요.
