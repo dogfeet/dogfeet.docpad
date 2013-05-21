@@ -15,7 +15,7 @@ anEntry = (document) ->
   tag 'entry', ->
     title '<![CDATA[ ' + document.get('title') + ' ]]>'
     tag 'link', href: "#{@site.url}#{document.get('url')}"
-    tag 'updated', document.get('date').toISODateString()
+    tag 'updated', document.get('date').toISOString()
     tag 'id', "#{@site.url}#{document.get('url')}"
     tag 'content', type: 'html', -> renderContent document, @site.url
 
@@ -24,7 +24,7 @@ tag 'feed', xmlns: 'http://www.w3.org/2005/Atom', ->
   title '<![CDATA[ ' + @site.title + ' ]]>'
   tag 'link', href: "#{@site.url}/atom.xml", rel: 'self'
   tag 'link', href: @site.url
-  tag 'updated', @site.date.toISODateString()
+  tag 'updated', @site.date.toISOString()
   tag 'id', @site.url
   for name of @authors
     author = @authors[ name ]
