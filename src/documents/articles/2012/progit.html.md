@@ -31,6 +31,13 @@ mobi 파일은 Android Kindle App에서 띄어쓰기가 안되는 문제가 있�
 
 다시 한번 동료의 힘을 몸소 체험한 프로젝트 였습니다. [@lethee](https://twitter.com/#!/lethee)와 함께 하지 않고 혼자했다면 결코 완주하지 못했을 겁니다.
 
+## 종이책 출간
+
+![프로 Git](http://www.insightbook.co.kr/wp-content/uploads/2013/04/표지-235x300.jpg)
+
+[인사이트](http://www.insightbook.co.kr/) 출판사의 도움으로 [progit][] 한글 번역책을 온라인 및 오프라인 서점에서 구입하실 수 있습니다.
+전문 편집자의 교정을 거친 원고 및 업데이트 된 그림과, SmartHTTP, GitHub에 대한 부록, 간편히 벽에 붙여놓고 사용할 수 있는 CheetSheet 등을 추가하였습니다.
+
 ## 힘내
 
 구글 번역기는 `Git`을 `힘내`라고 번역해 줍니다. 개발자분들 모두 `Git`으로 힘내시길 바래요.
