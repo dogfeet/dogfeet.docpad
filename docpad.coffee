@@ -181,6 +181,8 @@ module.exports =
         parseAfter: ({}, next)->
           docpad = @docpad
           console.log(['total files=', docpad.database.length])
+          #docpad.getCollection('layouts').forEach (layout)->
+          #  console.log(layout.attributes)
 
           console.log(':parseAfter:')
           next()

@@ -29,7 +29,7 @@ module.exports = (BasePlugin) ->
             _templates={}
 
             @docpad.getCollection('layouts').forEach (layout) ->
-                layoutId=layout.get('id').replace('.html.coffee','')
+                layoutId=layout.get('basename')
                 logger.log 'debug', "compiling '#{layoutId}' layout for @layout"
                 _templates[ layoutId ] = ck.compile layout.get('content')
 
