@@ -131,27 +131,6 @@ module.exports =
         out
 
   # =================================
-  # DocPad Events
-
-  # Here we can define handlers for events that DocPad fires
-  # You can find a full listing of events on the DocPad Wiki
-  ###
-  events:
-
-    # Ammend our Template Data
-    renderBefore: ({collection, templateData}, next) ->
-      #sorting documents 
-      collection.comparator = (model) ->
-        try
-          -model.meta.get('date').getTime()
-        catch error
-          9007199254740992
-      collection.sort()
-
-      next()
-  ###
-
-  # =================================
   # Collections
   # These are special collections that our website makes available to us
 
@@ -166,5 +145,94 @@ module.exports =
       database.findAllLive({fullPath: $startsWith: config.documentsPaths + '/articles'}, [date:-1])
     speach: (database) ->
       database.findAllLive({tags: $has: 'speach'}, [date:-1])
+
+  # Environments
+  # Allows us to set custom configuration for specific environments
+  environments:
+    w:  # for writing and debug
+      ignoreCustomPatterns: /2008|2009|2010|2011|2012/
+
+      # =================================
+      # DocPad Events
+
+      # Here we can define handlers for events that DocPad fires
+      # You can find a full listing of events on the DocPad Wiki
+      events:
+        docpadReady: ({docpad}, next)->
+          console.log(':docpadReady:')
+          next()
+
+        consoleSetup: ({consoleInterface, commander}, next)->
+          console.log(':consoleSetup:')
+          next()
+
+        generateBefore: ({}, next)->
+          console.log(':generateBefore:')
+          next()
+
+        generateAfter: ({}, next)->
+          console.log(':generateAfter:')
+          next()
+
+        parseBefore: ({}, next)->
+          console.log(':parseBefore:')
+          next()
+
+        parseAfter: ({}, next)->
+          docpad = @docpad
+          console.log(['total files=', docpad.database.length])
+
+          console.log(':parseAfter:')
+          next()
+
+        renderBefore: ({collection, templateData}, next)->
+          console.log(':renderBefore:')
+          next()
+
+        renderAfter: ({collection}, next)->
+          console.log(':renderAfter:')
+          next()
+        ###
+        render: ({inExtension, outExtension, templateData, file, content}, next)->
+          console.log(':render:')
+          next()
+
+        renderDocument: ({extension, templateData, file, content}, next)->
+          console.log(':renderDocument:')
+          next()
+        ###
+        writeBefore: ({collection, templateData}, next)->
+          console.log(':writeBefore:')
+          next()
+
+        writeAfter: ({collection}, next)->
+          console.log(':writeAfter:')
+          next()
+
+        serverBefore: ({}, next)->
+          console.log(':serverBefore:')
+          next()
+
+        serverAfter: ({server}, next)->
+          console.log(':serverAfter:')
+          next()
+
+        serverExtend: ({server}, next)->
+          console.log(':serverExtend:')
+          next()
+
+      ###
+        # Ammend our Template Data
+        renderBefore: ({collection, templateData}, next) ->
+          #sorting documents 
+          collection.comparator = (model) ->
+            try
+              -model.meta.get('date').getTime()
+            catch error
+              9007199254740992
+          collection.sort()
+
+          next()
+      ###
 
 
