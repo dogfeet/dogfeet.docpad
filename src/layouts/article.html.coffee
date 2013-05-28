@@ -81,7 +81,7 @@ if @document.relatedDocuments.length > 0
         ul ->
           @document.relatedDocuments.forEach (document)->
             li ->
-              span @helper.formatDate(@document.date)
+              span @helper.formatDate(document.date)
               text '&raquo;'
               a href: "#{document.url}", "#{document.title}"
 
