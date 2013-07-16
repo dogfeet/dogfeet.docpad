@@ -223,7 +223,7 @@ module.exports =
           console.log(':serverExtend:')
           next()
 
-      ###
+###
         # Ammend our Template Data
         renderBefore: ({collection, templateData}, next) ->
           #sorting documents 
@@ -235,6 +235,6 @@ module.exports =
           collection.sort()
 
           next()
-      ###
+###
 
 
