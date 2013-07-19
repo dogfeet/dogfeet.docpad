@@ -72,6 +72,7 @@ section '.content', ->
         # / Social Button
         # Content
         div property: 'sioc:content', -> "#{@content}"
+###
 # relatedDocuments
 if @document.relatedDocuments.length > 0
   section '#related', ->
@@ -84,6 +85,7 @@ if @document.relatedDocuments.length > 0
               span @helper.formatDate(document.date)
               text '&raquo;'
               a href: "#{document.url}", "#{document.title}"
+###
 
 # Comments
 section '#comments', ->
